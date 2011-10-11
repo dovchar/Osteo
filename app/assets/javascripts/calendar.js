@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
 
+  $('#mini-calendar').datepicker().children().show();
+
   $('#calendar').fullCalendar({
     //Same as in Google Calendar
 

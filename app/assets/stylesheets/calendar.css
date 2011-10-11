@@ -4,6 +4,15 @@
  *= require fullcalendar/fullcalendar.css
  */
 
+#mini-calendar {
+  float: left;
+  font-size: small;
+}
+
+#calendar {
+  margin-left: 270px;
+}
+
 .fc-button-content {
   font-weight: bold;
 }
