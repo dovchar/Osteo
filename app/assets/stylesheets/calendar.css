@@ -1,8 +1,9 @@
 /*
  * Place all the styles related to the matching controller here.
  * They will automatically be included in application.css.
+ *
  *= require fullcalendar/fullcalendar.css
- */
+*/
 
 #mini-calendar {
   float: left;
@@ -10,9 +11,14 @@
 }
 
 #calendar {
-  margin-left: 270px;
+  margin-left: 180px;
 }
 
 .fc-button-content {
   font-weight: bold;
+}
+
+/* Disable {clear: both} inside fullcalendar.css */
+.fc-content {
+  clear: none;
 }
