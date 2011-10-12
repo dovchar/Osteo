@@ -1,4 +1,6 @@
 Osteo::Application.routes.draw do
+  resources :events
+
   get "calendar/index"
 
   # The priority is based upon order of creation:
