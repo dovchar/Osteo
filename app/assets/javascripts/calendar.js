@@ -1,8 +1,26 @@
 //= require fullcalendar/fullcalendar.js
 
 $(document).ready(function() {
-  $("#calendar").html("Hello World from jQuery!");
-  $("#date").datepicker();
-  $("#calendar").fullCalendar({
+
+  $('#calendar').fullCalendar({
+    //Same as in Google Calendar
+
+    header: {
+      left: 'today prev,next title',
+      center: '',
+      right: 'agendaDay,agendaWeek,month'
+    },
+
+    //Enables jQuery UI theme
+    theme: true,
+
+    //Names in uppercase
+    buttonText: {
+      today: 'Today',
+      month: 'Month',
+      week: 'Week',
+      day: 'Day'
+    }
   });
+
 });
