@@ -22,7 +22,9 @@ $(document).ready(function() {
       month: 'Month',
       week: 'Week',
       day: 'Day'
-    }
+    },
+
+    events: '/events'
   });
 
 });
