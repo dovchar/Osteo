@@ -3,26 +3,7 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require jquery-ui/jquery-ui-1.8.16.custom.css
  *= require_self
  *= require_tree .
 */
-
-/* Overwrite all font styles from jQuery UI theme and fullcalendar.css */
-html {
-  font-family: sans-serif;
-  font-size: inherit;
-}
-.ui-widget {
-  font-family: sans-serif;
-  font-size: inherit;
-}
-
-/* Overwrite datepicker width */
-.ui-datepicker {
-  width: 13em;
-}
-
-/* Smaller datepicker: no padding */
-.ui-datepicker td span, .ui-datepicker td a {
-  padding: 0;
-}
