@@ -2,7 +2,9 @@
 
 $(document).ready(function() {
 
-  $('#mini-calendar').datepicker().children().show();
+  $('#mini-calendar').datepicker({
+    dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+  }).children().show();
 
   $('#calendar').fullCalendar({
     //Same as in Google Calendar
@@ -23,6 +25,8 @@ $(document).ready(function() {
       week: 'Week',
       day: 'Day'
     },
+
+    editable: 'true',
 
     events: '/events'
   });
