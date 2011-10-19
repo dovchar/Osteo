@@ -21,7 +21,7 @@ class EventsControllerTest < ActionController::TestCase
       post :create, event: @event.attributes
     end
 
-    assert_redirected_to event_path(assigns(:event))
+    assert_redirected_to calendar_path
   end
 
   test "should show event" do
