@@ -6,12 +6,9 @@
 
 <% if @date %>
 <script>
-  //Shows a specified date inside the calendar
+  //Moves the calendar to a specified date.
   $(document).ready(function() {
-    var year = <%= @date.year %>;
-    var month = <%= @date.month - 1 %>; //0 based
-    var day = <%= @date.day - 1 %>;  //0 based
-    $('#calendar').fullCalendar('gotoDate', year , month, day);
+    $('#calendar').fullCalendar('gotoDate', new Date(<%= @date %>));
   });
 </script>
 <% end %>
