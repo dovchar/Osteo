@@ -3,3 +3,15 @@
 
 <div id="mini-calendar"></div>
 <div id="calendar"></div>
+
+<% if @date %>
+<script>
+  //Shows a specified date inside the calendar
+  $(document).ready(function() {
+    var year = <%= @date.year %>;
+    var month = <%= @date.month - 1 %>; //0 based
+    var day = <%= @date.day - 1 %>;  //0 based
+    $('#calendar').fullCalendar('gotoDate', year , month, day);
+  });
+</script>
+<% end %>
