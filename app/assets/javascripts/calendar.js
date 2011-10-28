@@ -28,7 +28,38 @@ $(document).ready(function() {
 
     editable: 'true',
 
-    events: '/events'
+    ignoreTimezone: false,  //Otherwise ISO 8601 "2011-10-28T01:22:00Z" is not seen as UTC
+
+    events: '/events',
+
+    //An event has been moved to a different day/time
+    //See http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
+    eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+      var start = event.start.toUTCString() //event.start is never null
+
+      var end = event.end
+      if (end) {
+        end = end.toUTCString()
+      } else {
+        //event.end can be null if end equals start
+        //This will make Rails unhappy so let's set end to a real date instead
+        //FIXME end = start
+      }
+
+      $.ajax({
+        type: 'PUT',
+        url: '/events/' + event.id,
+        data: {
+          event: {
+            title: event.title,
+            starts_at: start,
+            ends_at: end,
+            description: event.description
+          }
+        }
+      });
+    }
+
   });
 
 });

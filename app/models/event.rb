@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
       id: id,
       title: title,
       description: description,
-      start: starts_at,
+      start: starts_at, # ISO 8601, ex: "2011-10-28T01:22:00Z"
       end: ends_at,
       allDay: all_day,
       url: Rails.application.routes.url_helpers.event_path(id)
