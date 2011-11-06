@@ -12,25 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%
+      # HTML5 placeholder attribute, see http://davidwalsh.name/html5-placeholder
+      # Browsers support: http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(HTML5)
+    %>
+    <%= f.text_field :title, placeholder: Event::DEFAULT_TITLE %>
   </div>
+
   <div class="field">
-    <%= f.label :starts_at %><br />
-    <%= f.datetime_select :starts_at %>
+    <%= f.label :starts_at %>
+    <%= f.datetime_select :starts_at, minute_step: 30 %>
   </div>
+
   <div class="field">
-    <%= f.label :ends_at %><br />
-    <%= f.datetime_select :ends_at %>
+    <%= f.label :ends_at %>
+    <%= f.datetime_select :ends_at, minute_step: 30 %>
   </div>
+
   <div class="field">
-    <%= f.label :all_day %><br />
     <%= f.check_box :all_day %>
+    <%= f.label :all_day %>
   </div>
+
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
