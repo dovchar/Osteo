@@ -9,7 +9,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     visit "/calendar?date=#{events(:alisson).starts_at}"
     assert page.has_content?('October 2010')
-    assert page.has_content?('12a')
+    assert page.has_content?('2a')  # Translated from UTC to localtime by FullCalendar
     assert page.has_content?('Appointment with Alisson')
   end
 

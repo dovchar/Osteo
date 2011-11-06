@@ -2,14 +2,14 @@
 
 alisson:
   title: Appointment with Alisson
-  starts_at: 2010-10-13 00:00:00
-  ends_at: 2010-10-13 00:30:00
+  starts_at: 2010-10-13 00:00:00 UTC
+  ends_at: 2010-10-13 00:30:00 UTC
   all_day: false
   description: Regular 30 minutes medical consultation
 
 fabienne:
   title: Appointment with Fabienne
-  starts_at: 2011-10-14 00:00:00
-  ends_at: 2011-10-14 00:30:00
+  starts_at: 2011-10-14 00:00:00 UTC
+  ends_at: 2011-10-14 00:30:00 UTC
   all_day: false
   description: Regular 30 minutes medical consultation
