@@ -23,14 +23,3 @@
 .fc-content {
   clear: none;
 }
-
-/* Remove the border and background color around the mini calendar header (where the title is) */
-.ui-datepicker-header {
-  border: none;
-  background: none;
-}
-
-/* Remove the border around the mini calendar */
-.ui-datepicker {
-  border: none;
-}
