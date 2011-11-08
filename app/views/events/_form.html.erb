@@ -20,9 +20,9 @@
   </div>
 
   <div class="field">
-    <%= f.my_datetime_select :starts_at, title: "From date and time" %>
+    <%= f.jquery_datetime_select :starts_at, Time.now, { title: "From date" }, { title: "From time" } %>
     to
-    <%= f.my_datetime_select :ends_at, title: "Until date and time" %>
+    <%= f.jquery_datetime_select :ends_at, Time.now + 1.hour, { title: "Until date" }, { title: "Until time" } %>
   </div>
 
   <div class="field">
