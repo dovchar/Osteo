@@ -40,15 +40,8 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    starts_at = params[:event][:starts_at_date] + ' ' + params[:event][:starts_at_time]
-    params[:event][:starts_at] = Time.parse(starts_at)
-    params[:event].delete(:starts_at_date)
-    params[:event].delete(:starts_at_time)
-
-    ends_at = params[:event][:ends_at_date] + ' ' + params[:event][:ends_at_time]
-    params[:event][:ends_at] = Time.parse(ends_at)
-    params[:event].delete(:ends_at_date)
-    params[:event].delete(:ends_at_time)
+    Time.parse_jquery_datetime_select(params, :event, :starts_at)
+    Time.parse_jquery_datetime_select(params, :event, :ends_at)
 
     @event = Event.new(params[:event])
 
