@@ -40,6 +40,16 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    starts_at = params[:event][:"starts_at(date)"] + ' ' + params[:event][:"starts_at(time)"]
+    params[:event][:starts_at] = Time.parse(starts_at)
+    params[:event].delete(:"starts_at(date)")
+    params[:event].delete(:"starts_at(time)")
+
+    ends_at = params[:event][:"ends_at(date)"] + ' ' + params[:event][:"ends_at(time)"]
+    params[:event][:ends_at] = Time.parse(ends_at)
+    params[:event].delete(:"ends_at(date)")
+    params[:event].delete(:"ends_at(time)")
+
     @event = Event.new(params[:event])
 
     respond_to do |format|

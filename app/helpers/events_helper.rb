@@ -17,52 +17,36 @@ class ActionView::Helpers::FormBuilder
   include ActionView::Helpers::JavaScriptHelper
 
   def jquery_datetime_select(method, time, date_options = {}, time_options = {})
-    date_options['value'] = time.strftime('%d/%m/%Y')
-    date_options['size'] = 8
-    date_options['index'] = 'date'
-    date_field = @template.text_field(@object_name, method, date_options)
+    date_options[:value] = time.strftime('%Y-%m-%d')
+    date_options[:size] = 10
+    date_options[:maxlength] = 10
+    date_field = @template.text_field(@object_name, "#{method}(date)", date_options)
 
-    time_options['value'] = time.round(10.minutes).strftime('%R')
-    time_options['size'] = 3
-    time_options['index'] = 'time'
-    time_field = @template.text_field(@object_name, method, time_options)
+    time_options[:value] = time.round(10.minutes).strftime('%R')
+    time_options[:size] = 5
+    time_options[:maxlength] = 5
+    time_field = @template.text_field(@object_name, "#{method}(time)", time_options)
 
-    javascript = javascript_tag "
+    jquery = javascript_tag "
       $(document).ready(function() {
 
-        $('##{tag_id_with_index(method, date_options['index'])}').datepicker({
+        $('##{tag_id(method, 'date')}').datepicker({
           dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
           dateFormat: 'dd/mm/yy'
         });
 
-        $('##{tag_id_with_index(method, time_options['index'])}').timepicker({
+        $('##{tag_id(method, 'time')}').timepicker({
           stepMinute: 10,
           showButtonPanel: false,
         });
       });"
 
-    return date_field + time_field + javascript
+    return date_field + time_field + jquery
   end
 
   private
 
-  # Copy-pasted from ActionView::Helpers::InstanceTag
-  def tag_id(method)
-    "#{sanitized_object_name}_#{sanitized_method_name(method)}"
-  end
-
-  # Copy-pasted from ActionView::Helpers::InstanceTag
-  def tag_id_with_index(method, index)
-    "#{sanitized_object_name}_#{index}_#{sanitized_method_name(method)}"
-  end
-
-  # Copy-pasted from ActionView::Helpers::InstanceTag
-  def sanitized_object_name
-    @object_name.gsub(/\]\[|[^-a-zA-Z0-9:.]/, "_").sub(/_$/, "")
-  end
-
-  # Copy-pasted from ActionView::Helpers::InstanceTag
-  def sanitized_method_name(method)
-    method.to_s.sub(/\?$/,"")
+  def tag_id(method, label)
+    return "#{@object_name}_#{method}(#{label})"
   end
 end
