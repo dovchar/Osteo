@@ -20,12 +20,12 @@ class ActionView::Helpers::FormBuilder
     date_options[:value] = time.strftime('%Y-%m-%d')
     date_options[:size] = 10
     date_options[:maxlength] = 10
-    date_field = @template.text_field(@object_name, "#{method}(date)", date_options)
+    date_field = @template.text_field(@object_name, "#{method}_date", date_options)
 
     time_options[:value] = time.round(10.minutes).strftime('%R')
     time_options[:size] = 5
     time_options[:maxlength] = 5
-    time_field = @template.text_field(@object_name, "#{method}(time)", time_options)
+    time_field = @template.text_field(@object_name, "#{method}_time", time_options)
 
     jquery = javascript_tag "
       $(document).ready(function() {
@@ -47,6 +47,6 @@ class ActionView::Helpers::FormBuilder
   private
 
   def tag_id(method, label)
-    return "#{@object_name}_#{method}(#{label})"
+    return "#{@object_name}_#{method}_#{label}"
   end
 end
