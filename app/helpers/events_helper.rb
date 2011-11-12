@@ -12,7 +12,7 @@ module EventsHelper
     # - one for the time ("22:00") that uses jQuery UI timepicker add-on
     # Unobtrusive JavaScript: if disabled, the two text fields will still work.
     #
-    def jquery_datetime_select(method, time = Time.now, date_options = {}, time_options = {})
+    def jquery_datetime_select(method, order = :time_before_date, time = Time.now, date_options = {}, time_options = {})
       date_options[:value] = time.strftime('%Y-%m-%d')
       date_options[:size] = 10
       date_options[:maxlength] = 10
@@ -37,7 +37,11 @@ module EventsHelper
           });
         });"
 
-      return date_field + time_field + jquery_ui
+      if order == :time_before_date
+        return time_field + date_field + jquery_ui
+      else
+        return date_field + time_field + jquery_ui
+      end
     end
 
     private
@@ -58,13 +62,13 @@ class Time
   #
   #     # View
   #     <%= form_for(@my_model) do |f| %>
-  #       <%= f.jquery_datetime_select :my_field_name %>
+  #       <%= f.jquery_datetime_select :my_field %>
   #     <% end %>
   #
   #     # Controller
   #     class MyController < ApplicationController
   #       def create
-  #         Time.parse_jquery_datetime_select(params, :my_model, :my_field_name)
+  #         Time.parse_jquery_datetime_select(params, :my_model, :my_field)
   #         @my_model = MyModel.new(params[:my_model])
   #         [...]
   #       end

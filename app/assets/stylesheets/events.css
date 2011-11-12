@@ -4,3 +4,8 @@
  *
  *= require jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css
 */
+
+/* No margin for input fields within Firefox 8 and IE 9 ; Chrome 15 is OK*/
+input {
+  margin-right: 4px;
+}
