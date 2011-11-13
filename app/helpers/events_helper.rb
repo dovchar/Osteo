@@ -81,11 +81,14 @@ class Time
     params["#{model}"].delete("#{field}_time")
   end
 
+  # Rounds the time.
+  #
+  # Examples:
+  #     Time.new(2011, 11, 13, 03, 51, 00).round(10.minutes) # 2011-11-13 03:50:00
+  #     Time.new(2011, 11, 13, 13, 42, 24).round() # 2011-11-13 13:42:00
+  #     Time.new(2011, 11, 13, 13, 42, 24).round(1.hour) # 2011-11-13 14:00:00
+  #
   def round(seconds = 60)
     Time.at((to_f / seconds).round * seconds)
-  end
-
-  def floor(seconds = 60)
-    Time.at((to_f / seconds).floor * seconds)
   end
 end
