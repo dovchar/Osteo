@@ -2,7 +2,7 @@
  * Place all the styles related to the matching controller here.
  * They will automatically be included in application.css.
  *
- *= require jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css
+ *= require jquery-ui-timepicker/jquery-ui-timepicker-addon.css
 */
 
 /* No margin for input fields within Firefox 8 and IE 9 ; Chrome 15 is OK*/
