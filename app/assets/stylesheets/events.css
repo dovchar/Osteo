@@ -9,3 +9,8 @@
 input {
   margin-right: 4px;
 }
+
+#map {
+  width: 300px;
+  height: 300px;
+}
