@@ -5,8 +5,6 @@ class Event < ActiveRecord::Base
   validates :ends_at, :presence => true
   validate :validate_ends_at_after_starts_at
 
-  DEFAULT_TITLE = "Untitled event"
-
   # Need to override the JSON view to return what FullCalendar is expecting.
   # See http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
   def as_json(options = nil)

@@ -16,11 +16,8 @@
   <% end %>
 
   <div class="field">
-    <%
-      # HTML5 placeholder attribute, see http://davidwalsh.name/html5-placeholder
-      # Browsers support: http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(HTML5)
-    %>
-    <%= f.text_field :title, title: "Event title", placeholder: Event::DEFAULT_TITLE, autofocus: true, required: true %>
+    <%= f.label :title %><br />
+    <%= f.text_field :title, title: "Event title", autofocus: true, required: true %>
   </div>
 
   <div class="field">
