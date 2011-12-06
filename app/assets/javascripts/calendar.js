@@ -47,6 +47,8 @@ $(document).ready(function() {
 
 });
 
+//A calendar event has been modified, let's update it
+//Sends an AJAX request to the server to update the event inside the database
 function updateEvent(event) {
   var start = event.start.toUTCString() //event.start is never null
 
