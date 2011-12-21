@@ -1,3 +1,7 @@
+# Code coverage
+require 'simplecov'
+SimpleCov.start 'rails'
+
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
@@ -12,11 +16,9 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
-
 # Configure Capybara for the integration tests
 # See Capybara documentation https://github.com/jnicklas/capybara
 require 'capybara/rails'
-
 Capybara.current_driver = :selenium
 
 class ActionDispatch::IntegrationTest
