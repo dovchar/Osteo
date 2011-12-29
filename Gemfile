@@ -7,6 +7,10 @@ gem 'rails', '3.1.3'
 
 platforms :ruby do
   gem 'sqlite3'
+
+  # No JavaScript engine installed by default under Linux
+  # See http://stackoverflow.com/questions/6282307/rails-3-1-execjs-and-could-not-find-a-javascript-runtime
+  gem 'therubyracer'
 end
 
 platforms :jruby do
