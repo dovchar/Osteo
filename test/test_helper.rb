@@ -1,6 +1,8 @@
 # Code coverage
 require 'simplecov'
 SimpleCov.start 'rails'
+# Merges all tests results together, see https://github.com/colszowka/simplecov/issues/45
+SimpleCov.command_name
 
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
