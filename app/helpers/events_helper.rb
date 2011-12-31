@@ -8,7 +8,7 @@ module EventsHelper
     # Same as datetime_select but uses jQuery UI.
     #
     # Creates two text fields:
-    # - one for the date ("28/11/2011") that uses jQuery UI datepicker
+    # - one for the date ("2011-11-28") that uses jQuery UI datepicker
     # - one for the time ("22:00") that uses jQuery UI timepicker add-on
     # Unobtrusive JavaScript: if disabled, the two text fields will still work.
     #
@@ -16,11 +16,13 @@ module EventsHelper
       date_options[:value] = time.strftime('%Y-%m-%d')
       date_options[:size] = 10
       date_options[:maxlength] = 10
+      date_options[:autocomplete] = :off
       date_field = @template.text_field(@object_name, "#{method}_date", date_options)
 
       time_options[:value] = time.round(10.minutes).strftime('%R')
       time_options[:size] = 5
       time_options[:maxlength] = 5
+      time_options[:autocomplete] = :off
       time_field = @template.text_field(@object_name, "#{method}_time", time_options)
 
       jquery_ui = javascript_tag "
@@ -28,7 +30,7 @@ module EventsHelper
 
           $('##{field_id(method, 'date')}').datepicker({
             dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'yy-mm-dd'
           });
 
           $('##{field_id(method, 'time')}').timepicker({
@@ -82,15 +84,19 @@ class Time
     date = params["#{model}"]["#{field}_date"]
     time = params["#{model}"]["#{field}_time"]
 
-    # Checks if the params exist
-    # If JavaScript is not used (for example when running the tests)
-    # then they don't exist
-    if date and time
+    begin
       str = date + ' ' + time
       params["#{model}"]["#{field}"] = Time.parse(str)
-      params["#{model}"].delete("#{field}_date")
-      params["#{model}"].delete("#{field}_time")
+    rescue
+      # Variables date and time can be nil in case JavaScript
+      # is not used (for example when running the tests)
+
+      # Variables date and time can contain unparseable text,
+      # Time.parse will then fail
     end
+
+    params["#{model}"].delete("#{field}_date")
+    params["#{model}"].delete("#{field}_time")
   end
 
   # Rounds the time.

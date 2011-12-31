@@ -13,3 +13,6 @@ fabienne:
   ends_at: 2011-10-14 00:30:00 UTC
   all_day: false
   description: Regular 30 minutes medical consultation
+
+invalid:
+  title: Invalid event

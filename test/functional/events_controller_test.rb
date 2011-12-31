@@ -3,6 +3,7 @@ require 'test_helper'
 class EventsControllerTest < ActionController::TestCase
   setup do
     @event = events(:alisson)
+    @invalid_event = events(:invalid)
   end
 
   test "should get index" do
@@ -24,6 +25,14 @@ class EventsControllerTest < ActionController::TestCase
     assert_redirected_to calendar_path
   end
 
+  test "should not create event" do
+    assert_no_difference('Event.count') do
+      post :create, event: @invalid_event.attributes
+    end
+
+    assert_template :new
+  end
+
   test "should show event" do
     get :show, id: @event.to_param
     assert_response :success
@@ -37,6 +46,11 @@ class EventsControllerTest < ActionController::TestCase
   test "should update event" do
     put :update, id: @event.to_param, event: @event.attributes
     assert_redirected_to event_path(assigns(:event))
+  end
+
+  test "should not update event" do
+    put :update, id: @invalid_event.to_param, event: @invalid_event.attributes
+    assert_template :edit
   end
 
   test "should destroy event" do
