@@ -6,6 +6,8 @@ $(document).ready(function() {
     dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S']
   }).children().show();
 
+  createShowEventDialog();
+
   $('#calendar').fullCalendar({
     //Same as in Google Calendar
 
@@ -32,16 +34,27 @@ $(document).ready(function() {
 
     events: '/events',
 
-    //An event has been moved to a different day/time
+    //Triggered when an event has moved to a different day/time
     //See http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
-    eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+    eventDrop: function(event) {
       updateEvent(event);
     },
 
-    //An event has been resized
+    //Triggered when an event has changed in duration
     //See http://arshaw.com/fullcalendar/docs/event_ui/eventResize/
-    eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+    eventResize: function(event) {
       updateEvent(event);
+    },
+
+    //Triggered when the user clicks on an event
+    //See http://arshaw.com/fullcalendar/docs/mouse/eventClick/
+    eventClick: function(event, jsEvent) {
+      showEvent(event, jsEvent);
+    },
+
+    //Triggered when the user clicks on a day
+    //See http://arshaw.com/fullcalendar/docs/mouse/dayClick/
+    dayClick: function(date, allDay, jsEvent, view) {
     }
   });
 
@@ -73,4 +86,43 @@ function updateEvent(event) {
       }
     }
   });
+}
+
+//Creates a hidden jQuery UI dialog to use with showEvent()
+function createShowEventDialog() {
+  var dialog = $('<div id="show_event_dialog"></div>').appendTo('body');
+  dialog.dialog({
+    modal: true,
+    autoOpen: false,
+    resizable: false
+  });
+}
+
+//Shows the event inside a jQuery UI dialog
+function showEvent(event, jsEvent) {
+  var dialog = $('#show_event_dialog');
+  var url = '/events/' + event.id;
+
+  //See http://stackoverflow.com/questions/809035/ajax-jquery-ui-dialog-window-loaded-within-ajax-style-jquery-ui-tabs
+  dialog.load(
+    url,
+    function(responseText, textStatus, XMLHttpRequest) {
+      dialog.dialog('option', 'title', event.title);
+
+      //Centers the dialog above the event
+      var height = dialog.parent().height();
+      var width = dialog.parent().width();
+      var posX = jsEvent.pageX - width / 2;
+      var posY = jsEvent.pageY - height;
+      dialog.dialog('option', 'position', [posX, posY]);
+
+      dialog.dialog('open');
+
+      $('.ui-widget-overlay').click(function() {
+        dialog.dialog('close');
+        //Prevent the default action, e.g., following a link
+        return false;
+      });
+    }
+  );
 }
