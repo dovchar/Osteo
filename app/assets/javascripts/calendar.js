@@ -1,12 +1,11 @@
 //= require fullcalendar/fullcalendar.js
+//= require qtip/jquery.qtip.js
 
 $(document).ready(function() {
 
   $('#mini-calendar').datepicker({
     dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S']
   }).children().show();
-
-  createShowEventDialog();
 
   $('#calendar').fullCalendar({
     //Same as in Google Calendar
@@ -49,7 +48,7 @@ $(document).ready(function() {
     //Triggered when the user clicks on an event
     //See http://arshaw.com/fullcalendar/docs/mouse/eventClick/
     eventClick: function(event, jsEvent) {
-      showEvent(event, jsEvent);
+      showEventTooltip(event, jsEvent, $(this));
     },
 
     //Triggered when the user clicks on a day
@@ -88,41 +87,40 @@ function updateEvent(event) {
   });
 }
 
-//Creates a hidden jQuery UI dialog to use with showEvent()
-function createShowEventDialog() {
-  var dialog = $('<div id="show_event_dialog"></div>').appendTo('body');
-  dialog.dialog({
-    modal: true,
-    autoOpen: false,
-    resizable: false
-  });
-}
+//Shows the event inside a tooltip using qTip
+function showEventTooltip(event, jsEvent, tooltip) {
+  tooltip.qtip({
+    content: {
+      title: {
+        text: event.title,
+        button: true
+      },
+      text: 'Loading...',
+      ajax: {
+        url: '/events/' + event.id,
+        loading: false  //Hide the tooltip whilst the initial content is loaded
+      }
+    },
 
-//Shows the event inside a jQuery UI dialog
-function showEvent(event, jsEvent) {
-  var dialog = $('#show_event_dialog');
-  var url = '/events/' + event.id;
+    position: {
+        my: 'bottom center',
+        at: 'top center',
+        target: [jsEvent.pageX, jsEvent.pageY],
+        viewport: $(window) //Try to keep the tooltip on-screen at all times
+    },
 
-  //See http://stackoverflow.com/questions/809035/ajax-jquery-ui-dialog-window-loaded-within-ajax-style-jquery-ui-tabs
-  dialog.load(
-    url,
-    function(responseText, textStatus, XMLHttpRequest) {
-      dialog.dialog('option', 'title', event.title);
+    show: {
+        //Show the tooltip when event is clicked and tooltip is 'ready' e.g. rendered
+        event: 'click',
+        ready: true
+    },
 
-      //Centers the dialog above the event
-      var height = dialog.parent().height();
-      var width = dialog.parent().width();
-      var posX = jsEvent.pageX - width / 2;
-      var posY = jsEvent.pageY - height;
-      dialog.dialog('option', 'position', [posX, posY]);
+    //Close the tooltip when it loses focus e.g. anywhere except the tooltip is clicked
+    hide: 'unfocus',
 
-      dialog.dialog('open');
-
-      $('.ui-widget-overlay').click(function() {
-        dialog.dialog('close');
-        //Prevent the default action, e.g., following a link
-        return false;
-      });
+    style: {
+      classes: 'ui-tooltip-shadow ui-tooltip-rounded',
+      widget: true  //Use jQuery UI style
     }
-  );
+  });
 }
