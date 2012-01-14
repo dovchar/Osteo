@@ -5,6 +5,7 @@ alisson:
   starts_at: 2010-10-13 00:00:00 UTC
   ends_at: 2010-10-13 00:30:00 UTC
   all_day: false
+  location: 228 Rue de Vaugirard, 75015 Paris, France
   description: Regular 30 minutes medical consultation
 
 fabienne:
@@ -12,6 +13,7 @@ fabienne:
   starts_at: 2011-10-14 00:00:00 UTC
   ends_at: 2011-10-14 00:30:00 UTC
   all_day: false
+  location: 8 Rue Desnouettes, 75015 Paris, France
   description: Regular 30 minutes medical consultation
 
 invalid:

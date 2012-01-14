@@ -59,11 +59,14 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
+    Time.parse_jquery_datetime_select(params, :event, :starts_at)
+    Time.parse_jquery_datetime_select(params, :event, :ends_at)
+
     @event = Event.find(params[:id])
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to calendar_url, notice: 'Event was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -79,7 +82,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to events_url }
+      format.html { redirect_to calendar_url }
       format.json { head :ok }
     end
   end
