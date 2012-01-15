@@ -25,7 +25,7 @@ class EventsControllerTest < ActionController::TestCase
     assert_redirected_to calendar_path
   end
 
-  test "should not create event" do
+  test "should not create invalid event" do
     assert_no_difference('Event.count') do
       post :create, event: @invalid_event.attributes
     end
@@ -48,7 +48,7 @@ class EventsControllerTest < ActionController::TestCase
     assert_redirected_to calendar_path
   end
 
-  test "should not update event" do
+  test "should not update event with invalid data" do
     put :update, id: @invalid_event.to_param, event: @invalid_event.attributes
     assert_template :edit
   end
