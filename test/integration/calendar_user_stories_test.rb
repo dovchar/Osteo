@@ -41,20 +41,20 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Title can't be blank")
   end
 
-  # FIXME Could not make drag and drop work under Capybara
-  test "drag and drop an event" do
-    visit "/calendar?date=#{events(:alisson).starts_at}"
-
-    # There is only 1 fc-event, the one that contains 'Appointment with Alisson'
-    source = page.find('.fc-event')
-
-    # Select sunday inside the first week
-    target = page.find('.fc-week0 .fc-sun')
-
-    # Drag and drop the event to sunday 26th
-    # FIXME This does not work
-    source.drag_to(target)
-  end
+#   # FIXME Could not make drag and drop work under Capybara
+#   test "drag and drop an event" do
+#     visit "/calendar?date=#{events(:alisson).starts_at}"
+#
+#     # There is only 1 fc-event, the one that contains 'Appointment with Alisson'
+#     source = page.find('.fc-event')
+#
+#     # Select sunday inside the first week
+#     target = page.find('.fc-week0 .fc-sun')
+#
+#     # Drag and drop the event to sunday 26th
+#     # FIXME This does not work
+#     source.drag_to(target)
+#   end
 
   test "update an event" do
     visit "/calendar?date=#{events(:alisson).starts_at}"
