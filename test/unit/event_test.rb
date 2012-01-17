@@ -2,12 +2,16 @@ require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
 
+  test "default attributes values" do
+    event = Event.new
+    assert event.starts_at.to_i == Time.now.to_i
+    assert event.ends_at.to_i == (Time.now + 1.hour).to_i
+  end
+
   test "event attributes must not be empty" do
     event = Event.new
     assert event.invalid?
     assert event.errors[:title].any?
-    assert event.errors[:starts_at].any?
-    assert event.errors[:ends_at].any?
 
     assert !event.save
     assert_equal "can't be blank", event.errors[:title].join('; ')

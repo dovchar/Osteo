@@ -17,4 +17,4 @@ fabienne:
   description: Regular 30 minutes medical consultation
 
 invalid:
-  title: Invalid event
+  description: Invalid event without title

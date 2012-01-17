@@ -1,6 +1,6 @@
 module EventsHelper
 
-  # Add new field types to form helpers
+  # Add new field types to form helpers.
   class ActionView::Helpers::FormBuilder
     include ActionView::Helpers::TagHelper
     include ActionView::Helpers::JavaScriptHelper

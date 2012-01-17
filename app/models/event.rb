@@ -1,9 +1,11 @@
 class Event < ActiveRecord::Base
 
-  validates :title, :presence => true
-  validates :starts_at, :presence => true
-  validates :ends_at, :presence => true
+  validates :title, presence: true
+  validates :starts_at, presence: true
+  validates :ends_at, presence: true
   validate :validate_ends_at_after_starts_at
+
+  after_initialize :init
 
   # Need to override the JSON view to return what FullCalendar is expecting.
   # See http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
@@ -19,6 +21,13 @@ class Event < ActiveRecord::Base
   end
 
   private
+
+  # Initializes the attributes with default values.
+  # See http://stackoverflow.com/questions/328525/what-is-the-best-way-to-set-default-values-in-activerecord
+  def init
+    self.starts_at ||= Time.now
+    self.ends_at ||= Time.now + 1.hour
+  end
 
   def validate_ends_at_after_starts_at
     if starts_at && ends_at
