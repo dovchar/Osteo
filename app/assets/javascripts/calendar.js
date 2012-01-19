@@ -8,7 +8,7 @@ $(document).ready(function() {
   }).children().show();
 
   $('#calendar').fullCalendar({
-    //Same as in Google Calendar
+    //Similar style as the one from Google Calendar
 
     header: {
       left: 'today prev,next title',
@@ -29,7 +29,8 @@ $(document).ready(function() {
 
     editable: 'true',
 
-    ignoreTimezone: false,  //Otherwise ISO 8601 "2011-10-28T01:22:00Z" is not seen as UTC
+    //Otherwise ISO 8601 "2011-10-28T01:22:00Z" is not seen as UTC
+    ignoreTimezone: false,
 
     events: '/events',
 
@@ -88,8 +89,8 @@ function updateEvent(event) {
 }
 
 //Shows the event inside a tooltip using qTip
-function showEventTooltip(event, jsEvent, tooltip) {
-  tooltip.qtip({
+function showEventTooltip(event, jsEvent, div) {
+  div.qtip({
     content: {
       title: {
         text: event.title,
@@ -98,7 +99,7 @@ function showEventTooltip(event, jsEvent, tooltip) {
       text: 'Loading...',
       ajax: {
         url: '/events/' + event.id,
-        loading: false  //Hide the tooltip whilst the initial content is loaded
+        loading: false //Hide the tooltip whilst the initial content is loaded
       }
     },
 
@@ -120,7 +121,7 @@ function showEventTooltip(event, jsEvent, tooltip) {
 
     style: {
       classes: 'ui-tooltip-shadow ui-tooltip-rounded',
-      widget: true  //Use jQuery UI style
+      widget: true //Use jQuery UI style
     }
   });
 }
