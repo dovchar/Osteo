@@ -3,5 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/
 .sass-cache/
-/nbproject/
+nbproject/
 .DS_Store
+coverage/
