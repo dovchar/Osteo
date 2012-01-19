@@ -6,7 +6,13 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @events }
+
+      # Remove events that are invalid for FullCalendar
+      # otherwise the JavaScript code will fail
+      # This usually never happens only when using events from a fixture
+      events = @events.dup
+      events.delete_if{ |event| event.invalid? }
+      format.json { render json: events }
     end
   end
 
