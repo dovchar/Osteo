@@ -6,3 +6,4 @@ tmp/
 nbproject/
 .DS_Store
 coverage/
+public/assets/
