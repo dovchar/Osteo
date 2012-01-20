@@ -23,6 +23,9 @@ end
 require 'capybara/rails'
 Capybara.current_driver = :selenium
 
+# Time in seconds before trying again finding a content inside the HTML page
+#Capybara.default_wait_time = 500
+
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 

@@ -9,7 +9,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     visit "/calendar?date=#{events(:alisson).starts_at}"
     assert page.has_content?('October 2010')
-    assert page.has_content?('2a')  # Translated from UTC to localtime by FullCalendar
+    assert page.has_content?('2a') # Translated from UTC to localtime by FullCalendar
     assert page.has_content?('Appointment with Alisson')
   end
 
@@ -70,7 +70,11 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Description', with: 'This an updated event'
     click_on 'Update Event'
 
-    # Back to the calendar, check the event was updated
+    # Back to the calendar
+    assert_equal current_path, calendar_path
+
+    # Check the event was updated
+    visit "/calendar?date=#{events(:alisson).starts_at}"
     assert page.has_content?('My updated event')
   end
 
