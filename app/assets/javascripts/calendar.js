@@ -93,6 +93,7 @@ function updateEvent(event) {
 function showEventTooltip(event, jsEvent, div) {
   div.qtip({
     id: 'event_' + event.id,
+
     content: {
       title: {
         text: event.title,
@@ -131,6 +132,8 @@ function showEventTooltip(event, jsEvent, div) {
 //Shows new_tooltip view inside a tooltip using qTip
 function showNewTooltipEvent(date, allDay, jsEvent, div) {
   div.qtip({
+    id: 'new_event',
+
     content: {
       title: {
         text: 'New event',
