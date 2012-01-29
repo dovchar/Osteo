@@ -14,7 +14,7 @@
   </tr>
 
 <% @events.each do |event| %>
-  <tr>
+  <tr id=<%= dom_id(event) %>>
     <td><%= event.title %></td>
     <td><%= event.starts_at %></td>
     <td><%= event.ends_at %></td>
@@ -23,7 +23,7 @@
     <td><%= event.description %></td>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Delete', event, confirm: 'Are you sure?', method: :delete, remote: true %></td>
   </tr>
 <% end %>
 </table>
