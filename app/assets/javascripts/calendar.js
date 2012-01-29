@@ -92,6 +92,7 @@ function updateEvent(event) {
 //Shows the event inside a tooltip using qTip
 function showEventTooltip(event, jsEvent, div) {
   div.qtip({
+    id: 'event_' + event.id,
     content: {
       title: {
         text: event.title,

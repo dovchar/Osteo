@@ -1,10 +1,10 @@
 <table>
   <tr>
     <th class="field">When</th>
-    <td class="field"><%= @event.starts_at.ctime %> - <%= @event.ends_at.ctime %></td>
+    <td class="field"><%= time_tag @event.starts_at %> - <%= time_tag @event.ends_at %>
   </tr>
 
-  <% if !@event.location.empty? %>
+  <% if !@event.location.blank? %>
     <tr>
       <th class="field">Location</th>
       <td class="field"><%= @event.location %></td>
@@ -12,6 +12,6 @@
   <% end %>
 </table>
 
-<%= link_to 'Delete', @event, confirm: 'Are you sure?', method: :delete %>
+<%= link_to 'Delete', @event, confirm: 'Are you sure?', method: :delete, remote: true %>
 |
-<%= link_to raw('Edit <strong>»</strong>'), edit_event_path(@event) %>
+<%= link_to 'Edit »', edit_event_path(@event) %>

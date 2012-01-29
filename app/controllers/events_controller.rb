@@ -56,10 +56,16 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to calendar_url, notice: 'Event was successfully created.' }
-        format.json { render json: @event, status: :created, location: @event }
+        if params[:edit_event]
+          # Edit button was clicked
+          format.html { render action: 'edit' }
+        else
+          # Regular create action
+          format.html { redirect_to calendar_url, notice: 'Event was successfully created.' }
+          format.json { render json: @event, status: :created, location: @event }
+        end
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -78,7 +84,7 @@ class EventsController < ApplicationController
         format.html { redirect_to calendar_url, notice: 'Event was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -93,6 +99,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to calendar_url }
       format.json { head :ok }
+      format.js
     end
   end
 end
