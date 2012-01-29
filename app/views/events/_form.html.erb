@@ -8,43 +8,51 @@
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, title: "Event title", autofocus: true %>
-  </div>
+  <table>
+    <tr>
+      <th class="field">What</th>
+      <td class="field"><%= f.text_field :title, title: "Event title", autofocus: true %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.jquery_datetime_select :starts_at, :date_before_time, @event.starts_at,
-        { title: "From date" }, { title: "From time" } %>
-    to
-    <%= f.jquery_datetime_select :ends_at, :time_before_date, @event.ends_at,
-        { title: "Until date" }, { title: "Until time" } %>
-  </div>
+    <tr>
+      <th class="field">When</th>
+      <td class="field">
+        <%= f.jquery_datetime_select :starts_at, :date_before_time, @event.starts_at,
+          { title: "From date" }, { title: "From time" } %>
+        to
+        <%= f.jquery_datetime_select :ends_at, :time_before_date, @event.ends_at,
+          { title: "Until date" }, { title: "Until time" } %>
+      </td>
+    </tr>
 
-  <div class="field">
-    <%= f.check_box :all_day %>
-    <%= f.label :all_day %>
-  </div>
+    <tr>
+      <th></th>
+      <td class="field"><%= f.check_box :all_day %><%= f.label :all_day %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-  <div id="map"></div>
+    <tr>
+      <th class="field">Where</th>
+      <td class="field"><%= f.text_field :location %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
+    <tr>
+      <th></th>
+      <td class="field" id="map"></td>
+    </tr>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <tr>
+      <th class="field" style="vertical-align: top"><%= f.label :description %></th>
+      <td class="field"><%= f.text_area :description %></td>
+    </tr>
+  </table>
+
+  <%= f.submit %>
+  <%= link_to 'Back to calendar', calendar_path %>
 <% end %>

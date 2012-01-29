@@ -1,9 +1,8 @@
 Osteo::Application.routes.draw do
+  match 'calendar' => 'calendar#index'
+
+  get 'events/new_tooltip', as: 'new_event_tooltip'
   resources :events
-
-  resources :calendar
-
-  get "calendar/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

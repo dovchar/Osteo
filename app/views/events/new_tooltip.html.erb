@@ -1,0 +1,16 @@
+<%= form_for(@event) do |f| %>
+  <table>
+    <tr>
+      <th class="field">When</th>
+      <td class="field"><%= @event.starts_at.ctime %></td>
+    </tr>
+
+    <tr>
+      <th class="field">What</th>
+      <td class="field"><%= f.text_field :title, title: "Event title", autofocus: true %></td>
+    </tr>
+  </table>
+
+  <%= f.submit %>
+  <%= link_to raw('Edit <strong>»</strong>'), new_event_path(@event) %>
+<% end %>

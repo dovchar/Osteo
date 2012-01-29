@@ -55,6 +55,7 @@ $(document).ready(function() {
     //Triggered when the user clicks on a day
     //See http://arshaw.com/fullcalendar/docs/mouse/dayClick/
     dayClick: function(date, allDay, jsEvent, view) {
+      showNewTooltipEvent(date, allDay, jsEvent, $(this));
     }
   });
 
@@ -100,6 +101,52 @@ function showEventTooltip(event, jsEvent, div) {
       ajax: {
         url: '/events/' + event.id,
         loading: false //Hide the tooltip whilst the initial content is loaded
+      }
+    },
+
+    position: {
+        my: 'bottom center',
+        at: 'top center',
+        target: [jsEvent.pageX, jsEvent.pageY],
+        viewport: $(window) //Try to keep the tooltip on-screen at all times
+    },
+
+    show: {
+        //Show the tooltip when event is clicked and tooltip is 'ready' e.g. rendered
+        event: 'click',
+        ready: true
+    },
+
+    //Close the tooltip when it loses focus e.g. anywhere except the tooltip is clicked
+    hide: 'unfocus',
+
+    style: {
+      classes: 'ui-tooltip-shadow ui-tooltip-rounded',
+      widget: true //Use jQuery UI style
+    }
+  });
+}
+
+//Shows new_tooltip view inside a tooltip using qTip
+function showNewTooltipEvent(date, allDay, jsEvent, div) {
+  div.qtip({
+    content: {
+      title: {
+        text: 'New event',
+        button: true
+      },
+      text: 'Loading...',
+      ajax: {
+        url: 'events/new_tooltip',
+        loading: false, //Hide the tooltip whilst the initial content is loaded
+
+        //Data to pass along with the request
+        data: {
+          event: {
+            starts_at: date.toUTCString(),
+            all_day: allDay
+          }
+        }
       }
     },
 

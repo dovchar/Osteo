@@ -1,9 +1,17 @@
 body { background-color: #fff; color: #333; }
 
 body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
+  /* Same as .ui-widget */
+  font-family: Verdana,Arial,sans-serif;
+  font-size: 1em;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+a {
+  /* Same as .ui-widget-content a */
+  color: #222222;
 }
 
 pre {
@@ -12,12 +20,13 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
+.field {
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
 
-div.field, div.actions {
-  margin-bottom: 10px;
+th.field {
+  text-align: right;
 }
 
 #notice {

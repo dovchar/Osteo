@@ -1,12 +1,17 @@
-<p>
-  <%= @event.starts_at.ctime %> - <%= @event.ends_at.ctime %>
-</p>
+<table>
+  <tr>
+    <th class="field">When</th>
+    <td class="field"><%= @event.starts_at.ctime %> - <%= @event.ends_at.ctime %></td>
+  </tr>
 
-<p>
-  <b>Location:</b>
-  <%= @event.location %>
-</p>
+  <% if !@event.location.empty? %>
+    <tr>
+      <th class="field">Location</th>
+      <td class="field"><%= @event.location %></td>
+    </tr>
+  <% end %>
+</table>
 
-<%= link_to 'Destroy', @event, confirm: 'Are you sure?', method: :delete %>
+<%= link_to 'Delete', @event, confirm: 'Are you sure?', method: :delete %>
 |
-<%= link_to 'Edit', edit_event_path(@event) %>
+<%= link_to raw('Edit <strong>»</strong>'), edit_event_path(@event) %>
