@@ -1,29 +1,24 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-platforms :ruby do
-  gem 'sqlite3'
+gem 'sqlite3'
 
-  # No JavaScript engine installed by default under Linux
-  # See http://stackoverflow.com/questions/6282307/rails-3-1-execjs-and-could-not-find-a-javascript-runtime
-  gem 'therubyracer'
-end
-
-platforms :jruby do
-  gem 'activerecord-jdbc-adapter'
-  gem 'jdbc-sqlite3'
-end
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   # I want standard JavaScript and CSS
-  #gem 'sass-rails',   '~> 3.1.4'
-  #gem 'coffee-rails', '~> 3.1.1'
+  #gem 'sass-rails',   '~> 3.2.3'
+  #gem 'coffee-rails', '~> 3.2.1'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # No JavaScript engine installed by default under Linux
+  # See http://stackoverflow.com/questions/6282307/rails-3-1-execjs-and-could-not-find-a-javascript-runtime
+  gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -32,6 +27,9 @@ gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
+
+# To use Jbuilder templates for JSON
+# gem 'jbuilder'
 
 # Use unicorn as the web server
 # gem 'unicorn'
