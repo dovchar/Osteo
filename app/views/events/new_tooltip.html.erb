@@ -2,12 +2,16 @@
   <table>
     <tr>
       <th class="field">When</th>
-      <td class="field"><%= time_tag @event.starts_at %></td>
+      <td class="field">
+        <%= time_tag @event.starts_at, format: :short %>
+      </td>
     </tr>
 
     <tr>
       <th class="field">What</th>
-      <td class="field"><%= f.text_field :title, title: "Event title", autofocus: true %></td>
+      <td class="field">
+        <%= f.text_field :title, title: "Event title", autofocus: true %>
+      </td>
     </tr>
   </table>
 
