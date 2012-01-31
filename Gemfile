@@ -18,7 +18,9 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # No JavaScript engine installed by default under Linux
   # See http://stackoverflow.com/questions/6282307/rails-3-1-execjs-and-could-not-find-a-javascript-runtime
-  gem 'therubyracer'
+  platforms :ruby do
+    gem 'therubyracer'
+  end
 
   gem 'uglifier', '>= 1.0.3'
 end
