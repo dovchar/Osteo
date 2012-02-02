@@ -71,7 +71,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     click_on 'Update Event'
 
     # Back to the calendar
-    assert_equal current_path, calendar_path
+    assert_equal calendar_path, current_path
 
     # Check the event was updated
     visit "/calendar?date=#{events(:alisson).starts_at}"

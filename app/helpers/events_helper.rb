@@ -136,7 +136,7 @@ class Time
   #
   # See unit tests for more examples.
   #
-  # +all_day+ parameter can be a boolean or the symbol :all_day
+  # +all_day+:: can be a boolean or the symbol :all_day
   def self.to_event_format(starts_at, ends_at, all_day = false)
     # See strftime reference and sandbox http://strfti.me/
     # %a, %B %d, %Y          => Tue, January 31, 2012
