@@ -148,6 +148,7 @@ function showNewTooltipEvent(date, allDay, jsEvent, div) {
         data: {
           event: {
             starts_at: date.toUTCString(),
+            ends_at: date.toUTCString(),
             all_day: allDay
           }
         }

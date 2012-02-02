@@ -2,9 +2,7 @@
   <tr>
     <th class="field">When</th>
     <td class="field">
-      <%= time_tag @event.starts_at, format: :short %>
-      -
-      <%= time_tag @event.ends_at, format: :short %>
+      <%= event_time_tag @event.starts_at, @event.ends_at, @event.all_day %>
     </td>
   </tr>
 
