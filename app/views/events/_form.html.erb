@@ -17,7 +17,7 @@
 
   <table>
     <tr>
-      <th class="field">What</th>
+      <th class="field"><%= f.label :title, "What" %></th>
       <td class="field"><%= f.text_field :title, title: "Event title", autofocus: true %></td>
     </tr>
 
@@ -38,7 +38,7 @@
     </tr>
 
     <tr>
-      <th class="field">Where</th>
+      <th class="field"><%= f.label :location, "Where" %></th>
       <td class="field"><%= f.text_field :location %></td>
     </tr>
 

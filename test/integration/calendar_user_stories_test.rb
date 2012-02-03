@@ -18,8 +18,8 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     click_on 'Create'
 
-    fill_in 'Title', with: 'My new event'
-    fill_in 'Location', with: 'Paris'
+    fill_in 'What', with: 'My new event'
+    fill_in 'Where', with: 'Paris'
     fill_in 'Description', with: 'This a new event'
     click_on 'Create Event'
 
@@ -32,8 +32,8 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     click_on 'Create'
 
-    fill_in 'Title', with: ''
-    fill_in 'Location', with: 'Paris'
+    fill_in 'What', with: ''
+    fill_in 'Where', with: 'Paris'
     fill_in 'Description', with: 'This a new event'
     click_on 'Create Event'
 
@@ -65,8 +65,8 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     # Click on edit link inside the tooltip
     click_on 'Edit'
 
-    fill_in 'Title', with: 'My updated event'
-    fill_in 'Location', with: 'Paris'
+    fill_in 'What', with: 'My updated event'
+    fill_in 'Where', with: 'Paris'
     fill_in 'Description', with: 'This an updated event'
     click_on 'Update Event'
 
@@ -87,8 +87,8 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     # Click on edit link inside the tooltip
     click_on 'Edit'
 
-    fill_in 'Title', with: ''
-    fill_in 'Location', with: 'Paris'
+    fill_in 'What', with: ''
+    fill_in 'Where', with: 'Paris'
     fill_in 'Description', with: 'This an updated event'
     click_on 'Update Event'
 
@@ -96,7 +96,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Title can't be blank")
   end
 
-  test "destroy an event" do
+  test "delete an event" do
     visit "/calendar?date=#{events(:alisson).starts_at}"
 
     # Click on the event
@@ -105,7 +105,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     # Click on destroy link inside the tooltip
     # See http://stackoverflow.com/questions/2458632/how-to-test-a-confirm-dialog-with-cucumber
     page.evaluate_script('window.confirm = function() { return true; }')
-    click_on 'Destroy'
+    click_on 'Delete'
     #page.driver.browser.switch_to.alert.accept
 
     # Back to the calendar, check the event was destroyed

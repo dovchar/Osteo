@@ -4,11 +4,15 @@
       <th class="field">When</th>
       <td class="field">
         <%= event_time_tag @event.starts_at, nil, @event.all_day %>
+
+        <%= f.hidden_field :starts_at %>
+        <%= f.hidden_field :ends_at %>
+        <%= f.hidden_field :all_day %>
       </td>
     </tr>
 
     <tr>
-      <th class="field">What</th>
+      <th class="field"><%= f.label :title, "What" %></th>
       <td class="field">
         <%= f.text_field :title, title: "Event title", autofocus: true %>
       </td>
