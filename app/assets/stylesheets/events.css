@@ -2,11 +2,15 @@
  *= require jquery-ui-timepicker/jquery-ui-timepicker-addon.css
 */
 
-/* No margin for input fields within Firefox 8 and IE 9 ; Chrome 15 is OK*/
+/* No margin for input fields within Firefox 8 and IE 9 ; Chrome 15 is OK */
 input {
   margin-right: 4px;
 }
 
 #map {
+  /* Otherwise Firefox 9/10 shows the map outside its div */
+  float: left;
+
+  width: 300px;
   height: 300px;
 }
