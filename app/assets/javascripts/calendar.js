@@ -132,8 +132,6 @@ function showEventTooltip(event, jsEvent, div) {
 //Shows new_tooltip view inside a tooltip using qTip
 function showNewTooltipEvent(date, allDay, jsEvent, div) {
   div.qtip({
-    id: 'new_event',
-
     content: {
       title: {
         text: 'New event',
@@ -176,4 +174,22 @@ function showNewTooltipEvent(date, allDay, jsEvent, div) {
       widget: true //Use jQuery UI style
     }
   });
+}
+
+//Closes a given qTip2 tooltip
+function removeTooltip(id) {
+  $('#ui-tooltip-' + id).qtip('hide');
+  //$('#ui-tooltip-' + id).remove();
+}
+
+//Closes all qTip2 tooltips
+//See http://craigsworks.com/projects/forums/thread-solved-close-all-tooltips-at-the-same-time
+function removeAllTooltips() {
+  $('.qtip.ui-tooltip').qtip('hide');
+  //$('.qtip.ui-tooltip').remove();
+}
+
+//Refetches FullCalendar events
+function refetchFullCalendarEvents() {
+  $('#calendar').fullCalendar('refetchEvents');
 }
