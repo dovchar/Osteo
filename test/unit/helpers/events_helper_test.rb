@@ -65,93 +65,94 @@ class EventsHelperTest < ActionView::TestCase
   end
 
   test "time should format two events" do
-    # FIXME The tests will fail when year 2012 will be past
+    current_year = Time.now.year # 2012
+    year_before = Time.now.year - 1 # 2011
 
-    # Entire day, this year (2012)
-    starts_at = Time.new(2012, 01, 31, 14, 30)
+    # Entire day, this year (current_year)
+    starts_at = Time.new(current_year, 01, 31, 14, 30)
     str = Time.to_event_format(starts_at, nil, :all_day)
     assert_equal 'Tue, January 31', str
 
-    starts_at = Time.new(2012, 01, 31, 14, 30)
+    starts_at = Time.new(current_year, 01, 31, 14, 30)
     str = Time.to_event_format(starts_at, starts_at, :all_day)
     assert_equal 'Tue, January 31', str
 
-    # Entire day, in 2011
-    starts_at = Time.new(2011, 01, 31, 14, 30)
+    # Entire day, in year_before
+    starts_at = Time.new(year_before, 01, 31, 14, 30)
     str = Time.to_event_format(starts_at, nil, :all_day)
-    assert_equal 'Mon, January 31, 2011', str
+    assert_equal "Mon, January 31, #{year_before}", str
 
-    # Same day, this year (2012)
-    starts_at = Time.new(2012, 01, 31, 14, 30)
-    ends_at = Time.new(2012, 01, 31, 15, 00)
+    # Same day, this year (current_year)
+    starts_at = Time.new(current_year, 01, 31, 14, 30)
+    ends_at = Time.new(current_year, 01, 31, 15, 00)
     str = Time.to_event_format(starts_at, ends_at)
     assert_equal 'Tue, January 31, 2:30pm &ndash; 3pm', str
 
-    starts_at = Time.new(2012, 01, 31, 14, 00)
-    ends_at = Time.new(2012, 01, 31, 15, 30)
+    starts_at = Time.new(current_year, 01, 31, 14, 00)
+    ends_at = Time.new(current_year, 01, 31, 15, 30)
     str = Time.to_event_format(starts_at, ends_at)
     assert_equal 'Tue, January 31, 2pm &ndash; 3:30pm', str
 
-    # Same day, in 2011
-    starts_at = Time.new(2011, 01, 31, 14, 30)
-    ends_at = Time.new(2011, 01, 31, 15, 00)
+    # Same day, in year_before
+    starts_at = Time.new(year_before, 01, 31, 14, 30)
+    ends_at = Time.new(year_before, 01, 31, 15, 00)
     str = Time.to_event_format(starts_at, ends_at)
-    assert_equal 'Mon, January 31, 2011, 2:30pm &ndash; 3pm', str
+    assert_equal "Mon, January 31, #{year_before}, 2:30pm &ndash; 3pm", str
 
-    starts_at = Time.new(2011, 01, 31, 14, 00)
-    ends_at = Time.new(2011, 01, 31, 15, 30)
+    starts_at = Time.new(year_before, 01, 31, 14, 00)
+    ends_at = Time.new(year_before, 01, 31, 15, 30)
     str = Time.to_event_format(starts_at, ends_at)
-    assert_equal 'Mon, January 31, 2011, 2pm &ndash; 3:30pm', str
+    assert_equal "Mon, January 31, #{year_before}, 2pm &ndash; 3:30pm", str
 
-    # Across days, this year (2012)
-    starts_at = Time.new(2012, 01, 31, 14, 30)
-    ends_at = Time.new(2012, 10, 31, 15, 00)
+    # Across days, this year (current_year)
+    starts_at = Time.new(current_year, 01, 31, 14, 30)
+    ends_at = Time.new(current_year, 10, 31, 15, 00)
     str = Time.to_event_format(starts_at, ends_at)
     assert_equal 'Tue, January 31, 2:30pm &ndash; Wed, October 31, 3pm', str
 
-    starts_at = Time.new(2012, 01, 31, 14, 00)
-    ends_at = Time.new(2012, 10, 31, 15, 30)
+    starts_at = Time.new(current_year, 01, 31, 14, 00)
+    ends_at = Time.new(current_year, 10, 31, 15, 30)
     str = Time.to_event_format(starts_at, ends_at)
     assert_equal 'Tue, January 31, 2pm &ndash; Wed, October 31, 3:30pm', str
 
-    # Across days, this year (2012), entire days
-    starts_at = Time.new(2012, 01, 31, 14, 30)
-    ends_at = Time.new(2012, 10, 31, 15, 00)
+    # Across days, this year (current_year), entire days
+    starts_at = Time.new(current_year, 01, 31, 14, 30)
+    ends_at = Time.new(current_year, 10, 31, 15, 00)
     str = Time.to_event_format(starts_at, ends_at, :all_day)
     assert_equal 'Tue, January 31 &ndash; Wed, October 31', str
 
-    # Across days, in 2011
-    starts_at = Time.new(2011, 01, 31, 14, 30)
-    ends_at = Time.new(2011, 10, 31, 15, 00)
+    # Across days, in year_before
+    starts_at = Time.new(year_before, 01, 31, 14, 30)
+    ends_at = Time.new(year_before, 10, 31, 15, 00)
     str = Time.to_event_format(starts_at, ends_at)
-    assert_equal 'Mon, January 31, 2011, 2:30pm &ndash; Mon, October 31, 3pm', str
+    assert_equal "Mon, January 31, #{year_before}, 2:30pm &ndash; Mon, October 31, 3pm", str
 
-    starts_at = Time.new(2011, 01, 31, 14, 00)
-    ends_at = Time.new(2011, 10, 31, 15, 30)
+    starts_at = Time.new(year_before, 01, 31, 14, 00)
+    ends_at = Time.new(year_before, 10, 31, 15, 30)
     str = Time.to_event_format(starts_at, ends_at)
-    assert_equal 'Mon, January 31, 2011, 2pm &ndash; Mon, October 31, 3:30pm', str
+    assert_equal "Mon, January 31, #{year_before}, 2pm &ndash; Mon, October 31, 3:30pm", str
 
-    # Across days, in 2011, entire days
-    starts_at = Time.new(2011, 01, 31, 14, 30)
-    ends_at = Time.new(2011, 10, 31, 15, 00)
+    # Across days, in year_before, entire days
+    starts_at = Time.new(year_before, 01, 31, 14, 30)
+    ends_at = Time.new(year_before, 10, 31, 15, 00)
     str = Time.to_event_format(starts_at, ends_at, :all_day)
-    assert_equal 'Mon, January 31, 2011 &ndash; Mon, October 31', str
+    assert_equal "Mon, January 31, #{year_before} &ndash; Mon, October 31", str
 
     # Across years
-    starts_at = Time.new(2011, 01, 31, 14, 30)
-    ends_at = Time.new(2012, 10, 31, 15, 00)
+    starts_at = Time.new(year_before, 01, 31, 14, 30)
+    ends_at = Time.new(current_year, 10, 31, 15, 00)
     str = Time.to_event_format(starts_at, ends_at)
-    assert_equal 'Mon, January 31, 2011, 2:30pm &ndash; Wed, October 31, 2012, 3pm', str
+    assert_equal "Mon, January 31, #{year_before}, 2:30pm &ndash; Wed, October 31, #{current_year}, 3pm", str
 
-    starts_at = Time.new(2011, 01, 31, 14, 00)
-    ends_at = Time.new(2012, 10, 31, 15, 30)
+    starts_at = Time.new(year_before, 01, 31, 14, 00)
+    ends_at = Time.new(current_year, 10, 31, 15, 30)
     str = Time.to_event_format(starts_at, ends_at)
-    assert_equal 'Mon, January 31, 2011, 2pm &ndash; Wed, October 31, 2012, 3:30pm', str
+    assert_equal "Mon, January 31, #{year_before}, 2pm &ndash; Wed, October 31, #{current_year}, 3:30pm", str
 
     # Across years, entire days
-    starts_at = Time.new(2011, 01, 31, 14, 30)
-    ends_at = Time.new(2012, 10, 31, 15, 00)
+    starts_at = Time.new(year_before, 01, 31, 14, 30)
+    ends_at = Time.new(current_year, 10, 31, 15, 00)
     str = Time.to_event_format(starts_at, ends_at, :all_day)
-    assert_equal 'Mon, January 31, 2011 &ndash; Wed, October 31, 2012', str
+    assert_equal "Mon, January 31, #{year_before} &ndash; Wed, October 31, #{current_year}", str
   end
 end
