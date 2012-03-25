@@ -17,4 +17,6 @@ fabienne:
   description: Regular 30 minutes medical consultation
 
 invalid:
-  description: Invalid event without title
+  starts_at: 2012-03-25 22:00:00 UTC
+  ends_at: 2012-03-25 21:00:00 UTC
+  description: Invalid event, title is ok but dates are not

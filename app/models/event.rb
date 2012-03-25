@@ -1,6 +1,5 @@
 class Event < ActiveRecord::Base
 
-  validates :title, presence: true
   validates :starts_at, presence: true
   validates :ends_at, presence: true
   validate :validate_ends_at_after_starts_at
@@ -18,6 +17,14 @@ class Event < ActiveRecord::Base
       end: ends_at,
       allDay: all_day
     }
+  end
+
+  # Returns the event title.
+  # Returns '(No title)' if the title does not exist inside the database.
+  # TODO Translation + move this to view?
+  def title
+    title = read_attribute(:title)
+    title.blank? ? '(No title)' : title
   end
 
   private
