@@ -155,4 +155,29 @@ class EventsHelperTest < ActionView::TestCase
     str = Time.to_event_format(starts_at, ends_at, :all_day)
     assert_equal "Mon, January 31, #{year_before} &ndash; Wed, October 31, #{current_year}", str
   end
+
+  test "event_time_tag" do
+    event = Event.new
+    event.title = "date around midnight"
+    event.starts_at = Time.new(2012, 02, 15, 23, 20)
+    event.ends_at = event.starts_at + 1.hour
+
+    html = event_time_tag(event.starts_at, event.ends_at)
+    assert_equal 'Wed, February 15, 10:20pm &ndash; 11:20pm', html
+  end
+
+  test "jquery_datetime_select" do
+    event = Event.new
+    event.title = 'date around midnight'
+    event.starts_at = Time.new(2012, 02, 15, 23, 23)
+    event.ends_at = event.starts_at + 1.hour
+
+    starts_at_html = jquery_datetime_select :event, :starts_at, :date_before_time, event.starts_at
+    assert starts_at_html.include? '2012-02-15'
+    assert starts_at_html.include? '23:20'
+
+    ends_at_html = jquery_datetime_select :event, :ends_at, :date_before_time, event.ends_at
+    assert ends_at_html.include? '2012-02-16'
+    assert ends_at_html.include? '00:20'
+  end
 end

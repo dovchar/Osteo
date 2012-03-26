@@ -12,60 +12,70 @@ module EventsHelper
   def event_time_tag(starts_at, ends_at, all_day = false)
     raw "#{Time.to_event_format(starts_at, ends_at, all_day)}"
   end
+end
 
-  # Add new field types to form helpers.
-  # See http://stackoverflow.com/questions/2623250/custom-form-helpers
-  class ActionView::Helpers::FormBuilder
-    include ActionView::Helpers::TagHelper
-    include ActionView::Helpers::JavaScriptHelper
+module ActionView
+  module Helpers
+    module FormHelper
 
-    # Same as datetime_select but uses jQuery UI.
-    #
-    # See DateHelper#datetime_select
-    #
-    # Creates two text fields:
-    # - one for the date ("2011-11-28") that uses jQuery UI datepicker
-    # - one for the time ("22:00") that uses jQuery UI timepicker add-on
-    # Unobtrusive JavaScript: if disabled, the two text fields will still work.
-    def jquery_datetime_select(method, order = :time_before_date, time = Time.now, date_options = {}, time_options = {})
-      date_options[:value] = time.strftime('%Y-%m-%d')
-      date_options[:size] = 10
-      date_options[:maxlength] = 10
-      date_options[:autocomplete] = :off
-      date_field = @template.text_field(@object_name, "#{method}_date", date_options)
+      # Same as datetime_select but uses jQuery UI.
+      #
+      # See DateHelper#datetime_select
+      #
+      # Creates two text fields:
+      # - one for the date ("2011-11-28") that uses jQuery UI datepicker
+      # - one for the time ("22:00") that uses jQuery UI timepicker add-on
+      # Unobtrusive JavaScript: if disabled, the two text fields will still work.
+      #
+      # TODO Should be moved to a gem
+      def jquery_datetime_select(object_name, method, order = :time_before_date, time = Time.now, date_options = {}, time_options = {})
+        time = time.round(10.minutes)
 
-      time_options[:value] = time.round(10.minutes).strftime('%R')
-      time_options[:size] = 5
-      time_options[:maxlength] = 5
-      time_options[:autocomplete] = :off
-      time_field = @template.text_field(@object_name, "#{method}_time", time_options)
+        date_options[:value] = time.strftime('%Y-%m-%d')
+        date_options[:size] = 10
+        date_options[:maxlength] = 10
+        date_options[:autocomplete] = :off
+        date_field = text_field(object_name, "#{method}_date", date_options)
 
-      jquery_ui = javascript_tag "
+        time_options[:value] = time.strftime('%R')
+        time_options[:size] = 5
+        time_options[:maxlength] = 5
+        time_options[:autocomplete] = :off
+        time_field = text_field(object_name, "#{method}_time", time_options)
+
+        jquery_ui = javascript_tag "
         $(document).ready(function() {
 
-          $('##{field_id(method, 'date')}').datepicker({
+          $('##{field_id(object_name, method, 'date')}').datepicker({
             dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
             dateFormat: 'yy-mm-dd'
           });
 
-          $('##{field_id(method, 'time')}').timepicker({
+          $('##{field_id(object_name, method, 'time')}').timepicker({
             stepMinute: 10,
             showButtonPanel: false,
           });
         });"
 
-      if order == :time_before_date
-        return time_field + date_field + jquery_ui
-      else
-        return date_field + time_field + jquery_ui
+        if order == :time_before_date
+          return time_field + date_field + jquery_ui
+        else
+          return date_field + time_field + jquery_ui
+        end
+      end
+
+      private
+
+      def field_id(object_name, method, label)
+        return "#{object_name}_#{method}_#{label}"
       end
     end
+  end
+end
 
-    private
-
-    def field_id(method, label)
-      return "#{@object_name}_#{method}_#{label}"
-    end
+class ActionView::Helpers::FormBuilder
+  def jquery_datetime_select(method, order = :time_before_date, time = Time.now, date_options = {}, time_options = {})
+    @template.jquery_datetime_select(@object_name, method, order, time, date_options, time_options)
   end
 end
 
