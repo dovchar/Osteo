@@ -34,15 +34,18 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     fill_in 'What', with: '' # An empty title is OK
 
-    # TODO Enter invalid dates: ends_at before starts_at
-    #fill_in 'When', with: ''
+    # Invalid dates: ends_at before starts_at
+    fill_in 'event_starts_at_date', with: '2012-03-28'
+    fill_in 'event_starts_at_time', with: '00:00'
+    fill_in 'event_ends_at_date', with: '2012-03-27'
+    fill_in 'event_ends_at_time', with: '00:00'
 
     fill_in 'Where', with: 'Paris'
     fill_in 'Description', with: 'This a new event'
     click_on 'Create Event'
 
     # Failure
-    # TODO
+    assert page.has_content?("Ends at can't be before the starting date")
   end
 
 #   # FIXME Could not make drag and drop work under Capybara
@@ -93,15 +96,18 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     fill_in 'What', with: '' # An empty title is OK
 
-    # TODO Enter invalid dates: ends_at before starts_at
-    #fill_in 'When', with: ''
+    # Invalid dates: ends_at before starts_at
+    fill_in 'event_starts_at_date', with: '2012-03-28'
+    fill_in 'event_starts_at_time', with: '00:00'
+    fill_in 'event_ends_at_date', with: '2012-03-27'
+    fill_in 'event_ends_at_time', with: '00:00'
 
     fill_in 'Where', with: 'Paris'
     fill_in 'Description', with: 'This an updated event'
     click_on 'Update Event'
 
     # Failure
-    # TODO
+    assert page.has_content?("Ends at can't be before the starting date")
   end
 
   test "delete an event" do
