@@ -32,13 +32,17 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     click_on 'Create'
 
-    fill_in 'What', with: ''
+    fill_in 'What', with: '' # An empty title is OK
+
+    # TODO Enter invalid dates: ends_at before starts_at
+    #fill_in 'When', with: ''
+
     fill_in 'Where', with: 'Paris'
     fill_in 'Description', with: 'This a new event'
     click_on 'Create Event'
 
     # Failure
-    assert page.has_content?("Title can't be blank")
+    # TODO
   end
 
 #   # FIXME Could not make drag and drop work under Capybara
@@ -78,7 +82,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?('My updated event')
   end
 
-  test "try to update an event with invalid data" do
+  test "try to update an invalid event" do
     visit "/calendar?date=#{events(:alisson).starts_at}"
 
     # Click on the event
@@ -87,13 +91,17 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     # Click on edit link inside the tooltip
     click_on 'Edit'
 
-    fill_in 'What', with: ''
+    fill_in 'What', with: '' # An empty title is OK
+
+    # TODO Enter invalid dates: ends_at before starts_at
+    #fill_in 'When', with: ''
+
     fill_in 'Where', with: 'Paris'
     fill_in 'Description', with: 'This an updated event'
     click_on 'Update Event'
 
     # Failure
-    assert page.has_content?("Title can't be blank")
+    # TODO
   end
 
   test "delete an event" do
@@ -109,6 +117,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     #page.driver.browser.switch_to.alert.accept
 
     # Back to the calendar, check the event was destroyed
+    sleep 1 # Wait a bit otherwise the test might fail
     assert !page.has_content?('Appointment with Alisson')
   end
 end

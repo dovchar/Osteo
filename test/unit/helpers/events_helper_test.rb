@@ -172,12 +172,12 @@ class EventsHelperTest < ActionView::TestCase
     event.starts_at = Time.new(2012, 02, 15, 23, 23)
     event.ends_at = event.starts_at + 1.hour
 
-    starts_at_html = jquery_datetime_select :event, :starts_at, :date_before_time, event.starts_at
-    assert starts_at_html.include? '2012-02-15'
-    assert starts_at_html.include? '23:20'
+    html = jquery_datetime_select :event, :starts_at, :date_before_time, event.starts_at
+    assert html.include? '2012-02-15'
+    assert html.include? '23:20'
 
-    ends_at_html = jquery_datetime_select :event, :ends_at, :date_before_time, event.ends_at
-    assert ends_at_html.include? '2012-02-16'
-    assert ends_at_html.include? '00:20'
+    html = jquery_datetime_select :event, :ends_at, :date_before_time, event.ends_at
+    assert html.include? '2012-02-16'
+    assert html.include? '00:20'
   end
 end
