@@ -126,4 +126,18 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     sleep 1 # Wait a bit otherwise the test might fail
     assert !page.has_content?('Appointment with Alisson')
   end
+
+  test "create an event by clicking on a day" do
+    visit '/calendar'
+
+    # Click on a day
+    page.find(:xpath, "//td[@class='fc-tue ui-widget-content fc-day9']/div").click
+
+    # Tooltip
+    fill_in 'What', with: 'New event using a tooltip'
+    click_on 'Create Event'
+
+    # Check the event was created
+    assert page.has_content?('New event using a tooltip')
+  end
 end
