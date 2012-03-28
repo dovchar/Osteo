@@ -157,6 +157,9 @@ class Time
     # %a, %B %d, %Y, %l:%M%P => Tue, January 31, 2012, 11:59am
     # %l%P                   =>  1pm
 
+    # Converts to local time
+    starts_at = starts_at.localtime unless starts_at.nil?
+    ends_at = ends_at.localtime unless ends_at.nil?
     str = ''
 
     # "The en dash is commonly used to indicate a closed range of values

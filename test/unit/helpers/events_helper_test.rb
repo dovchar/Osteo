@@ -163,7 +163,7 @@ class EventsHelperTest < ActionView::TestCase
     event.ends_at = event.starts_at + 1.hour
 
     html = event_time_tag(event.starts_at, event.ends_at)
-    assert_equal 'Wed, February 15, 10:20pm &ndash; 11:20pm', html
+    assert_equal 'Wed, February 15, 11:20pm &ndash; Thu, February 16, 12:20am', html
   end
 
   test "jquery_datetime_select" do
