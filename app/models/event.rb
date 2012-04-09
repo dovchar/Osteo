@@ -6,6 +6,10 @@ class Event < ActiveRecord::Base
 
   after_initialize :init
 
+  # Frequency for displaying time slots, in minutes.
+  # Used by FullCalendar and jQuery timepicker.
+  STEP_MINUTE = 15
+
   # Need to override the JSON view to return what FullCalendar is expecting.
   # See http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
   def as_json(options = nil)

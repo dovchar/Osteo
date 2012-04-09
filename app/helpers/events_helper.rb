@@ -29,7 +29,7 @@ module ActionView
       #
       # TODO Should be moved to a gem
       def jquery_datetime_select(object_name, method, order = :time_before_date, time = Time.now, date_options = {}, time_options = {})
-        time = time.round(10.minutes)
+        time = time.round(Event::STEP_MINUTE.minutes)
 
         date_options[:value] = time.strftime('%Y-%m-%d')
         date_options[:size] = 10
@@ -52,7 +52,7 @@ module ActionView
           });
 
           $('##{field_id(object_name, method, 'time')}').timepicker({
-            stepMinute: 10,
+            stepMinute: #{Event::STEP_MINUTE},
             showButtonPanel: false,
           });
         });"

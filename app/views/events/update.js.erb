@@ -1,0 +1,10 @@
+<%# TODO Change this for Bootstrap Twitter %>
+
+<% if flash[:notice] %>
+  alert("<%= flash[:notice] %>");
+  <% flash.discard %>
+<% end %>
+
+<% @event.errors.full_messages.each do |msg| %>
+  alert("<li><%= msg %></li>");
+<% end %>

@@ -34,6 +34,9 @@ $(document).ready(function() {
 
     events: '/events',
 
+    //Frequency for displaying time slots, in minutes
+    slotMinutes: <%= Event::STEP_MINUTE %>,
+
     //Triggered when an event has moved to a different day/time
     //See http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
     eventDrop: function(event) {
@@ -72,12 +75,12 @@ function updateEvent(event) {
   } else {
     //event.end can be null if end equals start
     //This will make Rails unhappy so let's set end to a real date instead
-    //FIXME end = start
+    end = start
   }
 
   $.ajax({
     type: 'PUT',
-    url: '/events/' + event.id,
+    url: '/events/' + event.id + '.js',
     data: {
       event: {
         title: event.title,
