@@ -174,10 +174,10 @@ class EventsHelperTest < ActionView::TestCase
 
     html = jquery_datetime_select :event, :starts_at, :date_before_time, event.starts_at
     assert html.include? '2012-02-15'
-    assert html.include? '23:20'
+    assert html.include? '23:30' # Fails if Event::STEP_MINUTE is changed
 
     html = jquery_datetime_select :event, :ends_at, :date_before_time, event.ends_at
     assert html.include? '2012-02-16'
-    assert html.include? '00:20'
+    assert html.include? '00:30'
   end
 end
