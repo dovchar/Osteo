@@ -48,20 +48,37 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Ends at can't be before the starting date")
   end
 
-#   # FIXME Could not make drag and drop work under Capybara
-#   test "drag and drop an event" do
-#     visit "/calendar?date=#{events(:alisson).starts_at}"
-#
-#     # There is only 1 fc-event, the one that contains 'Appointment with Alisson'
-#     source = page.find('.fc-event')
-#
-#     # Select sunday inside the first week
-#     target = page.find('.fc-week0 .fc-sun')
-#
-#     # Drag and drop the event to sunday 26th
-#     # FIXME This does not work
-#     source.drag_to(target)
-#   end
+  # If this test fails try to downgrade Firefox
+  # See http://stackoverflow.com/questions/9795868/org-openqa-selenium-invalidelementstateexceptioncannot-perform-native-interacti
+  test "drag and drop an event" do
+    visit "/calendar?date=#{events(:alisson).starts_at}"
+
+    # There is only 1 fc-event, the one that contains 'Appointment with Alisson'
+    source = page.find('.fc-event')
+
+    # Select sunday inside the first week
+    target = page.find('.fc-week0 .fc-sun')
+
+    # Drag and drop the event to sunday 26th
+    source.drag_to(target)
+
+    assert page.has_content?('Event was successfully updated.')
+  end
+
+  test "try to drag and drop an invalid event" do
+    visit "/calendar?date=#{events(:invalid).starts_at}"
+
+    # There is only 1 fc-event, the one that contains the invalid event
+    source = page.find('.fc-event')
+
+    # Select sunday inside the fourth week
+    target = page.find('.fc-week4 .fc-tue')
+
+    # Drag and drop the event to tuesday 27th
+    source.drag_to(target)
+
+    assert page.has_content?("Ends at can't be before the starting date")
+  end
 
   test "update an event" do
     visit "/calendar?date=#{events(:alisson).starts_at}"

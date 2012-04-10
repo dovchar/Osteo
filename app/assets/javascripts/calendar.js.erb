@@ -67,15 +67,15 @@ $(document).ready(function() {
 //A calendar event has been modified, let's update it
 //Sends an AJAX request to the server to update the event inside the database
 function updateEvent(event) {
-  var start = event.start.toUTCString() //event.start is never null
+  var start = event.start.toUTCString(); //event.start is never null
 
-  var end = event.end
-  if (end) {
-    end = end.toUTCString()
+  var end;
+  if (event.end) {
+    end = event.end.toUTCString();
   } else {
-    //event.end can be null if end equals start
+    //event.end can be null if end equals start or if end is before start
     //This will make Rails unhappy so let's set end to a real date instead
-    end = start
+    //end = start;
   }
 
   $.ajax({

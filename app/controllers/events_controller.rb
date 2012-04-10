@@ -83,11 +83,12 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        flash[:notice] = 'Event was successfully updated.'
+        flash.notice = 'Event was successfully updated.'
         format.html { redirect_to calendar_url }
         format.json { head :ok }
         format.js # update.js.erb
       else
+        flash.alert = @event.errors.full_messages
         format.html { render action: 'edit' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
         format.js # update.js.erb

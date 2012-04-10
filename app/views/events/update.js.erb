@@ -1,10 +1,3 @@
-<%# TODO Change this for Bootstrap Twitter %>
-
-<% if flash[:notice] %>
-  alert("<%= flash[:notice] %>");
-  <% flash.discard %>
-<% end %>
-
-<% @event.errors.full_messages.each do |msg| %>
-  alert("<li><%= msg %></li>");
-<% end %>
+<%# See http://stackoverflow.com/questions/366311/how-do-you-handle-rails-flash-with-ajax-requests %>
+$("#flashes").html("<%= escape_javascript(render 'layouts/flashes') %>");
+<% flash.discard %> <%# Don't want the flash to appear when you reload page %>

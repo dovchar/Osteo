@@ -1,0 +1,13 @@
+<%#
+Cannot name this partial _flash.html.erb
+See http://stackoverflow.com/questions/7972084/rails-flashnotice-always-nil
+%>
+
+<div id="flashes">
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= msg %>
+    </div>
+  <% end %>
+</div>
