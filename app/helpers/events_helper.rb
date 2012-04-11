@@ -27,8 +27,37 @@ module ActionView
       # - one for the time ("22:00") that uses jQuery UI timepicker add-on
       # Unobtrusive JavaScript: if disabled, the two text fields will still work.
       #
-      # TODO Should be moved to a gem
-      def jquery_datetime_select(object_name, method, order = :time_before_date, time = Time.now, date_options = {}, time_options = {})
+      # TODO Move to a gem
+      def event(object_name, event)
+        starts_at_field = jquery_datetime_select object_name, :starts_at, :date_before_time, event.starts_at,
+                                                 { title: "From date" }, { title: "From time" }
+
+        ends_at_field = jquery_datetime_select object_name, :ends_at, :time_before_date, event.ends_at,
+                                               { title: "Until date" }, { title: "Until time" }
+
+        all_day_check_box = check_box object_name, :all_day
+        all_day_label = label object_name, :all_day
+
+        js = javascript_tag "
+          $(document).ready(function() {
+            all_day = $('##{field_id(object_name, :all_day)}');
+            all_day.change(function() {
+              starts_at_time = $('##{field_id(object_name, :starts_at, 'time')}');
+              ends_at_time = $('##{field_id(object_name, :ends_at, 'time')}');
+              if (all_day.prop('checked')) {
+                starts_at_time.hide();
+                ends_at_time.hide();
+              } else {
+                starts_at_time.show();
+                ends_at_time.show();
+              }
+            });
+          });"
+
+        return starts_at_field + ends_at_field + all_day_check_box + all_day_label + js
+      end
+
+      def jquery_datetime_select(object_name, method, order = :date_before_time, time = Time.now, date_options = {}, time_options = {})
         time = time.round(Event::STEP_MINUTE.minutes)
 
         date_options[:value] = time.strftime('%Y-%m-%d')
@@ -44,38 +73,42 @@ module ActionView
         time_field = text_field(object_name, "#{method}_time", time_options)
 
         jquery_ui = javascript_tag "
-        $(document).ready(function() {
+          $(document).ready(function() {
 
-          $('##{field_id(object_name, method, 'date')}').datepicker({
-            dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-            dateFormat: 'yy-mm-dd'
-          });
+            $('##{field_id(object_name, method, 'date')}').datepicker({
+              dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+              dateFormat: 'yy-mm-dd'
+            });
 
-          $('##{field_id(object_name, method, 'time')}').timepicker({
-            stepMinute: #{Event::STEP_MINUTE},
-            showButtonPanel: false,
-          });
-        });"
+            $('##{field_id(object_name, method, 'time')}').timepicker({
+              stepMinute: #{Event::STEP_MINUTE},
+              showButtonPanel: false,
+            });
+          });"
 
-        if order == :time_before_date
-          return time_field + date_field + jquery_ui
-        else
+        if order == :date_before_time
           return date_field + time_field + jquery_ui
+        else
+          return time_field + date_field + jquery_ui
         end
       end
 
       private
 
-      def field_id(object_name, method, label)
-        return "#{object_name}_#{method}_#{label}"
+      def field_id(object_name, method, label = nil)
+        if label
+          return "#{object_name}_#{method}_#{label}"
+        else
+          return "#{object_name}_#{method}"
+        end
       end
     end
   end
 end
 
 class ActionView::Helpers::FormBuilder
-  def jquery_datetime_select(method, order = :time_before_date, time = Time.now, date_options = {}, time_options = {})
-    @template.jquery_datetime_select(@object_name, method, order, time, date_options, time_options)
+  def event
+    @template.event(@object_name, @object)
   end
 end
 
