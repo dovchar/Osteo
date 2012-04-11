@@ -81,6 +81,10 @@ class EventsController < ApplicationController
 
     @event = Event.find(params[:id])
 
+    # FullCalendar does not give us ends_at if the event is a all day event
+    # thus it is better to manually reset ends_at
+    @event.ends_at = nil
+
     respond_to do |format|
       if @event.update_attributes(params[:event])
         flash.notice = 'Event was successfully updated.'

@@ -37,6 +37,8 @@ $(document).ready(function() {
     //Frequency for displaying time slots, in minutes
     slotMinutes: <%= Event::STEP_MINUTE %>,
 
+    defaultEventMinutes: <%= Event::EVENT_LENGTH %>,
+
     //Triggered when an event has moved to a different day/time
     //See http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
     eventDrop: function(event) {
@@ -67,6 +69,15 @@ $(document).ready(function() {
 //A calendar event has been modified, let's update it
 //Sends an AJAX request to the server to update the event inside the database
 function updateEvent(event) {
+  $.ajax({
+    type: 'PUT',
+    url: '/events/' + event.id + '.js',
+    data: { event: eventToJSON(event) }
+  });
+}
+
+//Transforms a FullCalendar event to its Ruby equivalent using JSON
+function eventToJSON(event) {
   var start = event.start.toUTCString(); //event.start is never null
 
   var end;
@@ -78,18 +89,13 @@ function updateEvent(event) {
     //end = start;
   }
 
-  $.ajax({
-    type: 'PUT',
-    url: '/events/' + event.id + '.js',
-    data: {
-      event: {
-        title: event.title,
-        starts_at: start,
-        ends_at: end,
-        description: event.description
-      }
-    }
-  });
+  return {
+    title: event.title,
+    description: event.description,
+    starts_at: start,
+    ends_at: end,
+    all_day: event.allDay
+  }
 }
 
 //Shows the event inside a tooltip using qTip

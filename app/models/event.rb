@@ -1,14 +1,17 @@
 class Event < ActiveRecord::Base
 
   validates :starts_at, presence: true
-  validates :ends_at, presence: true
+  #validates :ends_at, presence: true
   validate :validate_ends_at_after_starts_at
 
   after_initialize :init
 
   # Frequency for displaying time slots, in minutes.
   # Used by FullCalendar and jQuery timepicker.
-  STEP_MINUTE = 15
+  STEP_MINUTE = 30
+
+  # Event length in minutes.
+  EVENT_LENGTH = 60
 
   # Need to override the JSON view to return what FullCalendar is expecting.
   # See http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
@@ -37,7 +40,7 @@ class Event < ActiveRecord::Base
   # See http://stackoverflow.com/questions/328525/what-is-the-best-way-to-set-default-values-in-activerecord
   def init
     self.starts_at ||= Time.now
-    self.ends_at ||= Time.now + 1.hour
+    self.ends_at ||= Time.now + EVENT_LENGTH.minutes
   end
 
   def validate_ends_at_after_starts_at
