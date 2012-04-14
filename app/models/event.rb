@@ -18,11 +18,11 @@ class Event < ActiveRecord::Base
 
   # Date format to use inside the views.
   DATE_FORMAT = '%Y-%m-%d'
-  DATE_FORMAT_DATEPICKER = 'yy-mm-dd' # See http://jqueryui.com/demos/datepicker/
+  DATE_FORMAT_PICKER = 'yy-mm-dd' # See http://jqueryui.com/demos/datepicker/
 
   # Time format to use inside the views.
   TIME_FORMAT = '%-l:%M%P'
-  TIME_FORMAT_TIMEPICKER = 'g:ia' # See https://github.com/jonthornton/jquery-timepicker
+  TIME_FORMAT_PICKER = 'g:ia' # See https://github.com/jonthornton/jquery-timepicker
 
   # Need to override the JSON view to return what FullCalendar is expecting.
   # See http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
