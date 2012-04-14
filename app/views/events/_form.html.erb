@@ -1,7 +1,3 @@
-<%= stylesheet_link_tag params[:controller] %>
-<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
-<%= javascript_include_tag params[:controller] %>
-
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -23,8 +19,8 @@
 
     <tr>
       <th class="field">When</th>
-      <td class="field">
-        <%= f.event %>
+      <td class="field datepair">
+        <%= f.datepair_select @event.starts_at, @event.ends_at, @event.all_day %>
       </td>
     </tr>
 

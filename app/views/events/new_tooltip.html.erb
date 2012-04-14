@@ -3,7 +3,7 @@
     <tr>
       <th class="field">When</th>
       <td class="field">
-        <%= event_time_tag @event.starts_at, nil, @event.all_day %>
+        <%= datepair_tag @event.starts_at, nil, @event.all_day %>
 
         <%= f.hidden_field :starts_at %>
         <%= f.hidden_field :ends_at %>

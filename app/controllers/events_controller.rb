@@ -49,8 +49,8 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    Time.parse_jquery_datetime_select(params, :event, :starts_at)
-    Time.parse_jquery_datetime_select(params, :event, :ends_at)
+    Time.parse_datepair_select(params, :event, :starts_at)
+    Time.parse_datepair_select(params, :event, :ends_at)
 
     @event = Event.new(params[:event])
 
@@ -76,8 +76,8 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    Time.parse_jquery_datetime_select(params, :event, :starts_at)
-    Time.parse_jquery_datetime_select(params, :event, :ends_at)
+    Time.parse_datepair_select(params, :event, :starts_at)
+    Time.parse_datepair_select(params, :event, :ends_at)
 
     @event = Event.find(params[:id])
 

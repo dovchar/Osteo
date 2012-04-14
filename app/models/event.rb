@@ -13,6 +13,17 @@ class Event < ActiveRecord::Base
   # Event length in minutes.
   EVENT_LENGTH = 60
 
+  # Time zone to use inside the views
+  TIME_ZONE = 'Paris'
+
+  # Date format to use inside the views.
+  DATE_FORMAT = '%Y-%m-%d'
+  DATE_FORMAT_DATEPICKER = 'yy-mm-dd' # See http://jqueryui.com/demos/datepicker/
+
+  # Time format to use inside the views.
+  TIME_FORMAT = '%-l:%M%P'
+  TIME_FORMAT_TIMEPICKER = 'g:ia' # See https://github.com/jonthornton/jquery-timepicker
+
   # Need to override the JSON view to return what FullCalendar is expecting.
   # See http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
   def as_json(options = nil)

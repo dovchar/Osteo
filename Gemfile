@@ -8,8 +8,10 @@ gem 'sqlite3'
 # in production environments by default.
 group :assets do
   # I want standard JavaScript and CSS
-  #gem 'sass-rails'
+  gem 'sass-rails'
   #gem 'coffee-rails'
+
+  gem 'bootstrap-sass'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # No JavaScript engine installed by default under Linux
@@ -22,6 +24,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+gem 'bootstrap-datepicker-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby'

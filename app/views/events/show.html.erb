@@ -2,7 +2,7 @@
   <tr>
     <th class="field">When</th>
     <td class="field">
-      <%= event_time_tag @event.starts_at, @event.ends_at, @event.all_day %>
+      <%= datepair_tag @event.starts_at, @event.ends_at, @event.all_day %>
     </td>
   </tr>
 

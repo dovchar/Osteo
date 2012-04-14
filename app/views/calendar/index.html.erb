@@ -1,8 +1,3 @@
-<%# TODO CSS link causes the HTML to be invalid, a better way would be to use @import %>
-<%= stylesheet_link_tag params[:controller] %>
-
-<%= javascript_include_tag params[:controller] %>
-
 <%= link_to "Create", new_event_path %>
 <%= link_to "Agenda", events_path %>
 
