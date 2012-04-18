@@ -3,7 +3,6 @@
     <label class="control-label">When</label>
     <div class="controls">
       <span class="input uneditable-input"><%= datepair_tag @event.starts_at, nil, @event.all_day %></span>
-      <label class="control-label"></label>
       <%= f.hidden_field :starts_at %>
       <%= f.hidden_field :ends_at %>
       <%= f.hidden_field :all_day %>

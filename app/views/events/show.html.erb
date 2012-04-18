@@ -1,18 +1,14 @@
-<table>
-  <tr>
-    <th class="field">When</th>
-    <td class="field">
-      <%= datepair_tag @event.starts_at, @event.ends_at, @event.all_day %>
-    </td>
-  </tr>
+<p>
+  <b>When:</b>
+  <%= datepair_tag @event.starts_at, @event.ends_at, @event.all_day %>
+</p>
 
-  <% if !@event.location.blank? %>
-    <tr>
-      <th class="field">Location</th>
-      <td class="field"><%= @event.location %></td>
-    </tr>
-  <% end %>
-</table>
+<% if !@event.location.blank? %>
+  <p>
+    <b>Location:</b>
+    <%= @event.location %>
+  </p>
+<% end %>
 
 <%= link_to 'Delete', @event, confirm: 'Are you sure?', method: :delete, remote: true %>
 |
