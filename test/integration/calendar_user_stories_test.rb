@@ -18,8 +18,8 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     click_on 'Create'
 
-    fill_in 'What', with: 'My new event'
-    fill_in 'Where', with: 'Paris'
+    fill_in 'Title', with: 'My new event'
+    fill_in 'Location', with: 'Paris'
     fill_in 'Description', with: 'This a new event'
     click_on 'Create Event'
 
@@ -32,7 +32,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     click_on 'Create'
 
-    fill_in 'What', with: '' # An empty title is OK
+    fill_in 'Title', with: '' # An empty title is OK
 
     # Invalid dates: ends_at before starts_at
     fill_in 'event_starts_at_date', with: '2012-03-28'
@@ -40,7 +40,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'event_ends_at_date', with: '2012-03-27'
     fill_in 'event_ends_at_time', with: '00:00'
 
-    fill_in 'Where', with: 'Paris'
+    fill_in 'Location', with: 'Paris'
     fill_in 'Description', with: 'This a new event'
     click_on 'Create Event'
 
@@ -96,8 +96,8 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     # Click on edit link inside the tooltip
     click_on 'Edit'
 
-    fill_in 'What', with: 'My updated event'
-    fill_in 'Where', with: 'Paris'
+    fill_in 'Title', with: 'My updated event'
+    fill_in 'Location', with: 'Paris'
     fill_in 'Description', with: 'This an updated event'
     click_on 'Update Event'
 
@@ -118,7 +118,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     # Click on edit link inside the tooltip
     click_on 'Edit'
 
-    fill_in 'What', with: '' # An empty title is OK
+    fill_in 'Title', with: '' # An empty title is OK
 
     # Invalid dates: ends_at before starts_at
     fill_in 'event_starts_at_date', with: '2012-03-28'
@@ -126,7 +126,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'event_ends_at_date', with: '2012-03-27'
     fill_in 'event_ends_at_time', with: '00:00'
 
-    fill_in 'Where', with: 'Paris'
+    fill_in 'Location', with: 'Paris'
     fill_in 'Description', with: 'This an updated event'
     click_on 'Update Event'
 
@@ -158,7 +158,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     page.find(:xpath, "//td[starts-with(@class, 'fc-tue ui-widget-content fc-day9')]/div").click
 
     # Tooltip
-    fill_in 'What', with: 'New event using a tooltip'
+    fill_in 'Title', with: 'New event using a tooltip'
     click_on 'Create Event'
 
     # Check the event was created

@@ -1,12 +1,12 @@
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
-
   test "default attributes values" do
     event = Event.new
+    now = Time.now.round(Event::STEP_MINUTE.minutes)
     assert !event.title.blank?
-    assert event.starts_at.to_i == Time.now.to_i
-    assert event.ends_at.to_i == (Time.now + 1.hour).to_i
+    assert event.starts_at.to_i == now.to_i
+    assert event.ends_at.to_i == (now + Event::EVENT_LENGTH.minutes).to_i
   end
 
   test "save event with default attributes" do
@@ -29,5 +29,4 @@ class EventTest < ActiveSupport::TestCase
     event = Event.new(title: 'Hello', starts_at: '2012-03-25 21:00:00 UTC', ends_at: '2012-03-25 22:00:00 UTC')
     assert event.valid?
   end
-
 end

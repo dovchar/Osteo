@@ -4,9 +4,6 @@
 */
 
 #map {
-  /* Otherwise Firefox 9/10 shows the map outside its div */
-  float: left;
-
   width: 300px;
   height: 300px;
 }

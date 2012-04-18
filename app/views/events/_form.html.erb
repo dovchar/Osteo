@@ -1,45 +1,25 @@
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<%= simple_form_for(@event, :html => { class: 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
 
-      <ul>
-        <% @event.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+  <%= f.input :title, autofocus: true %>
+
+  <div class="datepair">
+    <%= f.input :starts_at, as: :date_pair, :input_html => { class: "start" } %>
+    <%= f.input :ends_at, as: :date_pair, :input_html => { class: "end" } %>
+    <%= f.input :all_day, as: :date_pair_all_day %>
+  </div>
+
+  <%= f.input :location, :input_html => { class: 'form-horizontal' } %>
+  <div class="control-group">
+    <div class="controls">
+      <div id="map"></div>
     </div>
-  <% end %>
+  </div>
+  <%= f.input :description %>
 
-  <table>
-    <tr>
-      <th class="field"><%= f.label :title, "What" %></th>
-      <td class="field"><%= f.text_field :title, title: "Event title", autofocus: true %></td>
-    </tr>
 
-    <tr>
-      <th class="field">When</th>
-      <td class="field datepair">
-        <%= f.datepair_select @event.starts_at, @event.ends_at, @event.all_day %>
-      </td>
-    </tr>
-
-    <tr>
-      <th class="field"><%= f.label :location, "Where" %></th>
-      <td class="field"><%= f.text_field :location %></td>
-    </tr>
-
-    <tr>
-      <th></th>
-      <td class="field" id="map"></td>
-    </tr>
-
-    <tr>
-      <th class="field" style="vertical-align: top"><%= f.label :description %></th>
-      <td class="field"><%= f.text_area :description %></td>
-    </tr>
-  </table>
-
-  <%= f.submit %>
-  <%= link_to 'Back to calendar', calendar_path %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+    <%= link_to 'Back to calendar', calendar_path %>
+  </div>
 <% end %>

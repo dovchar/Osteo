@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :parse_datepair_params
+
   # GET /events
   # GET /events.json
   def index
@@ -49,9 +51,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    Time.parse_datepair_select(params, :event, :starts_at)
-    Time.parse_datepair_select(params, :event, :ends_at)
-
     @event = Event.new(params[:event])
 
     respond_to do |format|
@@ -76,14 +75,7 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    Time.parse_datepair_select(params, :event, :starts_at)
-    Time.parse_datepair_select(params, :event, :ends_at)
-
     @event = Event.find(params[:id])
-
-    # FullCalendar does not give us ends_at if the event is a all day event
-    # thus it is better to manually reset ends_at
-    @event.ends_at = nil
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
@@ -111,5 +103,12 @@ class EventsController < ApplicationController
       format.json { head :ok }
       format.js # destroy.js.erb
     end
+  end
+
+  private
+
+  def parse_datepair_params()
+    parse_datepair(params, :event, :starts_at)
+    parse_datepair(params, :event, :ends_at)
   end
 end

@@ -1,10 +1,10 @@
 class Event < ActiveRecord::Base
 
   validates :starts_at, presence: true
-  #validates :ends_at, presence: true
+  validates :ends_at, presence: true
   validate :validate_ends_at_after_starts_at
 
-  after_initialize :init
+  after_initialize :set_default_values
 
   # Frequency for displaying time slots, in minutes.
   # Used by FullCalendar and jQuery timepicker.
@@ -21,8 +21,8 @@ class Event < ActiveRecord::Base
   DATE_FORMAT_PICKER = 'yy-mm-dd' # See http://jqueryui.com/demos/datepicker/
 
   # Time format to use inside the views.
-  TIME_FORMAT = '%-l:%M%P'
-  TIME_FORMAT_PICKER = 'g:ia' # See https://github.com/jonthornton/jquery-timepicker
+  TIME_FORMAT = '%I:%M%P'
+  TIME_FORMAT_PICKER = 'h:ia' # See https://github.com/jonthornton/jquery-timepicker
 
   # Need to override the JSON view to return what FullCalendar is expecting.
   # See http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
@@ -49,9 +49,10 @@ class Event < ActiveRecord::Base
 
   # Initializes the attributes with default values.
   # See http://stackoverflow.com/questions/328525/what-is-the-best-way-to-set-default-values-in-activerecord
-  def init
-    self.starts_at ||= Time.now
-    self.ends_at ||= Time.now + EVENT_LENGTH.minutes
+  def set_default_values
+    now = Time.now.round(STEP_MINUTE.minutes)
+    self.starts_at ||= now
+    self.ends_at ||= now + EVENT_LENGTH.minutes
   end
 
   def validate_ends_at_after_starts_at

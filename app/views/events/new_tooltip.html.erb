@@ -1,25 +1,17 @@
-<%= form_for(@event, :remote => true) do |f| %>
-  <table>
-    <tr>
-      <th class="field">When</th>
-      <td class="field">
-        <%= datepair_tag @event.starts_at, nil, @event.all_day %>
+<%= simple_form_for(@event, :remote => true, :html => { class: 'form-vertical' }) do |f| %>
+  <div class="control-group">
+    <label class="control-label">When</label>
+    <div class="controls">
+      <span class="input uneditable-input"><%= datepair_tag @event.starts_at, nil, @event.all_day %></span>
+      <label class="control-label"></label>
+      <%= f.hidden_field :starts_at %>
+      <%= f.hidden_field :ends_at %>
+      <%= f.hidden_field :all_day %>
+    </div>
+  </div>
 
-        <%= f.hidden_field :starts_at %>
-        <%= f.hidden_field :ends_at %>
-        <%= f.hidden_field :all_day %>
-      </td>
-    </tr>
+  <%= f.input :title, autofocus: true %>
 
-    <tr>
-      <th class="field"><%= f.label :title, "What" %></th>
-      <td class="field">
-        <%= f.text_field :title, title: "Event title", autofocus: true %>
-      </td>
-    </tr>
-  </table>
-
-  <%= f.submit %>
-
-  <%= f.submit 'Edit »', name: 'edit_event' %>
+  <%= f.button :submit %>
+  <%= f.button :submit, 'Edit »', name: 'edit_event' %>
 <% end %>
