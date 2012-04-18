@@ -1,6 +1,6 @@
 /**
  * @preserve
- * FullCalendar v1.5.2
+ * FullCalendar v1.5.3
  * http://arshaw.com/fullcalendar/
  *
  * Use fullcalendar.css for basic styling.
@@ -11,7 +11,7 @@
  * Dual licensed under the MIT and GPL licenses, located in
  * MIT-LICENSE.txt and GPL-LICENSE.txt respectively.
  *
- * Date: Sat Nov 19 18:21:10 2011 -0800
+ * Date: Mon Feb 6 22:40:40 2012 -0800
  *
  */
  
@@ -111,7 +111,7 @@ var rtlDefaults = {
 
 
 
-var fc = $.fullCalendar = { version: "1.5.2" };
+var fc = $.fullCalendar = { version: "1.5.3" };
 var fcViews = fc.views = {};
 
 
@@ -5157,7 +5157,7 @@ function HoverListener(coordinateGrid) {
 	
 	
 	function mouse(ev) {
-		_fixUIEvent(ev);
+		_fixUIEvent(ev); // see below
 		var newCell = coordinateGrid.cell(ev.pageX, ev.pageY);
 		if (!newCell != !cell || newCell && (newCell.row != cell.row || newCell.col != cell.col)) {
 			if (newCell) {
@@ -5182,7 +5182,13 @@ function HoverListener(coordinateGrid) {
 }
 
 
-function _fixUIEvent(event) { // jQuery 1.7 workaround (for issue 1168)
+
+// this fix was only necessary for jQuery UI 1.8.16 (and jQuery 1.7 or 1.7.1)
+// upgrading to jQuery UI 1.8.17 (and using either jQuery 1.7 or 1.7.1) fixed the problem
+// but keep this in here for 1.8.16 users
+// and maybe remove it down the line
+
+function _fixUIEvent(event) { // for issue 1168
 	if (event.pageX === undefined) {
 		event.pageX = event.originalEvent.pageX;
 		event.pageY = event.originalEvent.pageY;
