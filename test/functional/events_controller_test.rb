@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
   setup do
-    @event = events(:alisson)
+    @event = events(:regular)
     @invalid_event = events(:invalid)
   end
 

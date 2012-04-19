@@ -1,22 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-alisson:
-  title: Appointment with Alisson
+regular:
+  title: Appointment
   starts_at: 2010-10-13 00:00:00 UTC
   ends_at: 2010-10-13 00:30:00 UTC
   all_day: false
-  location: 228 Rue de Vaugirard, 75015 Paris, France
-  description: Regular 30 minutes medical consultation
-
-fabienne:
-  title: Appointment with Fabienne
-  starts_at: 2011-10-14 00:00:00 UTC
-  ends_at: 2011-10-14 00:30:00 UTC
-  all_day: false
-  location: 8 Rue Desnouettes, 75015 Paris, France
-  description: Regular 30 minutes medical consultation
+  location: Paris
+  description: Medical consultation
 
 invalid:
   starts_at: 2012-03-25 22:00:00 UTC
   ends_at: 2012-03-25 21:00:00 UTC
   description: Invalid event, title is ok but dates are not
+
+all_day:
+  title: All day event
+  starts_at: 2012-04-19
+  ends_at: 2012-04-19
+  all_day: true
+  location: Paris
+  description: Holiday

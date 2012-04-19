@@ -7,10 +7,10 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     visit '/calendar'
     assert page.has_content?(Time.now.strftime("%B %Y"))
 
-    visit "/calendar?date=#{events(:alisson).starts_at}"
+    visit "/calendar?date=#{events(:regular).starts_at}"
     assert page.has_content?('October 2010')
     assert page.has_content?('2a') # Translated from UTC to localtime by FullCalendar
-    assert page.has_content?('Appointment with Alisson')
+    assert page.has_content?('Appointment')
   end
 
   test "create an event" do
@@ -45,7 +45,7 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     click_on 'Create Event'
 
     # Failure
-    assert page.has_content?("Ends at can't be before the starting date")
+    assert page.has_content?("can't be before the starting date")
   end
 
   # Does not work under Mac
@@ -54,13 +54,13 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
   # Under other platforms try to downgrade Firefox
   # See http://stackoverflow.com/questions/9795868/org-openqa-selenium-invalidelementstateexceptioncannot-perform-native-interacti
   test "drag and drop an event" do
-    visit "/calendar?date=#{events(:alisson).starts_at}"
+    visit "/calendar?date=#{events(:regular).starts_at}"
 
-    # There is only 1 fc-event, the one that contains 'Appointment with Alisson'
-    source = page.find('.fc-event')
+    # There is only 1 fc-event, the one that contains 'Appointment'
+    source = find('.fc-event')
 
     # Select sunday inside the first week
-    target = page.find('.fc-week0 .fc-sun')
+    target = find('.fc-week0 .fc-sun')
 
     # Drag and drop the event to sunday 26th
     source.drag_to(target)
@@ -74,10 +74,10 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     visit "/calendar?date=#{events(:invalid).starts_at}"
 
     # There is only 1 fc-event, the one that contains the invalid event
-    source = page.find('.fc-event')
+    source = find('.fc-event')
 
     # Select sunday inside the fourth week
-    target = page.find('.fc-week4 .fc-tue')
+    target = find('.fc-week4 .fc-tue')
 
     # Drag and drop the event to tuesday 27th
     source.drag_to(target)
@@ -88,10 +88,10 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "update an event" do
-    visit "/calendar?date=#{events(:alisson).starts_at}"
+    visit "/calendar?date=#{events(:regular).starts_at}"
 
     # Click on the event
-    page.find('.fc-event').click
+    find('.fc-event').click
 
     # Click on edit link inside the tooltip
     click_on 'Edit'
@@ -105,15 +105,15 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     assert_equal calendar_path, current_path
 
     # Check the event was updated
-    visit "/calendar?date=#{events(:alisson).starts_at}"
+    visit "/calendar?date=#{events(:regular).starts_at}"
     assert page.has_content?('My updated event')
   end
 
   test "try to update an invalid event" do
-    visit "/calendar?date=#{events(:alisson).starts_at}"
+    visit "/calendar?date=#{events(:regular).starts_at}"
 
     # Click on the event
-    page.find('.fc-event').click
+    find('.fc-event').click
 
     # Click on edit link inside the tooltip
     click_on 'Edit'
@@ -131,14 +131,14 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     click_on 'Update Event'
 
     # Failure
-    assert page.has_content?("Ends at can't be before the starting date")
+    assert page.has_content?("can't be before the starting date")
   end
 
   test "delete an event" do
-    visit "/calendar?date=#{events(:alisson).starts_at}"
+    visit "/calendar?date=#{events(:regular).starts_at}"
 
     # Click on the event
-    page.find('.fc-event').click
+    find('.fc-event').click
 
     # Click on destroy link inside the tooltip
     # See http://stackoverflow.com/questions/2458632/how-to-test-a-confirm-dialog-with-cucumber
@@ -148,14 +148,14 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     # Back to the calendar, check the event was destroyed
     sleep 1 # Wait a bit otherwise the test might fail
-    assert !page.has_content?('Appointment with Alisson')
+    assert page.has_no_content?('Appointment')
   end
 
   test "create an event by clicking on a day" do
     visit '/calendar'
 
     # Click on a day
-    page.find(:xpath, "//td[starts-with(@class, 'fc-tue ui-widget-content fc-day9')]/div").click
+    find(:xpath, "//td[starts-with(@class, 'fc-tue ui-widget-content fc-day9')]/div").click
 
     # Tooltip
     fill_in 'Title', with: 'New event using a tooltip'
@@ -163,5 +163,26 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
 
     # Check the event was created
     assert page.has_content?('New event using a tooltip')
+  end
+
+  test "all day event" do
+    visit "/calendar?date=#{events(:all_day).starts_at}"
+
+    # Click on the event
+    find('.fc-event').click
+    assert page.has_content?('All day event')
+    assert page.has_content?('Thu, April 19')
+
+    # Click on edit link inside the tooltip
+    click_on 'Edit'
+
+    all_day = find '#event_all_day'
+    assert all_day.checked?
+    assert !find('#event_starts_at_time').visible?
+    assert !find('#event_ends_at_time').visible?
+
+    uncheck('All day')
+    assert find('#event_starts_at_time').visible?
+    assert find('#event_ends_at_time').visible?
   end
 end
