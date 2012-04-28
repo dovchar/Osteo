@@ -107,6 +107,8 @@ class EventsController < ApplicationController
 
   private
 
+  include DatePairInputHelper
+
   def parse_datepair_params()
     parse_datepair(params, :event, :starts_at)
     parse_datepair(params, :event, :ends_at)
