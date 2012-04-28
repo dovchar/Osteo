@@ -29,7 +29,7 @@ class DatePairInput < SimpleForm::Inputs::Base
     # In this case let's set starts_at and ends_at to empty strings
     datetime = ''
     # The user wants starts_at and ends_at to be in local time instead of UTC
-    datetime = attr.round(Event::STEP_MINUTE.minutes).in_time_zone(Event::TIME_ZONE) if attr
+    datetime = attr.round_time(Event::STEP_MINUTE.minutes).in_time_zone(Event::TIME_ZONE) if attr
 
     value = datetime.strftime(Event::DATE_FORMAT) # Always set a value otherwise text_field will fail
     klass = [ input_html_options[:class], 'date' ]

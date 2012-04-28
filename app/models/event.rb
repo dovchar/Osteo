@@ -50,7 +50,7 @@ class Event < ActiveRecord::Base
   # Initializes the attributes with default values.
   # See http://stackoverflow.com/questions/328525/what-is-the-best-way-to-set-default-values-in-activerecord
   def set_default_values
-    now = Time.now.round(STEP_MINUTE.minutes)
+    now = Time.now.round_time(STEP_MINUTE.minutes)
     self.starts_at ||= now
     self.ends_at ||= now + EVENT_LENGTH.minutes
   end
