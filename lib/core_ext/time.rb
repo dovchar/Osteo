@@ -7,7 +7,7 @@ class Time
   #   Time.new(2011, 11, 13, 13, 42, 24).round()           # => 2011-11-13 13:42:00
   #   Time.new(2011, 11, 13, 13, 42, 24).round(1.hour)     # => 2011-11-13 14:00:00
   #
-  def round(seconds = 60)
+  def round_time(seconds = 60)
     Time.zone.at((self.to_f / seconds).round * seconds)
   end
 
