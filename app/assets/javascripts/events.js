@@ -23,6 +23,6 @@ $(document).ready(function() {
     addresspickerMap.addresspicker("updatePosition");
 
   } catch (error) {
-    //This happens when maps.google.com cannot be reached
+    // This happens when maps.google.com cannot be reached
   }
 });

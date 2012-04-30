@@ -8,7 +8,7 @@ $(document).ready(function() {
   }).children().show();
 
   $('#calendar').fullCalendar({
-    //Similar style as the one from Google Calendar
+    // Similar style as the one from Google Calendar
 
     header: {
       left: 'today prev,next title',
@@ -16,10 +16,10 @@ $(document).ready(function() {
       right: 'agendaDay,agendaWeek,month'
     },
 
-    //Enables jQuery UI theme
+    // Enables jQuery UI theme
     theme: true,
 
-    //Names in uppercase
+    // Names in uppercase
     buttonText: {
       today: 'Today',
       month: 'Month',
@@ -29,36 +29,36 @@ $(document).ready(function() {
 
     editable: 'true',
 
-    //Otherwise ISO 8601 "2011-10-28T01:22:00Z" is not seen as UTC
+    // Otherwise ISO 8601 "2011-10-28T01:22:00Z" is not seen as UTC
     ignoreTimezone: false,
 
     events: '/events',
 
-    //Frequency for displaying time slots, in minutes
+    // Frequency for displaying time slots, in minutes
     slotMinutes: <%= Event::STEP_MINUTE %>,
 
     defaultEventMinutes: <%= Event::EVENT_LENGTH %>,
 
-    //Triggered when an event has moved to a different day/time
-    //See http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
+    // Triggered when an event has moved to a different day/time
+    // See http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
     eventDrop: function(event) {
       updateEvent(event);
     },
 
-    //Triggered when an event has changed in duration
-    //See http://arshaw.com/fullcalendar/docs/event_ui/eventResize/
+    // Triggered when an event has changed in duration
+    // See http://arshaw.com/fullcalendar/docs/event_ui/eventResize/
     eventResize: function(event) {
       updateEvent(event);
     },
 
-    //Triggered when the user clicks on an event
-    //See http://arshaw.com/fullcalendar/docs/mouse/eventClick/
+    // Triggered when the user clicks on an event
+    // See http://arshaw.com/fullcalendar/docs/mouse/eventClick/
     eventClick: function(event, jsEvent) {
       showEventTooltip(event, jsEvent, $(this));
     },
 
-    //Triggered when the user clicks on a day
-    //See http://arshaw.com/fullcalendar/docs/mouse/dayClick/
+    // Triggered when the user clicks on a day
+    // See http://arshaw.com/fullcalendar/docs/mouse/dayClick/
     dayClick: function(date, allDay, jsEvent, view) {
       showNewTooltipEvent(date, allDay, jsEvent, $(this));
     }
@@ -66,8 +66,8 @@ $(document).ready(function() {
 
 });
 
-//A calendar event has been modified, let's update it
-//Sends an AJAX request to the server to update the event inside the database
+// A calendar event has been modified, let's update it
+// Sends an AJAX request to the server to update the event inside the database
 function updateEvent(event) {
   $.ajax({
     type: 'PUT',
@@ -76,7 +76,7 @@ function updateEvent(event) {
   });
 }
 
-//Transforms a FullCalendar event to its Ruby equivalent using JSON
+// Transforms a FullCalendar event to its Ruby equivalent using JSON
 function eventToJSON(event) {
   var start = event.start.toUTCString(); //event.start is never null
 
@@ -84,8 +84,8 @@ function eventToJSON(event) {
   if (event.end) {
     end = event.end.toUTCString();
   } else {
-    //event.end can be null if end equals start or if end is before start
-    //This will make Rails unhappy so let's set end to a real date instead
+    // event.end can be null if end equals start or if end is before start
+    // This will make Rails unhappy so let's set end to a real date instead
     //end = start;
   }
 
@@ -98,7 +98,7 @@ function eventToJSON(event) {
   }
 }
 
-//Shows the event inside a tooltip using qTip
+// Shows the event inside a tooltip using qTip
 function showEventTooltip(event, jsEvent, div) {
   div.qtip({
     id: 'event_' + event.id,
@@ -111,7 +111,7 @@ function showEventTooltip(event, jsEvent, div) {
       text: 'Loading...',
       ajax: {
         url: '/events/' + event.id,
-        loading: false //Hide the tooltip whilst the initial content is loaded
+        loading: false // Hide the tooltip whilst the initial content is loaded
       }
     },
 
@@ -119,26 +119,26 @@ function showEventTooltip(event, jsEvent, div) {
       my: 'bottom center',
       at: 'top center',
       target: [jsEvent.pageX, jsEvent.pageY],
-      viewport: $(window) //Try to keep the tooltip on-screen at all times
+      viewport: $(window) // Try to keep the tooltip on-screen at all times
     },
 
     show: {
-      //Show the tooltip when event is clicked and tooltip is 'ready' e.g. rendered
+      // Show the tooltip when event is clicked and tooltip is 'ready' e.g. rendered
       event: 'click',
       ready: true
     },
 
-    //Close the tooltip when it loses focus e.g. anywhere except the tooltip is clicked
+    // Close the tooltip when it loses focus e.g. anywhere except the tooltip is clicked
     hide: 'unfocus',
 
     style: {
       classes: 'ui-tooltip-shadow ui-tooltip-rounded',
-      widget: true //Use jQuery UI style
+      widget: true // Use jQuery UI style
     }
   });
 }
 
-//Shows new_tooltip view inside a tooltip using qTip
+// Shows new_tooltip view inside a tooltip using qTip
 function showNewTooltipEvent(date, allDay, jsEvent, div) {
   div.qtip({
     content: {
@@ -149,9 +149,9 @@ function showNewTooltipEvent(date, allDay, jsEvent, div) {
       text: 'Loading...',
       ajax: {
         url: 'events/new_tooltip',
-        loading: false, //Hide the tooltip whilst the initial content is loaded
+        loading: false, // Hide the tooltip whilst the initial content is loaded
 
-        //Data to pass along with the request
+        // Data to pass along with the request
         data: {
           event: {
             starts_at: date.toUTCString(),
@@ -166,39 +166,39 @@ function showNewTooltipEvent(date, allDay, jsEvent, div) {
       my: 'bottom center',
       at: 'top center',
       target: [jsEvent.pageX, jsEvent.pageY],
-      viewport: $(window) //Try to keep the tooltip on-screen at all times
+      viewport: $(window) // Try to keep the tooltip on-screen at all times
     },
 
     show: {
-      //Show the tooltip when event is clicked and tooltip is 'ready' e.g. rendered
+      // Show the tooltip when event is clicked and tooltip is 'ready' e.g. rendered
       event: 'click',
       ready: true
     },
 
-    //Close the tooltip when it loses focus e.g. anywhere except the tooltip is clicked
+    // Close the tooltip when it loses focus e.g. anywhere except the tooltip is clicked
     hide: 'unfocus',
 
     style: {
       classes: 'ui-tooltip-shadow ui-tooltip-rounded',
-      widget: true //Use jQuery UI style
+      widget: true // Use jQuery UI style
     }
   });
 }
 
-//Closes a given qTip2 tooltip
+// Closes a given qTip2 tooltip
 function removeTooltip(id) {
   $('#ui-tooltip-' + id).qtip('hide');
   //$('#ui-tooltip-' + id).remove();
 }
 
-//Closes all qTip2 tooltips
-//See http://craigsworks.com/projects/forums/thread-solved-close-all-tooltips-at-the-same-time
+// Closes all qTip2 tooltips
+// See http://craigsworks.com/projects/forums/thread-solved-close-all-tooltips-at-the-same-time
 function removeAllTooltips() {
   $('.qtip.ui-tooltip').qtip('hide');
   //$('.qtip.ui-tooltip').remove();
 }
 
-//Refetches FullCalendar events
+// Refetches FullCalendar events
 function refetchFullCalendarEvents() {
   $('#calendar').fullCalendar('refetchEvents');
 }

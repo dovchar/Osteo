@@ -6,7 +6,7 @@
 
 <% if @date %>
 <script>
-  //Moves the calendar to a specified date.
+  // Moves the calendar to a specified date.
   $(document).ready(function() {
     $('#calendar').fullCalendar('gotoDate', new Date(<%= @date %>));
   });
