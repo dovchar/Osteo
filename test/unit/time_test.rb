@@ -2,19 +2,19 @@ require 'test_helper'
 
 class TimeTest < ActionView::TestCase
   test "time should round" do
-    time = Time.new(2011, 11, 13, 03, 50).round(10.minutes)
+    time = Time.new(2011, 11, 13, 03, 50).round_time(10.minutes)
     assert_equal Time.new(2011, 11, 13, 03, 50), time
 
-    time = Time.new(2011, 11, 13, 03, 51).round(10.minutes)
+    time = Time.new(2011, 11, 13, 03, 51).round_time(10.minutes)
     assert_equal Time.new(2011, 11, 13, 03, 50), time
 
-    time = Time.new(2011, 11, 13, 03, 59).round(10.minutes)
+    time = Time.new(2011, 11, 13, 03, 59).round_time(10.minutes)
     assert_equal Time.new(2011, 11, 13, 04, 00), time
 
-    time = Time.new(2011, 11, 13, 13, 42, 24).round()
+    time = Time.new(2011, 11, 13, 13, 42, 24).round_time()
     assert_equal Time.new(2011, 11, 13, 13, 42, 00), time
 
-    time = Time.new(2011, 11, 13, 13, 42, 24).round(1.hour)
+    time = Time.new(2011, 11, 13, 13, 42, 24).round_time(1.hour)
     assert_equal Time.new(2011, 11, 13, 14, 00, 00), time
   end
 
