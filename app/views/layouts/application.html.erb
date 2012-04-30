@@ -6,12 +6,26 @@
   <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <%#
+    Setting a viewport tells the browser how content should fit on the device's
+    screen and informs the browser that the site is optimized for mobile.
+    See http://dev.opera.com/articles/view/an-introduction-to-meta-viewport-and-viewport/
+    <meta name="viewport" content="width=500">
+  %>
 </head>
 <body>
 
-<%= render 'layouts/flashes' %>
+<%= render 'layouts/navbar' %>
 
-<%= yield %>
+<div class="container-fluid">
+  <div class="row-fuild">
+    <%= render 'layouts/flashes' %>
+    <%= yield %>
+  </div>
+
+  <%= render 'layouts/footer' %>
+</div>
 
 </body>
 </html>
