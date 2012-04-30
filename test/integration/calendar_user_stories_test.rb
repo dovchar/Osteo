@@ -165,6 +165,25 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?('New event using a tooltip')
   end
 
+  test "edit an event by clicking on a day" do
+    visit '/calendar?date="2012-04-01"'
+
+    # Click on a day
+    find(:xpath, "//td[starts-with(@class, 'fc-tue ui-widget-content fc-day9')]/div").click
+
+    # Tooltip
+    fill_in 'Title', with: 'Edit event using a tooltip'
+    click_on 'edit_event'
+
+    # Check the event inside the form
+    assert_equal find_field('Title').value, 'Edit event using a tooltip'
+    assert_equal '2012-04-10', find('#event_starts_at_date').value
+    assert_equal '2012-04-10', find('#event_ends_at_date').value
+    assert !find('#event_starts_at_time').visible?
+    assert !find('#event_ends_at_time').visible?
+    assert find('#event_all_day').checked?
+  end
+
   test "all day event" do
     visit "/calendar?date=#{events(:all_day).starts_at}"
 
@@ -176,12 +195,11 @@ class CalendarUserStoriesTest < ActionDispatch::IntegrationTest
     # Click on edit link inside the tooltip
     click_on 'Edit'
 
-    all_day = find '#event_all_day'
-    assert all_day.checked?
+    assert find('#event_all_day').checked?
     assert !find('#event_starts_at_time').visible?
     assert !find('#event_ends_at_time').visible?
 
-    uncheck('All day')
+    uncheck 'All day'
     assert find('#event_starts_at_time').visible?
     assert find('#event_ends_at_time').visible?
   end
