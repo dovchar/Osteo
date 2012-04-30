@@ -12,5 +12,19 @@
   <%= f.input :title, autofocus: true %>
 
   <%= f.button :submit %>
-  <%= f.button :submit, 'Edit »', name: 'edit_event' %>
+  <%= link_to 'Edit »', '#', id: 'edit_event' %>
 <% end %>
+
+<script>
+  // Update the form when the user clicks on the edit link
+  // See http://stackoverflow.com/questions/461790/multiple-submit-buttons-forms-in-rails
+  $(document).ready(function() {
+    $('#edit_event').click(function() {
+      var new_event_form = $('#new_event'); // The default form id is 'new_event'
+      new_event_form.removeAttr('data-remote');
+      new_event_form.attr('action', '<%= new_event_path %>');
+      new_event_form.attr('method', 'get');
+      new_event_form.submit();
+    });
+  });
+</script>

@@ -55,16 +55,9 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        if params[:edit_event]
-          # Edit button was clicked
-          #format.js { render action: 'edit' }
-          format.js { redirect_to edit_event_path }
-        else
-          # Regular create action
-          format.html { redirect_to calendar_url, notice: 'Event was successfully created.' }
-          format.json { render json: @event, status: :created, location: @event }
-          format.js # create.js.erb
-        end
+        format.html { redirect_to calendar_url, notice: 'Event was successfully created.' }
+        format.json { render json: @event, status: :created, location: @event }
+        format.js # create.js.erb
       else
         format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
