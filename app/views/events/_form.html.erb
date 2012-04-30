@@ -1,5 +1,10 @@
 <%= simple_form_for(@event, :html => { class: 'form-horizontal' }) do |f| %>
-  <%= f.error_notification %>
+  <% if f.error_notification %>
+    <div class="alert alert-error fade in">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <%= f.error_notification %>
+    </div>
+  <% end %>
 
   <%= f.input :title, autofocus: true %>
 
@@ -20,7 +25,7 @@
   <%= f.input :description %>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn-primary' %>
     <%= link_to 'Back to calendar', calendar_path %>
   </div>
 <% end %>
