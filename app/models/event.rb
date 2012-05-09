@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   validates :ends_at, presence: true
   validate :validate_ends_at_after_starts_at
 
-  after_initialize :set_default_values
+  after_initialize :default_values
 
   # Frequency for displaying time slots, in minutes.
   # Used by FullCalendar and jQuery timepicker.
@@ -49,10 +49,13 @@ class Event < ActiveRecord::Base
 
   # Initializes the attributes with default values.
   # See http://stackoverflow.com/questions/328525/what-is-the-best-way-to-set-default-values-in-activerecord
-  def set_default_values
+  # See http://stackoverflow.com/questions/1550688/how-do-i-create-a-default-value-for-attributes-in-rails-activerecords-model
+  # See http://stackoverflow.com/questions/1186400/correct-way-to-set-default-values-in-rails
+  def default_values
     now = Time.now.round_time(STEP_MINUTE.minutes)
     self.starts_at ||= now
     self.ends_at ||= now + EVENT_LENGTH.minutes
+    self.all_day ||= false
   end
 
   def validate_ends_at_after_starts_at

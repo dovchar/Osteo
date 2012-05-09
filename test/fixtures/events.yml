@@ -11,6 +11,7 @@ regular:
 invalid:
   starts_at: 2012-03-25 22:00:00 UTC
   ends_at: 2012-03-25 21:00:00 UTC
+  all_day: false
   description: Invalid event, title is ok but dates are not
 
 all_day:
