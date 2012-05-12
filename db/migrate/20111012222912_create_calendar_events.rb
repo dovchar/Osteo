@@ -1,11 +1,12 @@
-class CreateEvents < ActiveRecord::Migration
+class CreateCalendarEvents < ActiveRecord::Migration
   def change
-    create_table :events do |t|
+    create_table :calendar_events do |t|
       t.string :title
       t.datetime :starts_at
       t.datetime :ends_at
       t.boolean :all_day
-      t.string :description
+      t.text :description
+      t.string :location
 
       t.timestamps
     end
