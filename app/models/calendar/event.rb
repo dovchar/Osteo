@@ -6,7 +6,7 @@ module Calendar
 
     validates :starts_at, presence: true
     validates :ends_at, presence: true
-    validates :all_day, presence: true
+    validates :all_day, :inclusion => { :in => [true, false] } # See http://stackoverflow.com/questions/3608076/rails-how-do-i-validate-that-something-is-a-boolean
     validate :validate_ends_at_after_starts_at
 
     after_initialize :default_values
