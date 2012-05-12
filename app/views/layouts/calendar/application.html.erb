@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Osteo</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
+  <title>Calendar</title>
+  <%= stylesheet_link_tag    "calendar/application", media: "all" %>
   <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "calendar/application" %>
   <%= csrf_meta_tags %>
 
   <%#
@@ -16,15 +16,15 @@
 </head>
 <body>
 
-<%= render 'layouts/navbar' %>
+<%= render 'layouts/calendar/navbar' %>
 
 <div class="container-fluid">
   <div class="row-fuild">
-    <%= render 'layouts/flashes' %>
+    <%= render 'layouts/calendar/flashes' %>
     <%= yield %>
   </div>
 
-  <%= render 'layouts/footer' %>
+  <%= render 'layouts/calendar/footer' %>
 </div>
 
 </body>

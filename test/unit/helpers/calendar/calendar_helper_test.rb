@@ -1,4 +1,6 @@
 require 'test_helper'
 
-class CalendarHelperTest < ActionView::TestCase
+module Calendar
+  class CalendarHelperTest < ActionView::TestCase
+  end
 end

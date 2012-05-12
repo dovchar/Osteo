@@ -1,4 +1,4 @@
-Osteo::Application.routes.draw do
+Calendar::Engine.routes.draw do
   match 'calendar' => 'calendar#index'
 
   get 'events/new_tooltip', as: 'new_event_tooltip'
