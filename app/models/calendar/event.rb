@@ -6,6 +6,7 @@ module Calendar
 
     validates :starts_at, presence: true
     validates :ends_at, presence: true
+    validates :all_day, presence: true
     validate :validate_ends_at_after_starts_at
 
     after_initialize :default_values
