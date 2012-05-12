@@ -1,8 +1,6 @@
 Calendar::Engine.routes.draw do
-  match 'calendar' => 'calendar#index'
-
-  get 'events/new_tooltip', as: 'new_event_tooltip'
   resources :events
+  get 'events/new_tooltip', to: 'events#new_tooltip'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -54,7 +52,7 @@ Calendar::Engine.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root to: 'calendar#index', as: 'calendar'
+  root to: 'calendar#index'
 
   # See how all your routes lay out with "rake routes"
 

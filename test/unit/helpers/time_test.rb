@@ -19,7 +19,7 @@ class TimeTest < ActionView::TestCase
   end
 
   test "time should format a datepair" do
-    Time.use_zone(Event::TIME_ZONE) do
+    Time.use_zone(Calendar::Event::TIME_ZONE) do
       current_year = Time.zone.now.year # 2012
       year_before = Time.zone.now.year - 1 # 2011
 
@@ -113,9 +113,9 @@ class TimeTest < ActionView::TestCase
   end
 
   test "time should format a datepair with another time zone" do
-    old_zone = Event::TIME_ZONE
-    Event::TIME_ZONE = 'Greenland'
+    old_zone = Calendar::Event::TIME_ZONE
+    Calendar::Event::TIME_ZONE = 'Greenland'
     test_time_should_format_a_datepair
-    Event::TIME_ZONE = old_zone
+    Calendar::Event::TIME_ZONE = old_zone
   end
 end

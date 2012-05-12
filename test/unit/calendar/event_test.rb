@@ -4,10 +4,10 @@ module Calendar
   class EventTest < ActiveSupport::TestCase
     test "default attributes values" do
       event = Event.new
-      now = Time.now.round_time(Event::STEP_MINUTE.minutes)
+      now = Time.now.round_time(Calendar::Event::STEP_MINUTE.minutes)
       assert !event.title.blank?
       assert event.starts_at.to_i == now.to_i
-      assert event.ends_at.to_i == (now + Event::EVENT_LENGTH.minutes).to_i
+      assert event.ends_at.to_i == (now + Calendar::Event::EVENT_LENGTH.minutes).to_i
     end
 
     test "save event with default attributes" do

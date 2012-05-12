@@ -13,15 +13,15 @@
 
 ActiveRecord::Schema.define(:version => 20120509100534) do
 
-  create_table "events", :force => true do |t|
+  create_table "calendar_events", :force => true do |t|
     t.string   "title"
     t.datetime "starts_at",   :null => false
     t.datetime "ends_at",     :null => false
     t.boolean  "all_day",     :null => false
     t.text     "description"
+    t.string   "location"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "location"
   end
 
 end

@@ -34,8 +34,8 @@ class Time
     # %-l%P                   => 1pm
 
     # Converts to local time
-    starts_at = starts_at.in_time_zone(Event::TIME_ZONE) unless starts_at.nil?
-    ends_at = ends_at.in_time_zone(Event::TIME_ZONE) unless ends_at.nil?
+    starts_at = starts_at.in_time_zone(Calendar::Event::TIME_ZONE) unless starts_at.nil?
+    ends_at = ends_at.in_time_zone(Calendar::Event::TIME_ZONE) unless ends_at.nil?
     str = ''
 
     # "The en dash is commonly used to indicate a closed range of values

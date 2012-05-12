@@ -35,7 +35,7 @@ module DatePairInputHelper
       format = ''
       if !date.blank?
         str = date
-        format = Event::DATE_FORMAT
+        format = Calendar::Event::DATE_FORMAT
       end
       if !date.blank? && !time.blank?
         str = str + ' '
@@ -43,10 +43,10 @@ module DatePairInputHelper
       end
       if !time.blank?
         str = str + time
-        format = format + Event::TIME_FORMAT
+        format = format + Calendar::Event::TIME_FORMAT
       end
       if !time.blank?
-        str = str + ' ' + Event::TIME_ZONE
+        str = str + ' ' + Calendar::Event::TIME_ZONE
         format = format + ' %Z'
       end
 

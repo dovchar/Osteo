@@ -15,7 +15,7 @@ class DatePairInputTest < ActionView::TestCase
     assert_select 'input.date_pair#event_starts_at_date'
     assert html.include? '2012-02-15'
     assert_select 'input.date_pair#event_starts_at_time'
-    assert html.include? '11:30pm' # Fails if Event::STEP_MINUTE is changed
+    assert html.include? '11:30pm' # Fails if Calendar::Event::STEP_MINUTE is changed
 
     html = with_input_for event, :ends_at, :date_pair
     assert_select 'input.date_pair#event_ends_at_date'

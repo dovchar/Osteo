@@ -11,8 +11,6 @@ group :assets do
   gem 'sass-rails'
   #gem 'coffee-rails'
 
-  gem 'bootstrap-sass'
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # No JavaScript engine installed by default under Linux
   # See http://stackoverflow.com/questions/6282307/rails-3-1-execjs-and-could-not-find-a-javascript-runtime
@@ -25,6 +23,7 @@ end
 
 gem 'jquery-rails'
 
+gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 
 gem 'simple_form'

@@ -4,7 +4,7 @@ $(function() {
 
 	$('.datepair input.date').each(function(){
 		var $this = $(this);
-		var opts = { 'dateFormat': '<%= Event::DATE_FORMAT_PICKER %>' };
+		var opts = { 'dateFormat': '<%= Calendar::Event::DATE_FORMAT_PICKER %>' };
 
 		if ($this.hasClass('future')) {
 			opts.minDate = new Date();
@@ -19,7 +19,7 @@ $(function() {
 
 	$('.datepair input.time').each(function() {
 		var $this = $(this);
-		var opts = { 'showDuration': true, 'timeFormat': '<%= Event::TIME_FORMAT_PICKER %>', 'scrollDefaultNow': true };
+		var opts = { 'showDuration': true, 'timeFormat': '<%= Calendar::Event::TIME_FORMAT_PICKER %>', 'scrollDefaultNow': true };
 
 		if ($this.hasClass('start') || $this.hasClass('end')) {
 			opts.onSelect = doDatepair;

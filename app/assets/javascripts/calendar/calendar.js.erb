@@ -32,12 +32,12 @@ $(document).ready(function() {
     // Otherwise ISO 8601 "2011-10-28T01:22:00Z" is not seen as UTC
     ignoreTimezone: false,
 
-    events: '/events',
+    events: '/calendar/events',
 
     // Frequency for displaying time slots, in minutes
-    slotMinutes: <%= Event::STEP_MINUTE %>,
+    slotMinutes: <%= Calendar::Event::STEP_MINUTE %>,
 
-    defaultEventMinutes: <%= Event::EVENT_LENGTH %>,
+    defaultEventMinutes: <%= Calendar::Event::EVENT_LENGTH %>,
 
     // Triggered when an event has moved to a different day/time
     // See http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
@@ -71,7 +71,7 @@ $(document).ready(function() {
 function updateEvent(event) {
   $.ajax({
     type: 'PUT',
-    url: '/events/' + event.id + '.js',
+    url: '/calendar/events/' + event.id + '.js',
     data: { event: eventToJSON(event) }
   });
 }
@@ -110,7 +110,7 @@ function showEventTooltip(event, jsEvent, div) {
       },
       text: 'Loading...',
       ajax: {
-        url: '/events/' + event.id,
+        url: '/calendar/events/' + event.id,
         loading: false // Hide the tooltip whilst the initial content is loaded
       }
     },
@@ -147,7 +147,7 @@ function showNewTooltipEvent(date, allDay, jsEvent, div) {
       },
       text: 'Loading...',
       ajax: {
-        url: 'events/new_tooltip',
+        url: '/calendar/events/new_tooltip',
         loading: false, // Hide the tooltip whilst the initial content is loaded
 
         // Data to pass along with the request
