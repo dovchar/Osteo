@@ -1,6 +1,6 @@
 Calendar::Engine.routes.draw do
-  resources :events
   get 'events/new_tooltip', to: 'events#new_tooltip'
+  resources :events
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
