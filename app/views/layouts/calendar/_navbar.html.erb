@@ -1,13 +1,14 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
+
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
 
-      <a class="brand" href="#">Calendar</a>
+      <%= link_to 'Calendar', root_path, class: "brand" %>
 
       <div class="nav-collapse">
         <ul class="nav">
@@ -34,6 +35,18 @@
               <li>Hello</li>
             </ul>
           </li>
+        </ul>
+      </div>
+
+      <div class="btn-group pull-right open">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="icon-user"></i> Username
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Profile</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Sign Out</a></li>
         </ul>
       </div>
 
