@@ -5,3 +5,12 @@
  *= include jquery-qtip/styles.css
  *= include jquery-qtip/extra.css
 */
+
+/* Overrides qTip2 Bootstrap theme. */
+.ui-tooltip-bootstrap .ui-tooltip-content form {
+  /*
+   * Overrides Bootstrap:
+   * form { margin: 0 0 18px; }
+   */
+  margin: 0 0 5px;
+}
