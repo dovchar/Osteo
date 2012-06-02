@@ -88,13 +88,19 @@ function eventToJSON(event) {
     end = start;
   }
 
-  return {
+  var JSONEvent = {
     title: event.title,
     description: event.description,
     starts_at: start,
     ends_at: end,
     all_day: event.allDay
-  }
+  };
+
+  // Avoid getting "null" string inside Rails code
+  if (!JSONEvent['title']) delete JSONEvent['title'];
+  if (!JSONEvent['description']) delete JSONEvent['description'];
+
+  return JSONEvent;
 }
 
 // Shows the event inside a tooltip using qTip
