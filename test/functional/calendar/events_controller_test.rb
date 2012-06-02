@@ -2,6 +2,8 @@ require 'test_helper'
 
 module Calendar
   class EventsControllerTest < ActionController::TestCase
+    fixtures 'calendar/events'
+
     setup do
       @event = calendar_events(:regular)
       @invalid_event = calendar_events(:invalid)

@@ -2,6 +2,8 @@ require 'test_helper'
 
 module Calendar
   class CalendarControllerTest < ActionController::TestCase
+    fixtures 'calendar/events'
+
     test "should get index" do
       get :index
       assert_response :success

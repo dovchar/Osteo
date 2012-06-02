@@ -16,34 +16,36 @@ Rails.backtrace_cleaner.remove_silencers!
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
+
+# TODO Monkey patching for Rails 3.2.3
+# See https://github.com/rails/rails/issues/6573
+# See https://github.com/rails/rails/issues/4971
+class ActiveSupport::TestCase
+  def method_missing(selector, *args)
+    if @controller.respond_to?(:_routes) &&
+        @controller._routes.mounted_helpers.method_defined?(selector)
+      @controller.__send__(selector, *args)
+    else
+      super
+    end
+  end
+end
+class ActionDispatch::IntegrationTest
+  include Rails.application.routes.mounted_helpers
+end
+
+
 # Load fixtures from the engine
 if ActiveSupport::TestCase.method_defined?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)
 end
 
-module Calendar
-  class ActiveSupport::TestCase
-    # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-    #
-    # Note: You'll currently still have to declare fixtures explicitly in integration tests
-    # -- they do not yet inherit this setting
-    fixtures :all
-
-    # Add more helper methods to be used by all tests here...
-
-    # Monkey patching for Rails 3.2.3
-    # See https://github.com/rails/rails/issues/6573
-    # See https://github.com/rails/rails/issues/4971
-    def method_missing(selector, *args)
-      if @controller.respond_to?(:_routes) &&
-          @controller._routes.mounted_helpers.method_defined?(selector)
-        @controller.__send__(selector, *args)
-      else
-        super
-      end
-    end
-  end
+# TODO Fix for integration tests
+# See https://github.com/rails/rails/issues/5193
+if ActionDispatch::IntegrationTest.method_defined?(:fixture_path=)
+  ActionDispatch::IntegrationTest.fixture_path = File.expand_path("../fixtures", __FILE__)
 end
+
 
 # Configure Capybara for the integration tests
 # See Capybara documentation https://github.com/jnicklas/capybara
