@@ -2,7 +2,7 @@ module Calendar
   class Event < ActiveRecord::Base
 
     # Allow mass-assignment
-    attr_accessible :title, :starts_at, :ends_at, :all_day, :description, :location
+    attr_accessible :title, :starts_at, :ends_at, :all_day, :description, :location, :created_at, :updated_at
 
     validates :starts_at, presence: true
     validates :ends_at, presence: true

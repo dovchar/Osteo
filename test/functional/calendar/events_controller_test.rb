@@ -3,8 +3,8 @@ require 'test_helper'
 module Calendar
   class EventsControllerTest < ActionController::TestCase
     setup do
-      @event = events(:regular)
-      @invalid_event = events(:invalid)
+      @event = calendar_events(:regular)
+      @invalid_event = calendar_events(:invalid)
     end
 
     test "should get index" do
@@ -23,7 +23,7 @@ module Calendar
         post :create, event: @event.attributes
       end
 
-      assert_redirected_to calendar_path
+      assert_redirected_to calendar.root_path
     end
 
     test "should not create invalid event" do
@@ -46,7 +46,7 @@ module Calendar
 
     test "should update event" do
       put :update, id: @event.to_param, event: @event.attributes
-      assert_redirected_to calendar_path
+      assert_redirected_to calendar.root_path
     end
 
     test "should not update event with invalid data" do
@@ -59,7 +59,7 @@ module Calendar
         delete :destroy, id: @event.to_param
       end
 
-      assert_redirected_to calendar_path
+      assert_redirected_to calendar.root_path
     end
   end
 end

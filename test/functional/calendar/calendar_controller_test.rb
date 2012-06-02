@@ -13,7 +13,7 @@ module Calendar
     end
 
     test "should get index and move to specified date" do
-      get :index, { date: events(:regular).starts_at }
+      get :index, { date: calendar_events(:regular).starts_at }
       assert_response :success
 
       #assert_select_jquery :html, '#calendar' do
