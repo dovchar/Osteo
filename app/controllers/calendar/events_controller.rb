@@ -79,7 +79,6 @@ module Calendar
           format.json { head :ok }
           format.js # update.js.erb
         else
-          flash.alert = @event.errors.full_messages
           format.html { render action: 'edit' }
           format.json { render json: @event.errors, status: :unprocessable_entity }
           format.js # update.js.erb
