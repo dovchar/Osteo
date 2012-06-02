@@ -24,6 +24,9 @@ module Calendar
       fill_in 'Description', with: 'This a new event'
       click_on 'Create Event'
 
+      # Check the flash
+      assert page.has_content?("created.")
+
       # Back to the calendar, check the event was created
       assert page.has_content?('My new event')
     end
@@ -67,7 +70,8 @@ module Calendar
       source.drag_to(target)
 
       if !(RUBY_PLATFORM =~ /darwin/)
-        assert page.has_content?('Event was successfully updated.')
+        # Check the flash
+        assert page.has_content?("updated.")
       end
     end
 
@@ -104,6 +108,9 @@ module Calendar
 
       # Back to the calendar
       assert_equal calendar.root_path, current_path
+
+      # Check the flash
+      assert page.has_content?("updated.")
 
       # Check the event was updated
       visit "/calendar?date=#{calendar_events(:regular).starts_at}"
@@ -147,8 +154,12 @@ module Calendar
       click_on 'Delete'
       #page.driver.browser.switch_to.alert.accept
 
-      # Back to the calendar, check the event was destroyed
-      sleep 1 # Wait a bit otherwise the test might fail
+      # Check the flash
+      assert page.has_content?("deleted.")
+
+      # Close the flash
+      find('.close').click
+
       assert page.has_no_content?('Appointment')
     end
 
@@ -161,6 +172,9 @@ module Calendar
       # Tooltip
       fill_in 'Title', with: 'New event using a tooltip'
       click_on 'Create Event'
+
+      # Check the flash
+      assert page.has_content?("created.")
 
       # Check the event was created
       assert page.has_content?('New event using a tooltip')

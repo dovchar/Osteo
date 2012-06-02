@@ -1,2 +1,8 @@
+<%# Trick: removes the tooltip by removing all tooltips %>
 removeAllTooltips();
+
+<%# See http://stackoverflow.com/questions/366311/how-do-you-handle-rails-flash-with-ajax-requests %>
+$("#flashes").html("<%= escape_javascript(render 'layouts/calendar/flashes') %>");
+<% flash.discard %> <%# Don't want the flash to appear when you reload page %>
+
 refetchFullCalendarEvents();

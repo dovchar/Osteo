@@ -56,7 +56,8 @@ module Calendar
 
       respond_to do |format|
         if @event.save
-          format.html { redirect_to root_url, notice: 'Event was successfully created.' }
+          flash.notice = %{Event "#{@event.title}" was successfully created.}
+          format.html { redirect_to root_url }
           format.json { render json: @event, status: :created, location: @event }
           format.js # create.js.erb
         else
@@ -73,7 +74,7 @@ module Calendar
 
       respond_to do |format|
         if @event.update_attributes(params[:event])
-          flash.notice = 'Event was successfully updated.'
+          flash.notice = %{Event "#{@event.title}" was successfully updated.}
           format.html { redirect_to root_url }
           format.json { head :ok }
           format.js # update.js.erb
@@ -93,6 +94,7 @@ module Calendar
       @event.destroy
 
       respond_to do |format|
+        flash.notice = %{Event "#{@event.title}" was successfully deleted.}
         format.html { redirect_to root_url }
         format.json { head :ok }
         format.js # destroy.js.erb

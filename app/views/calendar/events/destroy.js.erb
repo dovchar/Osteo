@@ -1,4 +1,8 @@
-// Removes the tooltip even if it should be gone already because the focus was lost
+<%# Removes the tooltip even if it should be gone already because the focus was lost %>
 removeTooltip('<%= dom_id(@event) %>');
+
+<%# See http://stackoverflow.com/questions/366311/how-do-you-handle-rails-flash-with-ajax-requests %>
+$("#flashes").html("<%= escape_javascript(render 'layouts/calendar/flashes') %>");
+<% flash.discard %> <%# Don't want the flash to appear when you reload page %>
 
 refetchFullCalendarEvents();
