@@ -1,5 +1,11 @@
 Calendar::Engine.routes.draw do
+
+  # Show a tooltip to create a new event
   get 'events/new_tooltip', to: 'events#new_tooltip'
+
+  # Create a new event by clicking on edit inside the tooltip
+  post 'events/new', to: 'events#new'
+
   resources :events
 
   # The priority is based upon order of creation:

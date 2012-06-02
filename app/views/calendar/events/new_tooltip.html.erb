@@ -25,7 +25,7 @@
       var new_event_form = $('#new_event'); <%# The default form id is 'new_event' %>
       new_event_form.removeAttr('data-remote');
       new_event_form.attr('action', '<%= new_event_path %>');
-      new_event_form.attr('method', 'get');
+      new_event_form.attr('method', 'post');
       new_event_form.submit();
     });
   });
