@@ -5,7 +5,15 @@ module Calendar
     # GET /events
     # GET /events.json
     def index
-      @events = Event.all
+      # FullCalendar will hit the index method with query parameters
+      # 'start' and 'end' in order to filter the results
+      # Format is Unix timestamps (seconds since 1970)
+      # Example: GET "/calendar/events?start=1338069600&end=1341698400"
+      # This will generate the following query:
+      # SELECT "calendar_events".* FROM "calendar_events" WHERE (starts_at > '2012-05-26 22:00:00.000000') AND (ends_at < '2012-07-07 22:00:00.000000')
+      @events = Event.scoped
+      @events = @events.after(Time.at(params['start'].to_i)) if (params['start'])
+      @events = @events.before(Time.at(params['end'].to_i)) if (params['end'])
 
       respond_to do |format|
         format.html # index.html.erb
