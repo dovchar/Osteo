@@ -1,0 +1,37 @@
+fr:
+  layouts:
+    calendar:
+      application:
+        title: Calendrier
+
+  calendar:
+    events:
+      form:
+        back_to_calendar: Retour vers le calendrier
+      new:
+        title: Nouvel événement
+      edit:
+        title: Modifier l'événement
+      new_tooltip:
+        when: Date
+
+  activerecord:
+    models:
+      calendar/event: événement
+    attributes:
+      calendar/event:
+        title: Titre
+        starts_at: Début
+        ends_at: Fin
+        all_day: Toute la journée
+        location: Lieu
+        description: Description
+
+  helpers:
+    submit:
+      event:
+        create: "Créer l'%{model}"
+        update: "Mettre à jour l'%{model}"
+
+  # General
+  loading: Chargement...

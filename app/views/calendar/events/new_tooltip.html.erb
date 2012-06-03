@@ -1,6 +1,6 @@
 <%= simple_form_for(@event, :remote => true, :html => { class: 'form-vertical' }) do |f| %>
   <div class="control-group">
-    <label class="control-label">When</label>
+    <label class="control-label"><%= t('.when') %></label>
     <div class="controls">
       <span class="input uneditable-input"><%= datepair_tag @event.starts_at, nil, @event.all_day %></span>
       <%= f.hidden_field :starts_at %>

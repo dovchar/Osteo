@@ -31,6 +31,9 @@ $(document).ready(function() {
     // Otherwise ISO 8601 "2011-10-28T01:22:00Z" is not seen as UTC
     ignoreTimezone: false,
 
+    // TODO Use Rails.application.routes.url_helpers and Rails.application.routes.named_routes
+    // Don't know how to make it work :/
+    // See https://github.com/rails/rails/issues/2501
     events: '/calendar/events',
 
     // Frequency for displaying time slots, in minutes
@@ -70,7 +73,7 @@ $(document).ready(function() {
 function updateEvent(event) {
   $.ajax({
     type: 'PUT',
-    url: '/calendar/events/' + event.id + '.js',
+    url: '<%= "/calendar/#{I18n.locale}/events/" %>' + event.id + '.js',
     data: { event: eventToJSON(event) }
   });
 }
@@ -113,9 +116,9 @@ function showEventTooltip(event, jsEvent, div) {
         text: event.title,
         button: true
       },
-      text: 'Loading...',
+      text: '<%= I18n.t('loading') %>',
       ajax: {
-        url: '/calendar/events/' + event.id,
+        url: '<%= "/calendar/#{I18n.locale}/events/" %>' + event.id,
         loading: false // Hide the tooltip whilst the initial content is loaded
       }
     },
@@ -147,12 +150,12 @@ function showNewTooltipEvent(date, allDay, jsEvent, div) {
   div.qtip({
     content: {
       title: {
-        text: 'New event',
+        text: '<%= I18n.t('calendar.events.new.title') %>',
         button: true
       },
-      text: 'Loading...',
+      text: '<%= I18n.t('loading') %>',
       ajax: {
-        url: '/calendar/events/new_tooltip',
+        url: '<%= "/calendar/#{I18n.locale}/events/new_tooltip" %>',
         loading: false, // Hide the tooltip whilst the initial content is loaded
 
         // Data to pass along with the request

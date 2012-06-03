@@ -2,4 +2,39 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  layouts:
+    calendar:
+      application:
+        title: Calendar
+
+  calendar:
+    events:
+      form:
+        back_to_calendar: Back to calendar
+      new:
+        title: New event
+      edit:
+        title: Editing event
+      new_tooltip:
+        when: When
+
+  activerecord:
+    models:
+      calendar/event: event
+    attributes:
+      calendar/event:
+        title: Title
+        starts_at: Starts at
+        ends_at: Ends at
+        all_day: All day
+        location: Location
+        description: Description
+
+  helpers:
+    submit:
+      event:
+        create: "Create %{model}"
+        update: "Update %{model}"
+
+  # General
+  loading: Loading...
