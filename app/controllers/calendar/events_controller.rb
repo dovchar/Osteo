@@ -5,6 +5,7 @@ module Calendar
     # GET /events
     # GET /events.json
     def index
+
       # FullCalendar will hit the index method with query parameters
       # 'start' and 'end' in order to filter the results
       # Format is Unix timestamps (seconds since 1970)
@@ -64,7 +65,7 @@ module Calendar
 
       respond_to do |format|
         if @event.save
-          flash.notice = %{Event "#{@event.title}" was successfully created.}
+          flash.notice = t('calendar.events.event_created', title: @event.title)
           format.html { redirect_to root_url }
           format.json { render json: @event, status: :created, location: @event }
           format.js # create.js.erb
@@ -82,7 +83,7 @@ module Calendar
 
       respond_to do |format|
         if @event.update_attributes(params[:event])
-          flash.notice = %{Event "#{@event.title}" was successfully updated.}
+          flash.notice = t('calendar.events.event_updated', title: @event.title)
           format.html { redirect_to root_url }
           format.json { head :ok }
           format.js # update.js.erb
@@ -101,7 +102,7 @@ module Calendar
       @event.destroy
 
       respond_to do |format|
-        flash.notice = %{Event "#{@event.title}" was successfully deleted.}
+        flash.notice = t('calendar.events.event_deleted', title: @event.title)
         format.html { redirect_to root_url }
         format.json { head :ok }
         format.js # destroy.js.erb

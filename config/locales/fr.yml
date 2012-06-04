@@ -18,6 +18,9 @@ fr:
         when: "Date :"
         location: "Lieu :"
         edit: Modifier l'événement »
+      event_created: "Evénement '%{title}' créé"
+      event_updated: "Evénement '%{title}' mis à jour"
+      event_deleted: "Evénement '%{title}' supprimé"
 
   activerecord:
     models:

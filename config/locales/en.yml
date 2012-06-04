@@ -18,6 +18,9 @@ en:
         when: "When:"
         location: "Location:"
         edit: Edit »
+      event_created: "Event %{title} created"
+      event_updated: "Event %{title} updated"
+      event_deleted: "Event %{title} deleted"
 
   activerecord:
     models:
