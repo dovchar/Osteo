@@ -14,6 +14,10 @@ fr:
         title: Modifier l'événement
       new_tooltip:
         when: Date
+      show:
+        when: "Date :"
+        location: "Lieu :"
+        edit: Modifier l'événement »
 
   activerecord:
     models:
@@ -35,3 +39,6 @@ fr:
 
   # General
   loading: Chargement...
+  delete: Supprimer
+  are_you_sure: Etes-vous sûr ?
+  close: Fermer

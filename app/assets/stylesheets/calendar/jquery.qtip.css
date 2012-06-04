@@ -14,3 +14,7 @@
    */
   margin: 0 0 5px;
 }
+
+.ui-tooltip, .qtip {
+  max-width: 300px;
+}

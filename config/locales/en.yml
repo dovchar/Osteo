@@ -17,6 +17,10 @@ en:
         title: Editing event
       new_tooltip:
         when: When
+      show:
+        when: "When:"
+        location: "Location:"
+        edit: Edit »
 
   activerecord:
     models:
@@ -38,3 +42,6 @@ en:
 
   # General
   loading: Loading...
+  delete: Delete
+  are_you_sure: Are you sure?
+  close: Close

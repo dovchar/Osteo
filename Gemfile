@@ -29,6 +29,8 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'simple_form'
 
+gem 'i18n-js', '>= 3.0.0.rc2'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby'
 

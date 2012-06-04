@@ -1,15 +1,15 @@
 <p>
-  <b>When:</b>
+  <b><%= t('.when') %></b>
   <%= datepair_tag @event.starts_at, @event.ends_at, @event.all_day %>
 </p>
 
 <% if !@event.location.blank? %>
   <p>
-    <b>Location:</b>
+    <b><%= t('.location') %></b>
     <%= @event.location %>
   </p>
 <% end %>
 
-<%= link_to 'Delete', @event, confirm: 'Are you sure?', method: :delete, remote: true %>
+<%= link_to t('delete'), @event, confirm: t('are_you_sure'), method: :delete, remote: true %>
 |
-<%= link_to 'Edit »', edit_event_path(@event) %>
+<%= link_to t('.edit'), edit_event_path(@event) %>

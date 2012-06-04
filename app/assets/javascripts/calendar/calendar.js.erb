@@ -73,7 +73,7 @@ $(document).ready(function() {
 function updateEvent(event) {
   $.ajax({
     type: 'PUT',
-    url: '<%= "/calendar/#{I18n.locale}/events/" %>' + event.id + '.js',
+    url: '/calendar/' + I18n.currentLocale() + '/events/' + event.id + '.js',
     data: { event: eventToJSON(event) }
   });
 }
@@ -114,15 +114,16 @@ function showEventTooltip(event, jsEvent, div) {
     content: {
       title: {
         text: event.title,
-        button: true
+        button: I18n.t('close')
       },
-      text: '<%= I18n.t('loading') %>',
+      text: I18n.t('loading'),
       ajax: {
-        url: '<%= "/calendar/#{I18n.locale}/events/" %>' + event.id,
+        url: '/calendar/' + I18n.currentLocale() + '/events/' + event.id,
         loading: false // Hide the tooltip whilst the initial content is loaded
       }
     },
 
+    //title: { button: 'custom text' }
     position: {
       my: 'bottom center',
       at: 'top center',
@@ -150,12 +151,12 @@ function showNewTooltipEvent(date, allDay, jsEvent, div) {
   div.qtip({
     content: {
       title: {
-        text: '<%= I18n.t('calendar.events.new.title') %>',
-        button: true
+        text: I18n.t('calendar.events.new.title'),
+        button: I18n.t('close')
       },
-      text: '<%= I18n.t('loading') %>',
+      text: I18n.t('loading'),
       ajax: {
-        url: '<%= "/calendar/#{I18n.locale}/events/new_tooltip" %>',
+        url: '/calendar/' + I18n.currentLocale() + '/events/new_tooltip',
         loading: false, // Hide the tooltip whilst the initial content is loaded
 
         // Data to pass along with the request
