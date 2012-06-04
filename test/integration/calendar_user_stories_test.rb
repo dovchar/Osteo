@@ -22,7 +22,7 @@ module Calendar
       fill_in 'Title', with: 'My new event'
       fill_in 'Location', with: 'Paris'
       fill_in 'Description', with: 'This a new event'
-      click_on 'Create Event'
+      click_on 'Create event'
 
       # Check the flash
       assert page.has_content?("created.")
@@ -46,7 +46,7 @@ module Calendar
 
       fill_in 'Location', with: 'Paris'
       fill_in 'Description', with: 'This a new event'
-      click_on 'Create Event'
+      click_on 'Create event'
 
       # Failure
       assert page.has_content?("can't be before the starting date")
@@ -104,7 +104,7 @@ module Calendar
       fill_in 'Title', with: 'My updated event'
       fill_in 'Location', with: 'Paris'
       fill_in 'Description', with: 'This an updated event'
-      click_on 'Update Event'
+      click_on 'Update event'
 
       # Back to the calendar
       assert_equal calendar.root_path, current_path
@@ -136,7 +136,7 @@ module Calendar
 
       fill_in 'Location', with: 'Paris'
       fill_in 'Description', with: 'This an updated event'
-      click_on 'Update Event'
+      click_on 'Update event'
 
       # Failure
       assert page.has_content?("can't be before the starting date")
@@ -171,7 +171,7 @@ module Calendar
 
       # Tooltip
       fill_in 'Title', with: 'New event using a tooltip'
-      click_on 'Create Event'
+      click_on 'Create event'
 
       # Check the flash
       assert page.has_content?("created.")
