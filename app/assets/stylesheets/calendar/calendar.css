@@ -2,15 +2,6 @@
  *= require fullcalendar/fullcalendar.css
 */
 
-#mini-calendar {
-  float: left;
-  font-size: small;
-}
-
-#calendar {
-  margin-left: 250px;
-}
-
 /* FullCalendar button' text should be bold */
 .fc-button-content {
   font-weight: bold;
