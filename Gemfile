@@ -23,7 +23,7 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-qtip2-rails'
-
+gem 'fullcalendar-rails', path: '/Users/tanguy/fullcalendar-rails2'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 

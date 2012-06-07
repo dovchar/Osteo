@@ -1,3 +1,8 @@
+PATH
+  remote: /Users/tanguy/fullcalendar-rails2
+  specs:
+    fullcalendar-rails (1.5.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -165,6 +170,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-sass
   capybara
+  fullcalendar-rails!
   guard
   guard-test
   i18n-js (>= 3.0.0.rc2)
