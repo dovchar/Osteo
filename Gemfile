@@ -22,8 +22,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'jquery-qtip2-rails'
-gem 'fullcalendar-rails', path: '/Users/tanguy/fullcalendar-rails2'
+gem 'fullcalendar-rails', git: 'https://github.com/tkrotoff/fullcalendar-rails.git'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 
