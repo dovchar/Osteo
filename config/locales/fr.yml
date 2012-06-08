@@ -45,3 +45,54 @@ fr:
   delete: Supprimer
   are_you_sure: Etes-vous sûr ?
   close: Fermer
+
+  # FullCalendar
+
+  january: Janvier
+  february: Février
+  march: Mars
+  april: Avril
+  may: Mai
+  june: Juin
+  july: Juillet
+  august: Août
+  september: Septembre
+  october: Octobre
+  november: Novembre
+  december: Décembre
+
+  # See http://fr.wikipedia.org/wiki/Mois
+  jan: Janv
+  feb: Févr
+  mar: Mars
+  apr: Avr
+  may: Mai
+  jun: Juin
+  jul: Juill
+  aug: Août
+  sep: Sept
+  oct: Oct
+  nov: Nov
+  dec: Dec
+
+  sunday: Dimanche
+  monday: Lundi
+  tuesday: Mardi
+  wednesday: Mercredi
+  thursday: Jeudi
+  friday: Vendredi
+  saturday: Samedi
+
+  # See http://fr.wikipedia.org/wiki/Semaine
+  sun: Dim
+  mon: Lun
+  tue: Mar
+  wed: Mer
+  thu: Jeu
+  fri: Ven
+  sat: Sam
+
+  today: Aujourd'hui
+  month: Mois
+  week: Semaine
+  day: Jour

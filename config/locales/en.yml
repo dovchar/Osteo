@@ -18,9 +18,9 @@ en:
         when: "When:"
         location: "Location:"
         edit: Edit »
-      event_created: "Event %{title} created"
-      event_updated: "Event %{title} updated"
-      event_deleted: "Event %{title} deleted"
+      event_created: "Event '%{title}' created"
+      event_updated: "Event '%{title}' updated"
+      event_deleted: "Event '%{title}' deleted"
 
   activerecord:
     models:
@@ -45,3 +45,54 @@ en:
   delete: Delete
   are_you_sure: Are you sure?
   close: Close
+
+  # FullCalendar
+
+  january: January
+  february: February
+  march: March
+  april: April
+  may: May
+  june: June
+  july: July
+  august: August
+  september: September
+  october: October
+  november: November
+  december: December
+
+  # See http://fr.wikipedia.org/wiki/Mois
+  jan: Jan
+  feb: Feb
+  mar: Mar
+  apr: Apr
+  may: May
+  jun: Jun
+  jul: Jul
+  aug: Aug
+  sep: Sep
+  oct: Oct
+  nov: Nov
+  dec: Dec
+
+  sunday: Sunday
+  monday: Monday
+  tuesday: Tuesday
+  wednesday: Wednesday
+  thursday: Thursday
+  friday: Friday
+  saturday: Saturday
+
+  # See http://fr.wikipedia.org/wiki/Semaine
+  sun: Sun
+  mon: Mon
+  tue: Tue
+  wed: Wed
+  thu: Thu
+  fri: Fri
+  sat: Sat
+
+  today: Today
+  month: Month
+  week: Week
+  day: Day

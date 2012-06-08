@@ -6,29 +6,53 @@
 $(document).ready(function() {
 
   $('#calendar').fullCalendar({
-    // Similar style as the one from Google Calendar
 
+    // Similar style as the one from Google Calendar
     header: {
       left: 'today prev,next title',
       center: '',
       right: 'agendaDay,agendaWeek,month'
     },
 
-    // Enables jQuery UI theme
-    theme: true,
-
-    // Names in uppercase
-    buttonText: {
-      today: 'Today',
-      month: 'Month',
-      week: 'Week',
-      day: 'Day'
-    },
-
-    editable: 'true',
+    editable: true,
 
     // Otherwise ISO 8601 "2011-10-28T01:22:00Z" is not seen as UTC
     ignoreTimezone: false,
+
+    // time formats
+    titleFormat: {
+      month: 'MMMM yyyy',
+      week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}",
+      day: 'dddd, MMM d, yyyy'
+    },
+    columnFormat: {
+      month: 'ddd',
+      week: 'ddd M/d',
+      day: 'dddd M/d'
+    },
+    timeFormat: { // for event elements
+      '': 'h(:mm)t' // default
+    },
+
+    firstDay: <%= Calendar::Event::FIRST_DAY_OF_WEEK %>,
+
+    monthNames: [I18n.t('january'),I18n.t('february'),I18n.t('march'),I18n.t('april'),I18n.t('may'),I18n.t('june'),
+                 I18n.t('july'),I18n.t('august'),I18n.t('september'),I18n.t('october'),I18n.t('november'),I18n.t('december')],
+    monthNamesShort: [I18n.t('jan'),I18n.t('feb'),I18n.t('mar'),I18n.t('apr'),I18n.t('may'),I18n.t('jun'),
+                      I18n.t('jul'),I18n.t('aug'),I18n.t('sep'),I18n.t('oct'),I18n.t('nov'),I18n.t('dec')],
+    dayNames: [I18n.t('sunday'),I18n.t('monday'),I18n.t('tuesday'),I18n.t('wednesday'),I18n.t('thursday'),I18n.t('friday'),I18n.t('saturday')],
+    dayNamesShort: [I18n.t('sun'),I18n.t('mon'),I18n.t('tue'),I18n.t('wed'),I18n.t('thu'),I18n.t('fri'),I18n.t('sat')],
+
+    buttonText: {
+      today: I18n.t('today'),
+      month: I18n.t('month'),
+      week: I18n.t('week'),
+      day: I18n.t('day')
+    },
+
+    // jQuery UI theme support
+    theme: false,
+
 
     // TODO Use Rails.application.routes.url_helpers and Rails.application.routes.named_routes
     // Don't know how to make it work :/

@@ -35,6 +35,11 @@ module Calendar
     TIME_FORMAT = '%I:%M%P'
     TIME_FORMAT_PICKER = 'h:ia' # See https://github.com/jonthornton/jquery-timepicker
 
+    # First day of the week for FullCalendar.
+    # 0 means sunday
+    # 1 means monday
+    FIRST_DAY_OF_WEEK = 0
+
     # Need to override the JSON view to return what FullCalendar is expecting.
     # See http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
     def as_json(options = nil)
