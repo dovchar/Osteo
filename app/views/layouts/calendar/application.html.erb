@@ -11,8 +11,8 @@
     Setting a viewport tells the browser how content should fit on the device's
     screen and informs the browser that the site is optimized for mobile.
     See http://dev.opera.com/articles/view/an-introduction-to-meta-viewport-and-viewport/
-    <meta name="viewport" content="width=500">
   %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script type="text/javascript">
     I18n.defaultLocale = '<%= I18n.default_locale %>';
@@ -24,9 +24,17 @@
 <%= render 'layouts/calendar/navbar' %>
 
 <div class="container-fluid">
-  <div class="row-fuild">
-    <%= render 'layouts/calendar/flashes' %>
-    <%= yield %>
+  <%= render 'layouts/calendar/flashes' %>
+
+  <div class="row-fluid">
+    <div class="span3">
+      <%# Sidebar content %>
+      <%= render 'layouts/calendar/sidebar' %>
+    </div>
+    <div class="span9">
+      <%# Body content %>
+      <%= yield %>
+    </div>
   </div>
 
   <%= render 'layouts/calendar/footer' %>
