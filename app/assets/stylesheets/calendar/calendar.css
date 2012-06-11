@@ -3,13 +3,3 @@
  * This allows to adapt FullCalendar to Twitter Bootstrap.
  * require fullcalendar/fullcalendar.css
 */
-
-/* FullCalendar button' text should be bold */
-.fc-button-content {
-  font-weight: bold;
-}
-
-/* Disable {clear: both} inside fullcalendar.css */
-.fc-content {
-  clear: none;
-}
