@@ -25,7 +25,7 @@ module Calendar
       click_on 'Create event'
 
       # Check the flash
-      assert page.has_content?("created.")
+      assert page.has_content?("created")
 
       # Back to the calendar, check the event was created
       assert page.has_content?('My new event')
@@ -71,7 +71,7 @@ module Calendar
 
       if !(RUBY_PLATFORM =~ /darwin/)
         # Check the flash
-        assert page.has_content?("updated.")
+        assert page.has_content?("updated")
       end
     end
 
@@ -110,7 +110,7 @@ module Calendar
       assert_equal calendar.root_path, current_path
 
       # Check the flash
-      assert page.has_content?("updated.")
+      assert page.has_content?("updated")
 
       # Check the event was updated
       visit "/calendar?date=#{calendar_events(:regular).starts_at}"
@@ -155,7 +155,7 @@ module Calendar
       #page.driver.browser.switch_to.alert.accept
 
       # Check the flash
-      assert page.has_content?("deleted.")
+      assert page.has_content?("deleted")
 
       # Close the flash
       find('.close').click
@@ -167,14 +167,14 @@ module Calendar
       visit '/calendar'
 
       # Click on a day
-      find(:xpath, "//td[starts-with(@class, 'fc-tue ui-widget-content fc-day9')]/div").click
+      find(:xpath, "//td[starts-with(@class, 'fc-tue fc-widget-content fc-day9')]/div").click
 
       # Tooltip
       fill_in 'Title', with: 'New event using a tooltip'
       click_on 'Create event'
 
       # Check the flash
-      assert page.has_content?("created.")
+      assert page.has_content?("created")
 
       # Check the event was created
       assert page.has_content?('New event using a tooltip')
@@ -184,7 +184,7 @@ module Calendar
       visit '/calendar?date="2012-04-01"'
 
       # Click on a day
-      find(:xpath, "//td[starts-with(@class, 'fc-tue ui-widget-content fc-day9')]/div").click
+      find(:xpath, "//td[starts-with(@class, 'fc-tue fc-widget-content fc-day9')]/div").click
 
       # Tooltip
       fill_in 'Title', with: 'Edit event using a tooltip'
