@@ -1,5 +1,7 @@
 /*
- *= require fullcalendar/fullcalendar.css
+ * File fullcalendar.css is included inside bootstrap_and_overrides.css.scss instead.
+ * This allows to adapt FullCalendar to Twitter Bootstrap.
+ * require fullcalendar/fullcalendar.css
 */
 
 /* FullCalendar button' text should be bold */
