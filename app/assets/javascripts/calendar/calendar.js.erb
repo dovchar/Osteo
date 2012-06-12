@@ -131,24 +131,19 @@ function eventToJSON(event) {
   return JSONEvent;
 }
 
-// Shows the event inside a tooltip using qTip
-function showEventTooltip(event, jsEvent, div) {
-  div.qtip({
-    id: 'event_' + event.id,
-
+// See http://craigsworks.com/projects/qtip2/tutorials/#shared
+function qTipSharedParameters(jsEvent) {
+  return {
     content: {
       title: {
-        text: event.title,
         button: I18n.t('close')
       },
       text: I18n.t('loading'),
       ajax: {
-        url: '/calendar/' + I18n.currentLocale() + '/events/' + event.id,
         loading: false // Hide the tooltip whilst the initial content is loaded
       }
     },
 
-    //title: { button: 'custom text' }
     position: {
       my: 'bottom center',
       at: 'top center',
@@ -168,21 +163,33 @@ function showEventTooltip(event, jsEvent, div) {
     style: {
       classes: 'ui-tooltip-bootstrap'
     }
-  });
+  };
+}
+
+// Shows the event inside a tooltip using qTip
+function showEventTooltip(event, jsEvent, div) {
+  div.qtip($.extend(true, {}, qTipSharedParameters(jsEvent), {
+    id: 'event_' + event.id,
+    content: {
+      title: {
+        text: event.title
+      },
+      ajax: {
+        url: '/calendar/' + I18n.currentLocale() + '/events/' + event.id,
+      }
+    }
+  }));
 }
 
 // Shows new_tooltip view inside a tooltip using qTip
 function showNewTooltipEvent(date, allDay, jsEvent, div) {
-  div.qtip({
+  div.qtip($.extend(true, {}, qTipSharedParameters(jsEvent), {
     content: {
       title: {
-        text: I18n.t('calendar.events.new.title'),
-        button: I18n.t('close')
+        text: I18n.t('calendar.events.new.title')
       },
-      text: I18n.t('loading'),
       ajax: {
         url: '/calendar/' + I18n.currentLocale() + '/events/new_tooltip',
-        loading: false, // Hide the tooltip whilst the initial content is loaded
 
         // Data to pass along with the request
         data: {
@@ -193,28 +200,8 @@ function showNewTooltipEvent(date, allDay, jsEvent, div) {
           }
         }
       }
-    },
-
-    position: {
-      my: 'bottom center',
-      at: 'top center',
-      target: [jsEvent.pageX, jsEvent.pageY],
-      viewport: $(window) // Try to keep the tooltip on-screen at all times
-    },
-
-    show: {
-      // Show the tooltip when event is clicked and tooltip is 'ready' e.g. rendered
-      event: 'click',
-      ready: true
-    },
-
-    // Close the tooltip when it loses focus e.g. anywhere except the tooltip is clicked
-    hide: 'unfocus',
-
-    style: {
-      classes: 'ui-tooltip-bootstrap'
     }
-  });
+  }));
 }
 
 // Closes a given qTip2 tooltip
