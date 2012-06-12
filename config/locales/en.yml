@@ -3,6 +3,10 @@ en:
     calendar:
       application:
         title: Calendar
+      sidebar:
+        my_calendars: My calendars
+        other_calendars: Other calendars
+        add_calendar: Add a calendar
 
   calendar:
     events:
@@ -21,6 +25,7 @@ en:
       event_created: "Event '%{title}' created"
       event_updated: "Event '%{title}' updated"
       event_deleted: "Event '%{title}' deleted"
+      list: Event list
 
   activerecord:
     models:

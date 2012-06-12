@@ -1,18 +1,27 @@
 <div class="well sidebar-nav">
   <ul class="nav nav-list">
-    <li class="nav-header">Sidebar</li>
+
+    <li><%= link_to '<i class="icon-calendar"></i>'.html_safe + t('layouts.calendar.application.title'), root_path %></li>
+    <li><%= link_to '<i class="icon-plus"></i>'.html_safe + t('calendar.events.new.title'), calendar.new_event_path %></li>
+    <li><%= link_to '<i class="icon-list"></i>'.html_safe + t('calendar.events.list'), calendar.events_path %></li>
+
     <li class="active"><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
-    <li class="nav-header">Sidebar</li>
+
+    <li class="nav-header"><%= t('.my_calendars') %></li>
+
+    <input type="text" class="input-medium" placeholder="<%= t('.add_calendar') %>">
+
     <li><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
-    <li class="nav-header">Sidebar</li>
+
+    <li class="nav-header"><%= t('.other_calendars') %></li>
     <li><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
     <li><a href="#">Link</a></li>
