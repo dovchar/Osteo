@@ -10,11 +10,27 @@ module Calendar
       # 'start' and 'end' in order to filter the results
       # Format is Unix timestamps (seconds since 1970)
       # Example: GET "/calendar/events?start=1338069600&end=1341698400"
+      #
+      # Multiple cases:
+      #
+      #        start      end
+      #    ______|_________|______
+      #       |_______________|     => OK
+      #       |_____|               => OK
+      #                 |_____|     => OK
+      #            |_____|          => OK
+      #     |_|                     => X
+      #                       |_|   => X
+      #
+      # All the events that end after 'start' and that start before end
+      # Tous les événements qui finissent après 'start' et qui débutent avant 'end'
+      #
       # This will generate the following query:
-      # SELECT "calendar_events".* FROM "calendar_events" WHERE (starts_at > '2012-05-26 22:00:00.000000') AND (ends_at < '2012-07-07 22:00:00.000000')
+      # SELECT "calendar_events".* FROM "calendar_events" WHERE (ends_at > '2012-05-26 22:00:00.000000') AND (starts_at < '2012-07-07 22:00:00.000000')
+
       @events = Event.scoped
-      @events = @events.after(Time.at(params['start'].to_i)) if (params['start'])
-      @events = @events.before(Time.at(params['end'].to_i)) if (params['end'])
+      @events = @events.ending_after(Time.at(params['start'].to_i)) if (params['start'])
+      @events = @events.starting_before(Time.at(params['end'].to_i)) if (params['end'])
 
       respond_to do |format|
         format.html # index.html.erb

@@ -11,11 +11,11 @@ module Calendar
 
     after_initialize :default_values
 
-    # Gets all events after a given date
-    scope :after, lambda { |date| where("starts_at > ?", date) }
+    # Gets all events ending after a given date
+    scope :ending_after, lambda { |date| where("ends_at > ?", date) }
 
-    # Gets all events before a given date
-    scope :before, lambda { |date| where("ends_at < ?", date) }
+    # Gets all events starting before a given date
+    scope :starting_before, lambda { |date| where("starts_at < ?", date) }
 
     # Frequency for displaying time slots, in minutes.
     # Used by FullCalendar and jQuery timepicker.

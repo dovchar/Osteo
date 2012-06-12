@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 regular:
-  title: Appointment
+  title: Regular
   starts_at: 2010-10-13 00:00:00 UTC
   ends_at: 2010-10-13 00:30:00 UTC
   all_day: false
@@ -15,9 +15,17 @@ invalid:
   description: Invalid event, title is ok but dates are not
 
 all_day:
-  title: All day event
+  title: All day
   starts_at: 2012-04-19
   ends_at: 2012-04-19
   all_day: true
   location: Paris
   description: Holiday
+
+very_long:
+  title: Very long
+  starts_at: 2012-05-23 00:00:00 UTC
+  ends_at: 2012-06-10 00:00:00 UTC
+  all_day: true
+  location: Paris
+  description: Very long
