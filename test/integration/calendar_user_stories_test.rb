@@ -11,13 +11,13 @@ module Calendar
       visit "/calendar?date=#{calendar_events(:regular).starts_at}"
       assert page.has_content?('October 2010')
       assert page.has_content?('2a') # Translated from UTC to localtime by FullCalendar
-      assert page.has_content?('Appointment')
+      assert page.has_content?('Regular')
     end
 
     test "create an event" do
       visit '/calendar'
 
-      click_on 'Create'
+      click_on 'New event'
 
       fill_in 'Title', with: 'My new event'
       fill_in 'Location', with: 'Paris'
@@ -34,7 +34,7 @@ module Calendar
     test "try to create an invalid event" do
       visit '/calendar'
 
-      click_on 'Create'
+      click_on 'New event'
 
       fill_in 'Title', with: '' # An empty title is OK
 
@@ -160,7 +160,7 @@ module Calendar
       # Close the flash
       find('.close').click
 
-      assert page.has_no_content?('Appointment')
+      assert page.has_no_content?('Regular')
     end
 
     test "create an event by clicking on a day" do
@@ -204,7 +204,7 @@ module Calendar
 
       # Click on the event
       find('.fc-event').click
-      assert page.has_content?('All day event')
+      assert page.has_content?('All day')
       assert page.has_content?('Thu, April 19')
 
       # Click on edit link inside the tooltip
