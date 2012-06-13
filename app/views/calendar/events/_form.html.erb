@@ -13,7 +13,7 @@
   <div class="datepair">
     <%= f.input :starts_at, as: :date_pair, :input_html => { class: "start" } %>
     <%= f.input :ends_at, as: :date_pair, :input_html => { class: "end" } %>
-    <%= f.input :all_day, as: :date_pair_all_day %>
+    <%= f.input :all_day, as: :date_pair_all_day, label: false, inline_label: true %>
   </div>
 
   <%= f.input :location, :input_html => { class: 'form-horizontal' } %>
