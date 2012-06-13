@@ -55,11 +55,18 @@ $(document).ready(function() {
     // jQuery UI theme support
     theme: false,
 
+    eventSources: [
+      // TODO Use Rails.application.routes.url_helpers and Rails.application.routes.named_routes
+      // Don't know how to make it work :/
+      // See https://github.com/rails/rails/issues/2501
+      '/calendar/events',
 
-    // TODO Use Rails.application.routes.url_helpers and Rails.application.routes.named_routes
-    // Don't know how to make it work :/
-    // See https://github.com/rails/rails/issues/2501
-    events: '/calendar/events',
+      {
+        url: 'http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic',
+        color: 'yellow',
+        textColor: 'black'
+      }
+    ],
 
     // Frequency for displaying time slots, in minutes
     slotMinutes: <%= Calendar::Event::STEP_MINUTE %>,
