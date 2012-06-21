@@ -2,7 +2,7 @@ module Calendar
   class Event < ActiveRecord::Base
 
     # Allow mass-assignment
-    attr_accessible :title, :starts_at, :ends_at, :all_day, :description, :location, :created_at, :updated_at
+    attr_accessible :title, :starts_at, :ends_at, :all_day, :description, :location, :created_at, :updated_at, :color
 
     validates :starts_at, presence: true
     validates :ends_at, presence: true
@@ -40,6 +40,22 @@ module Calendar
     # 1 means monday
     FIRST_DAY_OF_WEEK = 0
 
+    # Colors from Google Calendar
+    COLORS = {
+      'Green'       => '#7bd148',
+      'Bold blue'   => '#5484ed',
+      'Blue'        => '#a4bdfc',
+      'Turquoise'   => '#46d6db',
+      'Light green' => '#7ae7bf',
+      'Bold green'  => '#51b749',
+      'Yellow'      => '#fbd75b',
+      'Orange'      => '#ffb878',
+      'Red'         => '#ff887c',
+      'Bold red'    => '#dc2127',
+      'Purple'      => '#dbadff',
+      'Gray'        => '#e1e1e1',
+    }
+
     # Need to override the JSON view to return what FullCalendar is expecting.
     # See http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
     def as_json(options = nil)
@@ -49,7 +65,8 @@ module Calendar
         description: description,
         start: starts_at, # ISO 8601, ex: "2011-10-28T01:22:00Z"
         end: ends_at,
-        allDay: all_day
+        allDay: all_day,
+        color: color
       }
     end
 
@@ -72,6 +89,7 @@ module Calendar
       self.starts_at ||= now
       self.ends_at ||= now + EVENT_LENGTH.minutes
       self.all_day ||= false
+      self.color ||= COLORS['Yellow']
     end
 
     def validate_ends_at_after_starts_at

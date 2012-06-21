@@ -11,6 +11,13 @@ GIT
     jquery-qtip2-rails (0.2.0)
       railties (>= 3.1.0)
 
+GIT
+  remote: https://github.com/tkrotoff/jquery-simplecolorpicker-rails.git
+  revision: ebb5789b0e789675246b79d72216cd58f440d9db
+  specs:
+    jquery-simplecolorpicker-rails (0.0.1)
+      railties (>= 3.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -185,6 +192,7 @@ DEPENDENCIES
   i18n-js (>= 3.0.0.rc2)
   jquery-qtip2-rails!
   jquery-rails
+  jquery-simplecolorpicker-rails!
   jquery-ui-rails
   launchy
   rails

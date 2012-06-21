@@ -20,6 +20,7 @@
 
   <%= f.input :description, input_html: { class: "input-xlarge", rows: "3" } %>
 
+  <%= f.input :color, collection: Calendar::Event::COLORS, selected: @event.color %>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary' %>

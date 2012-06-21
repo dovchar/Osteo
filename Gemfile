@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-qtip2-rails', git: 'https://github.com/tkrotoff/jquery-qtip2-rails.git'
 gem 'fullcalendar-rails', git: 'https://github.com/tkrotoff/fullcalendar-rails.git'
+gem 'jquery-simplecolorpicker-rails', git: 'https://github.com/tkrotoff/jquery-simplecolorpicker-rails.git'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 
