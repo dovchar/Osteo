@@ -1,10 +1,5 @@
 /*
- *= require jquery.ui.autocomplete
+ * require jquery.ui.autocomplete
  * require bootstrap-datepicker
  *= require jquery-timepicker/jquery.timepicker.css
 */
-
-#map {
-  width: 300px;
-  height: 300px;
-}

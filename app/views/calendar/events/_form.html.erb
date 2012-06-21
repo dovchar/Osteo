@@ -8,23 +8,18 @@
     </div>
   <% end %>
 
-  <%= f.input :title, autofocus: true %>
+  <%= f.input :title, autofocus: true, input_html: { class: "input-xlarge" } %>
 
   <div class="datepair">
-    <%= f.input :starts_at, as: :date_pair, :input_html => { class: "start" } %>
-    <%= f.input :ends_at, as: :date_pair, :input_html => { class: "end" } %>
+    <%= f.input :starts_at, as: :date_pair, input_html: { class: "start" } %>
+    <%= f.input :ends_at, as: :date_pair, input_html: { class: "end" } %>
     <%= f.input :all_day, as: :date_pair_all_day, label: false, inline_label: true %>
   </div>
 
-  <%= f.input :location, :input_html => { class: 'form-horizontal' } %>
+  <%= f.input :location, input_html: { class: "form-horizontal input-xlarge" } %>
 
-  <div class="control-group">
-    <div class="controls">
-      <div id="map"></div>
-    </div>
-  </div>
+  <%= f.input :description, input_html: { class: "input-xlarge", rows: "3" } %>
 
-  <%= f.input :description %>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary' %>

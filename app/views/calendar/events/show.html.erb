@@ -10,6 +10,6 @@
   </p>
 <% end %>
 
-<%= link_to t('delete'), @event, confirm: t('are_you_sure'), method: :delete, remote: true %>
+<%= link_to t('delete'), @event, data: { confirm: t('are_you_sure') }, method: :delete, remote: true %>
 |
 <%= link_to t('.edit'), edit_event_path(@event) %>

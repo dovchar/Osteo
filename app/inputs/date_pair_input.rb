@@ -32,14 +32,13 @@ class DatePairInput < SimpleForm::Inputs::Base
     datetime = attr.round_time(Calendar::Event::STEP_MINUTE.minutes).in_time_zone(Calendar::Event::TIME_ZONE) if attr
 
     value = datetime.strftime(Calendar::Event::DATE_FORMAT) # Always set a value otherwise text_field will fail
-    klass = [ input_html_options[:class], 'date' ]
-    out << @builder.text_field("#{attribute_name}_date", { value: value, class: klass})
+    klass = [ input_html_options[:class], 'date input-small' ]
+    out << @builder.text_field("#{attribute_name}_date", { value: value, class: klass })
 
     out << "\n"
 
-    time_html_options = {}
     value = datetime.strftime(Calendar::Event::TIME_FORMAT) # Always set a value otherwise text_field will fail
-    klass = [ input_html_options[:class], 'time' ]
-    out << @builder.text_field("#{attribute_name}_time", { value: value, class: klass})
+    klass = [ input_html_options[:class], 'time input-small' ]
+    out << @builder.text_field("#{attribute_name}_time", { value: value, class: klass })
   end
 end
