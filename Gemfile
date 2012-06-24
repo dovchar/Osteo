@@ -32,7 +32,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'simple_form'
 
 gem 'rails-i18n'
-gem 'i18n-js', '>= 3.0.0.rc2'
+gem 'i18n-js', git: 'https://github.com/fnando/i18n-js.git'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby'

@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/fnando/i18n-js.git
+  revision: eeec14066b50f72876aa789c9b1f226172452798
+  specs:
+    i18n-js (2.1.2)
+      i18n
+
+GIT
   remote: https://github.com/tkrotoff/fullcalendar-rails.git
   revision: 6c99643a0aea81168a56c953608a63feddce7b25
   specs:
@@ -62,8 +69,6 @@ GEM
       test-unit (~> 2.2)
     hike (1.2.1)
     i18n (0.6.0)
-    i18n-js (3.0.0.rc2)
-      i18n
     journey (1.0.4)
     jquery-qtip2-rails (0.2.0)
       railties (>= 3.1.0)
@@ -178,7 +183,7 @@ DEPENDENCIES
   fullcalendar-rails!
   guard
   guard-test
-  i18n-js (>= 3.0.0.rc2)
+  i18n-js!
   jquery-qtip2-rails
   jquery-rails
   jquery-simplecolorpicker-rails
