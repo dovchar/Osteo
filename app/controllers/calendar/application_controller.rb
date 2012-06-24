@@ -4,7 +4,7 @@ module Calendar
     # Locale
     before_filter :set_locale
 
-    protected
+    private
 
     # Sets the locale from parameters.
     def set_locale

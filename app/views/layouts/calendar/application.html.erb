@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
 <head>
+  <meta charset="utf-8">
   <title><%= t('.title') %></title>
-  <%= stylesheet_link_tag    "calendar/application", media: "all" %>
-  <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
-  <%= javascript_include_tag "calendar/application" %>
-  <%= csrf_meta_tags %>
 
   <%#
     Setting a viewport tells the browser how content should fit on the device's
@@ -14,10 +11,14 @@
   %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script type="text/javascript">
-    I18n.defaultLocale = '<%= I18n.default_locale %>';
-    I18n.locale = '<%= I18n.locale %>';
-  </script>
+  <%= stylesheet_link_tag "calendar/application", media: "all" %>
+
+  <%# HTML5 shim, for IE6-8 support of HTML5 elements %>
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js" %>
+  <![endif]-->
+
+  <%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -39,6 +40,19 @@
 
   <%= render 'layouts/calendar/footer' %>
 </div>
+
+<%#
+  JavaScript placed at the end of the document so the pages load faster
+  See http://developer.yahoo.com/performance/rules.html#js_bottom
+%>
+
+<%= javascript_include_tag "calendar/application" %>
+
+<%# I18n translations for JavaScript, see https://github.com/fnando/i18n-js %>
+<%= javascript_tag do %>
+  I18n.defaultLocale = '<%= I18n.default_locale %>';
+  I18n.locale = '<%= I18n.locale %>';
+<% end %>
 
 </body>
 </html>
