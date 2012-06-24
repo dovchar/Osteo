@@ -110,7 +110,7 @@ $(document).ready(function() {
   });
 
   // HACK Remove the overflow of unnecessary span inside FullCalendar buttons.
-  // This fix some problems under Internet Explorer < 9 and smartphones' web browsers.
+  // This fix some problems under Internet Explorer < 9
   //
   // Original structure:
   // <span class="fc-button">
@@ -207,8 +207,11 @@ function qTipSharedParameters(jsEvent) {
 
 // Shows the event inside a tooltip using qTip
 function showEventTooltip(event, jsEvent, div) {
+  var id = 'event_' + event.id;
+  removeTooltip(id);
+
   div.qtip($.extend(true, {}, qTipSharedParameters(jsEvent), {
-    id: 'event_' + event.id,
+    id: id,
     content: {
       title: {
         text: event.title
@@ -245,15 +248,13 @@ function showNewTooltipEvent(date, allDay, jsEvent, div) {
 
 // Closes a given qTip2 tooltip
 function removeTooltip(id) {
-  $('#ui-tooltip-' + id).qtip('hide');
-  //$('#ui-tooltip-' + id).remove();
+  $('#ui-tooltip-' + id).qtip('destroy');
 }
 
 // Closes all qTip2 tooltips
 // See http://craigsworks.com/projects/forums/thread-solved-close-all-tooltips-at-the-same-time
 function removeAllTooltips() {
-  $('.qtip.ui-tooltip').qtip('hide');
-  //$('.qtip.ui-tooltip').remove();
+  $('.qtip.ui-tooltip').qtip('destroy');
 }
 
 // Refetches FullCalendar events

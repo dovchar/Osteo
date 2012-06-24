@@ -23,6 +23,7 @@ en:
       show:
         when: "When:"
         location: "Location:"
+        color: "Color:"
         edit: Edit »
       event_created: "Event '%{title}' created"
       event_updated: "Event '%{title}' updated"

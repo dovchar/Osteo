@@ -15,10 +15,10 @@
   <%= link_to t('calendar.events.show.edit'), '#', id: 'edit_event' %>
 <% end %>
 
-<script>
+<%= javascript_tag do %>
   <%#
-  Update the form when the user clicks on the edit link
-  See http://stackoverflow.com/questions/461790/multiple-submit-buttons-forms-in-rails
+    Update the form when the user clicks on the edit link
+    See http://stackoverflow.com/questions/461790/multiple-submit-buttons-forms-in-rails
   %>
   $(document).ready(function() {
     $('#edit_event').click(function() {
@@ -29,4 +29,4 @@
       new_event_form.submit();
     });
   });
-</script>
+<% end %>

@@ -1,10 +1,10 @@
 <div id="calendar"></div>
 
 <% if @date %>
-<script>
-  // Moves the calendar to a specified date.
-  $(document).ready(function() {
-    $('#calendar').fullCalendar('gotoDate', new Date(<%= @date %>));
-  });
-</script>
+  <%# Moves the calendar to a specified date. %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('#calendar').fullCalendar('gotoDate', new Date(<%= @date %>));
+    });
+  <% end %>
 <% end %>

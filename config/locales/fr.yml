@@ -23,6 +23,7 @@ fr:
       show:
         when: "Date :"
         location: "Lieu :"
+        color: "Couleur :"
         edit: Modifier l'événement »
       event_created: "Evénement '%{title}' créé"
       event_updated: "Evénement '%{title}' mis à jour"

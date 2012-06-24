@@ -1,3 +1,7 @@
+<%# No layout for this view, see events_controller#show %>
+
+<%= select(:event, :color, available_colors_translated) %>
+
 <p>
   <b><%= t('.when') %></b>
   <%= datepair_tag @event.starts_at, @event.ends_at, @event.all_day %>
@@ -13,3 +17,21 @@
 <%= link_to t('delete'), @event, data: { confirm: t('are_you_sure') }, method: :delete, remote: true %>
 |
 <%= link_to t('.edit'), edit_event_path(@event) %>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    var tooltipTitle = $('#ui-tooltip-<%= dom_id(@event) %>-title');
+    var colorSelect = $('#event_color');
+
+    <%# Move the color <select> inside the tooltip title %>
+    tooltipTitle.prepend(colorSelect);
+
+    colorSelect.simplecolorpicker({
+      picker: true
+    });
+
+    <%# simplecolorpicker default z-index is 1000, too low for qTip2 z-index which is 15001 %>
+    $('.simplecolorpicker.picker').css('z-index', 15002);
+
+  });
+<% end %>
