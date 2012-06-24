@@ -19,7 +19,7 @@ $(document).ready(function() {
     // Otherwise ISO 8601 "2011-10-28T01:22:00Z" is not seen as UTC
     ignoreTimezone: false,
 
-    // time formats
+    // Time formats
     titleFormat: {
       month: 'MMMM yyyy',
       week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}",
@@ -36,12 +36,23 @@ $(document).ready(function() {
 
     firstDay: <%= Calendar::Event::FIRST_DAY_OF_WEEK %>,
 
-    monthNames: [I18n.t('january'),I18n.t('february'),I18n.t('march'),I18n.t('april'),I18n.t('may'),I18n.t('june'),
-                 I18n.t('july'),I18n.t('august'),I18n.t('september'),I18n.t('october'),I18n.t('november'),I18n.t('december')],
-    monthNamesShort: [I18n.t('jan'),I18n.t('feb'),I18n.t('mar'),I18n.t('apr'),I18n.t('may'),I18n.t('jun'),
-                      I18n.t('jul'),I18n.t('aug'),I18n.t('sep'),I18n.t('oct'),I18n.t('nov'),I18n.t('dec')],
-    dayNames: [I18n.t('sunday'),I18n.t('monday'),I18n.t('tuesday'),I18n.t('wednesday'),I18n.t('thursday'),I18n.t('friday'),I18n.t('saturday')],
-    dayNamesShort: [I18n.t('sun'),I18n.t('mon'),I18n.t('tue'),I18n.t('wed'),I18n.t('thu'),I18n.t('fri'),I18n.t('sat')],
+    monthNames: [I18n.t('month_names.january'),I18n.t('month_names.february'),I18n.t('month_names.march'),
+                 I18n.t('month_names.april'),I18n.t('month_names.may'),I18n.t('month_names.june'),
+                 I18n.t('month_names.july'),I18n.t('month_names.august'),I18n.t('month_names.september'),
+                 I18n.t('month_names.october'),I18n.t('month_names.november'),I18n.t('month_names.december')],
+    monthNamesShort: [I18n.t('abbr_month_names.jan'),I18n.t('abbr_month_names.feb'),
+                      I18n.t('abbr_month_names.mar'),I18n.t('abbr_month_names.apr'),
+                      I18n.t('abbr_month_names.may'),I18n.t('abbr_month_names.jun'),
+                      I18n.t('abbr_month_names.jul'),I18n.t('abbr_month_names.aug'),
+                      I18n.t('abbr_month_names.sep'),I18n.t('abbr_month_names.oct'),
+                      I18n.t('abbr_month_names.nov'),I18n.t('abbr_month_names.dec')],
+    dayNames: [I18n.t('day_names.sunday'),I18n.t('day_names.monday'),I18n.t('day_names.tuesday'),
+               I18n.t('day_names.wednesday'),I18n.t('day_names.thursday'),
+               I18n.t('day_names.friday'),I18n.t('day_names.saturday')],
+    dayNamesShort: [I18n.t('abbr_day_names.sun'),I18n.t('abbr_day_names.mon'),
+                    I18n.t('abbr_day_names.tue'),I18n.t('abbr_day_names.wed'),
+                    I18n.t('abbr_day_names.thu'),I18n.t('abbr_day_names.fri'),
+                    I18n.t('abbr_day_names.sat')],
 
     buttonText: {
       prev: '<i class="icon-arrow-left"></i>',

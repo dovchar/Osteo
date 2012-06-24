@@ -13,5 +13,14 @@ module Calendar
     def datepair_tag(starts_at, ends_at, all_day)
       raw "#{Time.format_datepair(starts_at, ends_at, all_day)}"
     end
+
+    # Returns Calendar::Event::COLORS translated for use with simple_form.
+    def available_colors_translated
+      colors_translated = {}
+      Calendar::Event::COLORS.each do |color, hex|
+        colors_translated[t("colors.#{color}")] = hex;
+      end
+      colors_translated
+    end
   end
 end

@@ -1,3 +1,5 @@
+# See https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
+
 fr:
   layouts:
     calendar:
@@ -38,6 +40,7 @@ fr:
         all_day: Toute la journée
         location: Lieu
         description: Description
+        color: Couleur
 
   helpers:
     submit:
@@ -53,51 +56,70 @@ fr:
 
   # FullCalendar
 
-  january: Janvier
-  february: Février
-  march: Mars
-  april: Avril
-  may: Mai
-  june: Juin
-  july: Juillet
-  august: Août
-  september: Septembre
-  october: Octobre
-  november: Novembre
-  december: Décembre
-
-  # See http://fr.wikipedia.org/wiki/Mois
-  jan: Janv
-  feb: Févr
-  mar: Mars
-  apr: Avr
-  may: Mai
-  jun: Juin
-  jul: Juill
-  aug: Août
-  sep: Sept
-  oct: Oct
-  nov: Nov
-  dec: Dec
-
-  sunday: Dimanche
-  monday: Lundi
-  tuesday: Mardi
-  wednesday: Mercredi
-  thursday: Jeudi
-  friday: Vendredi
-  saturday: Samedi
+  # See https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
+  day_names:
+    sunday: Dimanche
+    monday: Lundi
+    tuesday: Mardi
+    wednesday: Mercredi
+    thursday: Jeudi
+    friday: Vendredi
+    saturday: Samedi
 
   # See http://fr.wikipedia.org/wiki/Semaine
-  sun: Dim
-  mon: Lun
-  tue: Mar
-  wed: Mer
-  thu: Jeu
-  fri: Ven
-  sat: Sam
+  abbr_day_names:
+    sun: Dim
+    mon: Lun
+    tue: Mar
+    wed: Mer
+    thu: Jeu
+    fri: Ven
+    sat: Sam
+
+  month_names:
+    january: Janvier
+    february: Février
+    march: Mars
+    april: Avril
+    may: Mai
+    june: Juin
+    july: Juillet
+    august: Août
+    september: Septembre
+    october: Octobre
+    november: Novembre
+    december: Décembre
+
+  abbr_month_names:
+    # See http://fr.wikipedia.org/wiki/Mois
+    jan: Janv
+    feb: Févr
+    mar: Mars
+    apr: Avr
+    may: Mai
+    jun: Juin
+    jul: Juill
+    aug: Août
+    sep: Sept
+    oct: Oct
+    nov: Nov
+    dec: Dec
 
   today: Aujourd'hui
   month: Mois
   week: Semaine
   day: Jour
+
+  colors:
+    blue: Bleu
+    bold_blue: Bleu vif
+    turquoise: Turquoise
+    green: Vert
+    light_green: Vert clair
+    bold_green: Vert vif
+    yellow: Jaune
+    orange: Orange
+    red: Rouge
+    bold_red: Rouge vif
+    purple: Pourpre
+    gray: Gris

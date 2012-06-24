@@ -1,3 +1,5 @@
+# See https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
+
 en:
   layouts:
     calendar:
@@ -38,6 +40,7 @@ en:
         all_day: All day
         location: Location
         description: Description
+        color: Color
 
   helpers:
     submit:
@@ -53,51 +56,69 @@ en:
 
   # FullCalendar
 
-  january: January
-  february: February
-  march: March
-  april: April
-  may: May
-  june: June
-  july: July
-  august: August
-  september: September
-  october: October
-  november: November
-  december: December
-
-  # See http://fr.wikipedia.org/wiki/Mois
-  jan: Jan
-  feb: Feb
-  mar: Mar
-  apr: Apr
-  may: May
-  jun: Jun
-  jul: Jul
-  aug: Aug
-  sep: Sep
-  oct: Oct
-  nov: Nov
-  dec: Dec
-
-  sunday: Sunday
-  monday: Monday
-  tuesday: Tuesday
-  wednesday: Wednesday
-  thursday: Thursday
-  friday: Friday
-  saturday: Saturday
+  day_names:
+    sunday: Sunday
+    monday: Monday
+    tuesday: Tuesday
+    wednesday: Wednesday
+    thursday: Thursday
+    friday: Friday
+    saturday: Saturday
 
   # See http://fr.wikipedia.org/wiki/Semaine
-  sun: Sun
-  mon: Mon
-  tue: Tue
-  wed: Wed
-  thu: Thu
-  fri: Fri
-  sat: Sat
+  abbr_day_names:
+    sun: Sun
+    mon: Mon
+    tue: Tue
+    wed: Wed
+    thu: Thu
+    fri: Fri
+    sat: Sat
+
+  month_names:
+    january: January
+    february: February
+    march: March
+    april: April
+    may: May
+    june: June
+    july: July
+    august: August
+    september: September
+    october: October
+    november: November
+    december: December
+
+  # See http://fr.wikipedia.org/wiki/Mois
+  abbr_month_names:
+    jan: Jan
+    feb: Feb
+    mar: Mar
+    apr: Apr
+    may: May
+    jun: Jun
+    jul: Jul
+    aug: Aug
+    sep: Sep
+    oct: Oct
+    nov: Nov
+    dec: Dec
 
   today: Today
   month: Month
   week: Week
   day: Day
+
+  colors:
+    blue: Blue
+    bold_blue: Bold blue
+    turquoise: Turquoise
+    green: Green
+    light_green: Light green
+    bold_green: Bold green
+    yellow: Yellow
+    orange: Orange
+    red: Red
+    bold_red: Bold red
+    purple: Purple
+    gray: Gray
