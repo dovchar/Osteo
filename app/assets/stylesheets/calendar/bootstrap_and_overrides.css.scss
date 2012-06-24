@@ -50,25 +50,3 @@
       -moz-border-radius-bottomright: 4px;
           border-bottom-right-radius: 4px;
 }
-
-
-/* Override some FullCalendar CSS properties that conflict with Twitter Bootstrap btn. */
-
-.fc-state-default .fc-button-inner {
-  background: transparent;
-  border-width: 0 0;
-}
-
-.fc-button-content {
-  line-height: $baseLineHeight;
-  height: $baseLineHeight;
-  padding: 0 0;
-}
-
-.fc-state-default .fc-button-effect span {
-  @include buttonBackground($btnBackground, $btnBackgroundHighlight);
-}
-
-.fc-state-active .fc-button-inner {
-  color: $grayDark;
-}

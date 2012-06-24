@@ -109,6 +109,27 @@ $(document).ready(function() {
     }
   });
 
+  // HACK Remove the overflow of unnecessary span inside FullCalendar buttons.
+  // This fix some problems under Internet Explorer < 9 and smartphones' web browsers.
+  //
+  // Original structure:
+  // <span class="fc-button">
+  //   <span class="fc-button-inner">
+  //     <span class="fc-button-content">[...]</span>
+  //     <span class="fc-button-effect">
+  //       <span></span>
+  //     </span>
+  //   </span>
+  // </span>
+  //
+  // New structure:
+  // <span class="fc-button">[...]</span>
+  //
+  // I don't know how but elements fc-button-inner, fc-button-content and fc-button-effect
+  // disappear automatically.
+  $('.fc-button-content').each(function() {
+    $(this).parent().parent().html($(this).html());
+  });
 });
 
 // A calendar event has been modified, let's update it
