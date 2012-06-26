@@ -15,10 +15,10 @@ class DatePairAllDayInput < SimpleForm::Inputs::BooleanInput
 
     out << javascript_tag(
              "$(document).ready(function() {
-                all_day = $('##{field_id(object_name, :all_day)}');
+                var all_day = $('##{field_id(object_name, :all_day)}');
                 all_day.change(function() {
-                  starts_at_time = $('##{field_id(object_name, :starts_at, 'time')}');
-                  ends_at_time = $('##{field_id(object_name, :ends_at, 'time')}');
+                  var starts_at_time = $('##{field_id(object_name, :starts_at, 'time')}');
+                  var ends_at_time = $('##{field_id(object_name, :ends_at, 'time')}');
                   if (all_day.prop('checked')) {
                     starts_at_time.hide();
                     ends_at_time.hide();
