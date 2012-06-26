@@ -33,5 +33,13 @@
     <%# simplecolorpicker default z-index is 1000, too low for qTip2 z-index which is 15001 %>
     $('.simplecolorpicker.picker').css('z-index', 15002);
 
+    $('.simplecolorpicker.icon').css({
+      <%# Back to the defaults set by Twitter Bootstrap %>
+      'font-size': '13px',
+      'line-height': '18px',
+
+      <%# Margin between the picker icon and the tooltip text %>
+      'margin-right': '4px'
+    });
   });
 <% end %>
